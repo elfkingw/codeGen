@@ -1,0 +1,232 @@
+#set($domainClass = $stringUtils.getUncapName(${model.name}))
+#set($domainName = $stringUtils.uncapitaliseAll(${model.name}))
+Ext.namespace("${domainClass}.Add");
+${domainClass}.Add.win= function(){
+${userName}	
+${model.name}
+$stringUtils.getJavaName(${model.name})
+#foreach($f in $model.fields)	
+#if(!$f.isPrimaryKey())
+#if($f.isForeignKey())
+	this.store = new Ext.data.JsonStore({
+		url : '../../$stringUtils.uncapitaliseAll($f.getFKTableName())/query.form',
+		root : 'result',
+		fields : ["id", "value"]
+	});
+	this.store.load();
+	this.txt$stringUtils.capitaliseAll($f.name) = new Ext.form.ComboBox({
+		fieldLabel : '$stringUtils.uncapitaliseAll($f.name)_cnName',
+		mode : 'local',
+		store : this.store,
+		hiddenName :'$stringUtils.uncapitaliseAll($f.name)',
+		valueField : 'id',
+		displayField : 'value',
+#if($f.isNotNull())
+		allowBlank: false,
+#else
+		allowBlank: true,	
+#end
+		emptyText:'请选择...',
+		width : 125,
+		editable : true,
+		triggerAction : 'all',
+		selectOnFocus : true
+	});
+#elseif($stringUtils.getJavaTypeStr($f.javaType)=="String"&&${f.size}<=1000)
+	this.txt$stringUtils.capitaliseAll($f.name) = new Ext.form.TextField({
+		fieldLabel:'$stringUtils.uncapitaliseAll($f.name)_cnName',
+#if($f.isNotNull())
+		allowBlank: false,
+#else
+		allowBlank: true,	
+#end
+		maxLength:${f.size},
+		width:125,
+		name:'$stringUtils.uncapitaliseAll($f.name)'
+	});
+#elseif($stringUtils.getJavaTypeStr($f.javaType)=="String"&&${f.size}>1000)
+	this.txt$stringUtils.capitaliseAll($f.name) = new Ext.form.TextArea({
+		fieldLabel:'$stringUtils.uncapitaliseAll($f.name)_cnName',
+		allowBlank: true,	
+		maxLength:${f.size},
+		width:600,
+		height:300,
+		id:'$stringUtils.uncapitaliseAll($f.name)',
+		name:'$stringUtils.uncapitaliseAll($f.name)'
+	});
+	this.isShow=false;
+#elseif($stringUtils.getJavaTypeStr($f.javaType)=="Integer" || $stringUtils.getJavaTypeStr($f.javaType)=="Double")
+	this.txt$stringUtils.capitaliseAll($f.name) = new Ext.form.NumberField({
+		fieldLabel : '$stringUtils.uncapitaliseAll($f.name)_cnName',
+		name:'$stringUtils.uncapitaliseAll($f.name)',
+		minText : '0',
+#if($f.isNotNull())
+		allowBlank: false,
+#else
+		allowBlank: true,	
+#end
+		maxLength:${f.size}
+	});
+#elseif($stringUtils.getJavaTypeStr($f.javaType)=="Timestamp")
+	this.txt$stringUtils.capitaliseAll($f.name) = new Ext.form.DateField({
+		fieldLabel:'$stringUtils.uncapitaliseAll($f.name)_cnName',
+		width:125,
+#if($f.isNotNull())
+		allowBlank: false,
+#else
+		allowBlank: true,	
+#end
+		format:'Y-m-d H:i:s',
+		name:'$stringUtils.uncapitaliseAll($f.name)'
+	});
+#elseif($stringUtils.getJavaTypeStr($f.javaType)=="Date")
+	this.txt$stringUtils.capitaliseAll($f.name) = new Ext.form.DateField({
+		fieldLabel:'$stringUtils.uncapitaliseAll($f.name)_cnName',
+		width:125,
+#if($f.isNotNull())
+		allowBlank: false,
+#else
+		allowBlank: true,	
+#end
+		format:'Y-m-d',
+		name:'$stringUtils.uncapitaliseAll($f.name)'
+	});	
+#else
+	this.txt$stringUtils.capitaliseAll($f.name) = new Ext.form.TextField({
+		fieldLabel:'$stringUtils.uncapitaliseAll($f.name)_cnName',
+#if($f.isNotNull())
+		allowBlank: false
+#else
+		allowBlank: true,	
+#end
+		maxLength:${f.size},
+		width:125,
+		name:'$stringUtils.uncapitaliseAll($f.name)'
+	});
+#end
+#else
+	this.txtId= new Ext.form.Hidden({
+		name:'$stringUtils.uncapitaliseAll($f.name)',
+		value:''
+	});
+#end
+#end	
+	
+	this.formPanel = new Ext.form.FormPanel({
+		id:'${domainName}Form',
+		title:'title',
+		frame:true,
+		layout:'table', 
+		region : 'center',
+		bodyStyle:'padding-left:20px;padding-top:5px;',
+		layoutConfig: {columns:2}, 
+		items:$extJsTool.genTableLayoutItems($model.fields),
+		bbar: new Ext.ux.StatusBar({
+            defaultText: 'Ready',
+            plugins: new Ext.ux.ValidationStatus({form:'${domainName}Form'})
+        })
+	});
+	this.saveBtn = new Ext.Button({
+		text:'保存',
+		scope:this,
+		handler:this.save${domainClass}
+	});
+	
+	this.closeBtn = new Ext.Button({
+		text:'关闭',
+		scope:this,
+		handler:function(){
+			this.hide();
+		}
+	});
+	
+	this.saveCon = new Ext.data.Connection({
+			url:'../../${domainName}/saveOrUpdate.form',
+			method:'post'
+	});
+	
+	${domainClass}.Add.win.superclass.constructor.call(this,{
+		id:'${domainName}Win',
+		title:'信息',
+		width:520,
+		height:200,
+		closeAction:'hide',
+		maximizable :true,
+		modal:true,
+		layout:'border',
+		items:[
+			this.formPanel
+		],
+		buttons:[this.saveBtn,this.closeBtn],
+		buttonAlign:'center',
+		listeners:{
+#foreach($f in $model.fields)
+#if($stringUtils.getJavaTypeStr($f.javaType)=="String"&&${f.size}>1000)
+			show:function(){
+				if(!this.isShow){
+					KE.init({id:'$stringUtils.uncapitaliseAll($f.name)'});
+					KE.create('$stringUtils.uncapitaliseAll($f.name)');
+					this.isShow=true;
+				}
+			}
+#end
+#end
+		}
+	});
+};
+
+Ext.extend(${domainClass}.Add.win,Ext.Window,{
+	save${domainClass}:function(){
+		if(!this.formPanel.getForm().isValid()){
+			return;
+		}
+		this.showLoading(true);
+		var params = this.formPanel.getForm().getValues();
+		params.id = this.txtId.getValue();
+		Utils.request(this.saveCon,{
+			params:params,
+			scope:this,
+			success:function(data){
+				this.scope.hide();
+				Ext.getCmp('${domainName}_grid').store.reload();
+				Utils.info("操作成功！");
+			},
+			after: function() {this.scope.showLoading(false);}
+		});
+		this.saveBtn.show();
+	},
+	initAdd:function(){
+		this.formPanel.getForm().reset();
+		this.txtId.setValue("");
+		this.saveBtn.show();
+	},
+	initUpdate:function(data){
+#foreach($f in $model.fields)	
+#if($stringUtils.getJavaTypeStr($f.javaType)=="Date")
+		this.txt${stringUtils.capitaliseAll($f.name)}.setValue(data.${stringUtils.uncapitaliseAll($f.name)}.substring(0,10));
+#elseif($stringUtils.getJavaTypeStr($f.javaType)=="Timestamp")
+		this.txt${stringUtils.capitaliseAll($f.name)}.setValue(data.${stringUtils.uncapitaliseAll($f.name)}.substring(0,19));
+#elseif($f.fk)
+		this.txt${stringUtils.capitaliseAll($f.name)}.setValue(data.${stringUtils.uncapitaliseAll($f.getFKTable().name)}.$stringUtils.uncapitaliseAll($f.getFKColumn().name));
+#else
+		this.txt${stringUtils.capitaliseAll($f.name)}.setValue(data.${stringUtils.uncapitaliseAll($f.name)});
+#end
+#end
+		this.saveBtn.show();
+	},
+	showDetail:function(data,isUpdate){
+		if(isUpdate){
+			this.initUpdate(data);
+			this.saveBtn.show();
+		}else{
+			this.initUpdate(data);
+			this.saveBtn.hide();
+		}
+	},
+	showLoading: function(flag) {
+		if (!this.lm)
+			this.lm = new Ext.LoadMask('${domainName}Win', {msg: '操作中,请稍候...'});
+		if (flag) this.lm.show();
+		else this.lm.hide();
+	}
+})
