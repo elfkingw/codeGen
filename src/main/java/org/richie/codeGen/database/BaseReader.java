@@ -1,5 +1,5 @@
 /*
- * Copyright 2013  elfkingw
+ * Copyright 2013 elfkingw
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Created on 2013-6-29
-package org.richie.codeGen.core.util;
+// Created on 2013-7-7
 
-public class ExtJsUtil {
+package org.richie.codeGen.database;
 
+/**
+ * @author elfkingw
+ */
+public class BaseReader {
+
+    protected String databaseType;
+
+    public BaseReader(String databaseType){
+        this.databaseType = databaseType;
+    }
+
+    public String getDatabaseType() {
+        return databaseType;
+    }
+
+    public void setDatabaseType(String databaseType) {
+        this.databaseType = databaseType;
+    }
 }

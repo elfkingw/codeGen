@@ -39,10 +39,10 @@ import org.apache.velocity.tools.generic.NumberTool;
 import org.apache.velocity.tools.generic.RenderTool;
 import org.apache.velocity.tools.generic.SortTool;
 import org.apache.velocity.tools.generic.ValueParser;
-import org.richie.codeGen.core.exception.CCException;
+import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
-import org.richie.codeGen.core.model.ITable;
+import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.core.util.StringUtil;
 
 public class CodeGen {
@@ -54,9 +54,22 @@ public class CodeGen {
         initVelocity();
     }
 
-    public static void genCode(String templateName, String templatesFolder, String outFile) throws CCException,Exception{
+    /**
+     * generate code File from template file with velocity tool
+     * @param templateName
+     * @param templatesFolder
+     * @param outFileFolder
+     * @param outFileName
+     * @throws CGException
+     * @throws Exception
+     */
+    public static void genCode(String templateName, String templatesFolder, String outFileFolder,String outFileName) throws CGException,Exception{
         String fileContent = genCode(templateName, templatesFolder);
-        File file = new File(outFile);
+        File folder = new File(outFileFolder);
+        if(!folder.exists()){
+            folder.mkdirs();
+        }
+        File file = new File(outFileFolder,outFileName);
         FileWriter writer = null;
         try{
             if(!file.exists()){
@@ -70,11 +83,12 @@ public class CodeGen {
         }
     }
 
-    public static String genCode(String templateName, String templatesFolder) throws CCException,Exception {
+    public static String genCode(String templateName, String templatesFolder) throws CGException,Exception {
         File f = new File(templatesFolder, templateName);
         if (f.exists()) {
             VelocityContext context = new VelocityContext();
             putToolsToVelocityContext();
+            initCustomerVelocityContext(map);
             insertInVelocityContext(map, context);
             context.put("map", map);
             FileReader reader = null;
@@ -101,7 +115,7 @@ public class CodeGen {
             }
             return writer.toString();
         } else {
-            throw new CCException("Template " + templateName + " not found!");
+            throw new CGException("Template " + templateName + " not found!");
         }
     }
 
@@ -120,13 +134,14 @@ public class CodeGen {
      */
     public static void initCustomerVelocityContext(Map<String,Object> map){
         Map<String,Object> customerMap = CustomerVelocityContext.getCustomerVelociTyContext();
-        customerMap.putAll(customerMap);
+        if(customerMap != null)
+            customerMap.putAll(customerMap);
     }
     /**
      * 将数据库表模型加入到velocityContext
      * @param table
      */
-    public static void initTableVelocityContext(ITable table){
+    public static void initTableVelocityContext(Table table){
         map.put("model", table);
     }
     

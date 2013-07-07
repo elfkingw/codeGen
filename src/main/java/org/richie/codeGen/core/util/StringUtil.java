@@ -59,7 +59,7 @@ public class StringUtil extends StringUtils {
     }
 
     /**
-     * 
+     * 转化成首字母小写java名
      * @param name
      * @return
      */

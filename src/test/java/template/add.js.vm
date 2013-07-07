@@ -1,10 +1,6 @@
 #set($domainClass = $stringUtils.getUncapName(${model.name}))
 #set($domainName = $stringUtils.uncapitaliseAll(${model.name}))
 Ext.namespace("${domainClass}.Add");
-${domainClass}.Add.win= function(){
-${userName}	
-${model.name}
-$stringUtils.getJavaName(${model.name})
 #foreach($f in $model.fields)	
 #if(!$f.isPrimaryKey())
 #if($f.isForeignKey())

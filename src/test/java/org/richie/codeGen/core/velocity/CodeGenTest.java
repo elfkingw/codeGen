@@ -17,7 +17,7 @@
 
 package org.richie.codeGen.core.velocity;
 
-import org.richie.codeGen.core.exception.CCException;
+import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.model.Table;
 
 import junit.framework.TestCase;
@@ -35,15 +35,17 @@ public class CodeGenTest extends TestCase {
     public void testGenCode() {
         String templaetName="add.js.vm";
         String templatesFolder="E:\\workspace10\\codeGen\\src\\test\\java\\template";
+        String outFileFolder = "E:\\workspace10\\codeGen\\src\\test\\java\\template\\out\\file";
+        String outFileName = "add.js";
         try {
             Table table = new Table();
-            table.setName("FE_FUND");
+            table.setTableCode("FE_FUND");
             CodeGen.initTableVelocityContext(table);
             CodeGen.putToolsToVelocityContext("userName", "wanghua");
-            String result = CodeGen.genCode(templaetName, templatesFolder);
-//            CodeGen.genCode(templaetName, templatesFolder,"E:\\workspace10\\codeGen\\src\\test\\java\\template\\add.js");
-            System.out.println(result);
-        } catch (CCException e) {
+//            String result = CodeGen.genCode(templaetName, templatesFolder);
+//            System.out.println(result);
+            CodeGen.genCode(templaetName, templatesFolder,outFileFolder,outFileName);
+        } catch (CGException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();

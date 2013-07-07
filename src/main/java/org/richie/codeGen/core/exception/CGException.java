@@ -1,5 +1,5 @@
 /*
- * Copyright 2013  elfkingw
+ * Copyright 2013 elfkingw
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Created on 2013-6-29
-package org.richie.codeGen.core.util;
+// Created on 2013-7-6
+// $Id$
 
-public class ExtJsUtil {
+package org.richie.codeGen.core.exception;
+
+
+/**
+ * @author elfkingw
+ *
+ */
+public class CGException extends Exception {
+    
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    public CGException(){
+        super();
+    }
+    
+    public CGException(String msg){
+        super(msg);
+    }
 
 }

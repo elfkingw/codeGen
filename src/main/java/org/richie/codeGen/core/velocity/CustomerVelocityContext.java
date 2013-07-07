@@ -18,7 +18,6 @@
 
 package org.richie.codeGen.core.velocity;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -43,6 +42,10 @@ public class CustomerVelocityContext {
         try {
             log.debug("loading codeGen.properties");
             in = ClassLoader.getSystemResourceAsStream("codeGen.properties");
+            if(in == null){
+                log.info("don't fund codeGen.properties ");
+                return null;
+            }
             Properties p = new Properties();
             p.load(in);
             Iterator<Object> it = p.keySet().iterator();
@@ -55,8 +58,6 @@ public class CustomerVelocityContext {
                     log.info("codeGen.properties key="+key+" class:["+className+"]success load into velocity context");
                 }
             }
-        } catch (FileNotFoundException e) {
-            log.info("don't fund codeGen.properties ");
         } catch (IOException e) {
             log.error("read codeGen.properties failed , cause :"+e.getMessage(),e);
         }finally{
