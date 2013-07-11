@@ -29,11 +29,8 @@ import org.richie.codeGen.core.model.Table;
 public interface DatabaseReader {
 
 
-    public List<Table> getTables();
+    public List<Table> getTables() throws Exception;
     
-    public Table getDettailByTableName(String name);
+    public Table getDettailByTableName(String name)throws Exception;
     
-    public boolean check();
-    
-    public void setPrepareObj(Object obj);
 }

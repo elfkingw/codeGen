@@ -4,2073 +4,2399 @@
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
 
-<o:RootObject Id="o1">
-<c:Children>
-<o:Model Id="o2">
-<a:ObjectID>B0BCAC59-E735-4E1C-8DE9-1BB1E0FF9D0F</a:ObjectID>
-<a:Name>Test</a:Name>
-<a:Code>Test</a:Code>
-<a:CreationDate>1372517858</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208901</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:PackageOptionsText>[FolderOptions]
-
-[FolderOptions\Physical Objects]
-GenerationCheckModel=Yes
-GenerationPath=
-GenerationOptions=
-GenerationTasks=
-GenerationTargets=
-GenerationSelections=
-RevPkey=Yes
-RevFkey=Yes
-RevAkey=Yes
-RevCheck=Yes
-RevIndx=Yes
-RevOpts=Yes
-RevViewAsTabl=No
-RevViewOpts=Yes
-RevSystAsTabl=Yes
-RevTablPerm=No
-RevViewPerm=No
-RevProcPerm=No
-RevDbpkPerm=No
-RevSqncPerm=No
-RevAdtPerm=No
-RevUserPriv=No
-RevUserOpts=No
-RevGrpePriv=No
-RevRolePriv=No
-RevDtbsOpts=Yes
-RevDtbsPerm=No
-RevViewIndx=Yes
-RevJidxOpts=Yes
-RevStats=No
-RevTspcPerm=No
-RevCaseSensitive=No
-GenTrgrStdMsg=Yes
-GenTrgrMsgTab=
-GenTrgrMsgNo=
-GenTrgrMsgTxt=
-TrgrPreserve=No
-TrgrIns=Yes
-TrgrUpd=Yes
-TrgrDel=Yes
-TrgrC2Ins=Yes
-TrgrC2Upd=Yes
-TrgrC3=Yes
-TrgrC4=Yes
-TrgrC5=Yes
-TrgrC6=Yes
-TrgrC7=Yes
-TrgrC8=Yes
-TrgrC9=Yes
-TrgrC10=Yes
-TrgrC11=Yes
-TrgrC1=Yes
-TrgrC12Ins=Yes
-TrgrC12Upd=Yes
-TrgrC13=Yes
-UpdateTableStatistics=Yes
-UpdateColumnStatistics=Yes
-
-[FolderOptions\Physical Objects\Database Generation]
-GenScriptName=crebas
-GenScriptName0=
-GenScriptName1=
-GenScriptName2=
-GenScriptName3=
-GenScriptName4=
-GenScriptName5=
-GenScriptName6=
-GenScriptName7=
-GenScriptName8=
-GenScriptName9=
-GenPathName=
-GenSingleFile=Yes
-GenODBC=No
-GenCheckModel=Yes
-GenScriptPrev=Yes
-GenArchiveModel=No
-GenUseSync=No
-GenSyncChoice=0
-GenSyncArch=
-GenSyncRmg=0
-
-[FolderOptions\Physical Objects\Database Generation\Format]
-GenScriptTitle=Yes
-GenScriptNamLabl=No
-GenScriptQDtbs=No
-GenScriptQOwnr=Yes
-GenScriptCase=0
-GenScriptEncoding=ANSI
-GenScriptNAcct=No
-IdentifierDelimiter=&quot;
-
-[FolderOptions\Physical Objects\Database Generation\Database]
-Create=Yes
-Open=Yes
-Close=Yes
-Drop=Yes
-Permission=No
-
-[FolderOptions\Physical Objects\Database Generation\Database\Create]
-Physical Options=Yes
-Header=Yes
-Footer=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Tablespace]
-Create=Yes
-Drop=Yes
-Comment=Yes
-Permission=No
-
-[FolderOptions\Physical Objects\Database Generation\Tablespace\Create]
-Header=Yes
-Footer=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Storage]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\User]
-Create=Yes
-Grant=Yes
-Drop=Yes
-Comment=Yes
-Privilege=No
-
-[FolderOptions\Physical Objects\Database Generation\User\Create]
-Physical Options=No
-
-[FolderOptions\Physical Objects\Database Generation\Group]
-Create=Yes
-Drop=Yes
-Comment=Yes
-Privilege=No
-
-[FolderOptions\Physical Objects\Database Generation\Role]
-Create=Yes
-Drop=Yes
-Privilege=No
-
-[FolderOptions\Physical Objects\Database Generation\UserDefinedDataType]
-Create=Yes
-Comment=Yes
-Drop=Yes
-
-[FolderOptions\Physical Objects\Database Generation\UserDefinedDataType\Create]
-Default value=Yes
-Check=Yes
-
-[FolderOptions\Physical Objects\Database Generation\AbstractDataType]
-Create=Yes
-Header=Yes
-Footer=Yes
-Drop=Yes
-Comment=Yes
-Install JAVA class=Yes
-Remove JAVA class=Yes
-Permission=No
-
-[FolderOptions\Physical Objects\Database Generation\Rule]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Default]
-Create=Yes
-Comment=Yes
-Drop=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Sequence]
-Create=Yes
-Drop=Yes
-Comment=Yes
-Permission=No
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column]
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Table]
-Create=Yes
-Drop=Yes
-Comment=Yes
-Permission=No
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Table\Create]
-Check=Yes
-Physical Options=Yes
-Header=Yes
-Footer=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Table\Create\Check]
-Constraint declaration=No
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Column]
-User datatype=No
-Default value=Yes
-Check=Yes
-Physical Options=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Column\Check]
-Constraint declaration=No
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Key]
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Key\Primary key]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Key\Primary key\Create]
-Constraint declaration=No
-Physical Options=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Key\Alternate key]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Key\Alternate key\Create]
-Constraint declaration=No
-Physical Options=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Foreign key]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Foreign key\Create]
-Constraint declaration=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Index]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Index\Create]
-Constraint declaration=Yes
-Physical Options=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Index\Filter]
-Primary key=No
-Foreign key=No
-Alternate key=No
-Cluster=Yes
-Other=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Trigger]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Table&amp;&amp;Column\Trigger\Filter]
-For insert=Yes
-For update=Yes
-For delete=Yes
-For other=Yes
-
-[FolderOptions\Physical Objects\Database Generation\View]
-Create=Yes
-Drop=Yes
-Comment=Yes
-Permission=No
-
-[FolderOptions\Physical Objects\Database Generation\View\Create]
-Force Column list=No
-Physical Options=Yes
-Header=Yes
-Footer=Yes
-
-[FolderOptions\Physical Objects\Database Generation\View\ViewColumn]
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\View\ViewIndex]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\View\ViewIndex\Create]
-Physical Options=Yes
-
-[FolderOptions\Physical Objects\Database Generation\View\ViewIndex\Filter]
-Cluster=Yes
-Other=Yes
-
-[FolderOptions\Physical Objects\Database Generation\View\Trigger]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\View\Trigger\Filter]
-For insert=Yes
-For update=Yes
-For delete=Yes
-For other=Yes
-
-[FolderOptions\Physical Objects\Database Generation\DBMSTrigger]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Synonym]
-Create=Yes
-Drop=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Synonym\Filter]
-Table=Yes
-View=Yes
-Proc=Yes
-Synonym=Yes
-Database Package=Yes
-Sequence=Yes
-
-[FolderOptions\Physical Objects\Database Generation\JoinIndex]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\JoinIndex\Create]
-Physical Options=Yes
-Header=Yes
-Footer=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Procedure]
-Create=Yes
-Drop=Yes
-Comment=Yes
-Permission=No
-
-[FolderOptions\Physical Objects\Database Generation\Procedure\Create]
-Header=Yes
-Footer=Yes
-
-[FolderOptions\Physical Objects\Database Generation\DatabasePackage]
-Create=Yes
-Drop=Yes
-Permission=No
-
-[FolderOptions\Physical Objects\Database Generation\WebService]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Dimension]
-Create=Yes
-Drop=Yes
-
-[FolderOptions\Physical Objects\Database Generation\Synchronization]
-GenBackupTabl=1
-GenKeepBackTabl=1
-GenTmpTablDrop=No
-GenKeepTablOpts=No
-
-[FolderOptions\Physical Objects\Database Generation\ExtendedObject &lt;&lt;Event&gt;&gt;]
-Create=Yes
-Drop=Yes
-Comment=Yes
-
-[FolderOptions\Physical Objects\Test Data]
-GenDataPathName=
-GenDataSinglefile=Yes
-GenDataScriptName=testdata
-GenDataScriptName0=
-GenDataScriptName1=
-GenDataScriptName2=
-GenDataScriptName3=
-GenDataScriptName4=
-GenDataScriptName5=
-GenDataScriptName6=
-GenDataScriptName7=
-GenDataScriptName8=
-GenDataScriptName9=
-GenDataOdbc=0
-GenDataDelOld=No
-GenDataTitle=No
-GenDataDefNumRows=20
-GenDataCommit=0
-GenDataPacket=0
-GenDataOwner=No
-GenDataProfNumb=
-GenDataProfChar=
-GenDataProfDate=
-GenDataCSVSeparator=,
-GenDataFileFormat=CSV
-GenDataUseWizard=No
-
-[FolderOptions\Pdm]
-IndxIQName=%COLUMN%_%INDEXTYPE%
-IndxPK=Yes
-IndxFK=Yes
-IndxAK=Yes
-IndxPKName=%TABLE%_PK
-IndxFKName=%REFR%_FK
-IndxAKName=%AKEY%_AK
-IndxPreserve=No
-IndxThreshold=0
-IndxStats=No
-RefrPreserve=No
-JidxPreserve=No
-RbldMultiFact=Yes
-RbldMultiDim=Yes
-RbldMultiJidx=Yes
-CubePreserve=No
-TablStProcPreserve=No
-ProcDepPreserve=Yes
-TrgrDepPreserve=Yes
-CubeScriptPath=
-CubeScriptCase=0
-CubeScriptEncoding=ANSI
-CubeScriptNacct=No
-CubeScriptHeader=No
-CubeScriptExt=csv
-CubeScriptExt0=txt
-CubeScriptExt1=
-CubeScriptExt2=
-CubeScriptSep=,
-CubeScriptDeli=&quot;
-DfltDomnName=D_%.U:VALUE%
-DfltColnName=D_%.U:VALUE%
-DfltReuse=Yes
-DfltDrop=Yes</a:PackageOptionsText>
-<a:ModelOptionsText>[ModelOptions]
-
-[ModelOptions\Physical Objects]
-CaseSensitive=No
-DisplayName=Yes
-EnableTrans=No
-EnableRequirements=No
-DefaultDttp=
-IgnoreOwner=No
-RebuildTrigger=Yes
-RefrUnique=No
-RefrAutoMigrate=Yes
-RefrMigrateReuse=Yes
-RefrMigrateDomain=Yes
-RefrMigrateCheck=Yes
-RefrMigrateRule=Yes
-RefrMigrateExtd=No
-RefrMigrDefaultLink=No
-RefrDfltImpl=D
-RefrPrgtColn=No
-RefrMigrateToEnd=No
-RebuildTriggerDep=No
-ColnFKName=%.3:PARENT%_%COLUMN%
-ColnFKNameUse=No
-DomnCopyDttp=Yes
-DomnCopyChck=No
-DomnCopyRule=No
-DomnCopyMand=No
-DomnCopyExtd=No
-DomnCopyProf=No
-Notation=0
-DomnDefaultMandatory=No
-ColnDefaultMandatory=No
-TablDefaultOwner=
-ViewDefaultOwner=
-TrgrDefaultOwnerTabl=
-TrgrDefaultOwnerView=
-IdxDefaultOwnerTabl=
-IdxDefaultOwnerView=
-JdxDefaultOwner=
-DBPackDefaultOwner=
-SeqDefaultOwner=
-ProcDefaultOwner=
-DBMSTrgrDefaultOwner=
-Currency=USD
-RefrDeleteConstraint=1
-RefrUpdateConstraint=1
-RefrParentMandatory=No
-RefrParentChangeAllow=Yes
-RefrCheckOnCommit=No
-
-[ModelOptions\Physical Objects\NamingOptionsTemplates]
-
-[ModelOptions\Physical Objects\ClssNamingOptions]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\PDMPCKG]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\PDMPCKG\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\PDMPCKG\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\PDMDOMN]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\PDMDOMN\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\PDMDOMN\Code]
-Template=
-MaxLen=30
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\TABL]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\TABL\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\TABL\Code]
-Template=
-MaxLen=128
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\COLN]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\COLN\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\COLN\Code]
-Template=
-MaxLen=128
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\INDX]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\INDX\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\INDX\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\REFR]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\REFR\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\REFR\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VREF]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VREF\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VREF\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VIEW]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VIEW\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VIEW\Code]
-Template=
-MaxLen=128
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VIEWC]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VIEWC\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\VIEWC\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WEBSERV]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WEBSERV\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WEBSERV\Code]
-Template=
-MaxLen=128
-Case=M
-ValidChar=&#39;a&#39;-&#39;z&#39;,&#39;A&#39;-&#39;Z&#39;,&#39;0&#39;-&#39;9&#39;,&quot;/-_.!~*&#39;()&quot;
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WEBOP]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WEBOP\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WEBOP\Code]
-Template=
-MaxLen=128
-Case=M
-ValidChar=&#39;a&#39;-&#39;z&#39;,&#39;A&#39;-&#39;Z&#39;,&#39;0&#39;-&#39;9&#39;,&quot;/-_.!~*&#39;()&quot;
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WPARAM]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WPARAM\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\WPARAM\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FACT]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FACT\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FACT\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DIMN]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DIMN\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DIMN\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\CUBE]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\CUBE\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\CUBE\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\MEAS]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\MEAS\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\MEAS\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DATTR]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DATTR\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DATTR\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FILO]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FILO\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FILO\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FRMEOBJ]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FRMEOBJ\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FRMEOBJ\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FRMELNK]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FRMELNK\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\FRMELNK\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DefaultClass]
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DefaultClass\Name]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Physical Objects\ClssNamingOptions\DefaultClass\Code]
-Template=
-MaxLen=254
-Case=M
-ValidChar=
-InvldChar=
-AllValid=Yes
-NoAccent=No
-DefaultChar=
-Script=
-ConvTable=
-ConvTablePath=%_HOME%\Resource Files\Conversion Tables
-
-[ModelOptions\Connection]
-
-[ModelOptions\Pdm]
-
-[ModelOptions\Generate]
-
-[ModelOptions\Generate\Pdm]
-RRMapping=No
-
-[ModelOptions\Generate\Cdm]
-CheckModel=Yes
-SaveLinks=Yes
-NameToCode=No
-Notation=2
-
-[ModelOptions\Generate\Oom]
-CheckModel=Yes
-SaveLinks=Yes
-ORMapping=No
-NameToCode=Yes
-ClassPrefix=
-
-[ModelOptions\Generate\Xsm]
-CheckModel=Yes
-SaveLinks=Yes
-ORMapping=No
-NameToCode=No
-
-[ModelOptions\Generate\Ldm]
-CheckModel=Yes
-SaveLinks=Yes
-NameToCode=No
-
-[ModelOptions\Default Opts]
-
-[ModelOptions\Default Opts\TABL]
-PhysOpts=
-
-[ModelOptions\Default Opts\COLN]
-PhysOpts=
-
-[ModelOptions\Default Opts\INDX]
-PhysOpts=
-
-[ModelOptions\Default Opts\AKEY]
-PhysOpts=
-
-[ModelOptions\Default Opts\PKEY]
-PhysOpts=
-
-[ModelOptions\Default Opts\STOR]
-PhysOpts=
-
-[ModelOptions\Default Opts\TSPC]
-PhysOpts=
-
-[ModelOptions\Default Opts\SQNC]
-PhysOpts=
-
-[ModelOptions\Default Opts\DTBS]
-PhysOpts=
-
-[ModelOptions\Default Opts\USER]
-PhysOpts=
-
-[ModelOptions\Default Opts\JIDX]
-PhysOpts=</a:ModelOptionsText>
-<c:DBMS>
-<o:Shortcut Id="o3">
-<a:ObjectID>7BD93EA9-27CE-4C67-AB23-9B1C1D82ED5F</a:ObjectID>
-<a:Name>MySQL 5.0</a:Name>
-<a:Code>MYSQL50</a:Code>
-<a:CreationDate>1372518204</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208983</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:TargetStereotype/>
-<a:TargetID>F4F16ECD-F2F1-4006-AF6F-638D5C65F35E</a:TargetID>
-<a:TargetClassID>4BA9F647-DAB1-11D1-9944-006097355D9B</a:TargetClassID>
-<c:SubShortcuts>
-<o:Shortcut Id="o4">
-<a:ObjectID>9AA70463-852A-4976-A395-AD7A69DDD65A</a:ObjectID>
-<a:Name>BeforeInsertTrigger</a:Name>
-<a:Code>BeforeInsertTrigger</a:Code>
-<a:CreationDate>1373208950</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208983</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:TargetStereotype/>
-<a:TargetID>63C341EF-60CE-4B9B-8429-5484200F90D5</a:TargetID>
-<a:TargetClassID>D4B2DF42-0047-11D2-9952-006097355D9B</a:TargetClassID>
-<a:TargetPackagePath>&lt;Model&gt;::MySQL 5.0</a:TargetPackagePath>
-</o:Shortcut>
-<o:Shortcut Id="o5">
-<a:ObjectID>73DB3BDA-DF3C-4A02-94E9-33377CA32B7C</a:ObjectID>
-<a:Name>BeforeUpdateTrigger</a:Name>
-<a:Code>BeforeUpdateTrigger</a:Code>
-<a:CreationDate>1373208950</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208983</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:TargetStereotype/>
-<a:TargetID>A4F66E74-54DB-4500-B8EF-67682F6BCA34</a:TargetID>
-<a:TargetClassID>D4B2DF42-0047-11D2-9952-006097355D9B</a:TargetClassID>
-<a:TargetPackagePath>&lt;Model&gt;::MySQL 5.0</a:TargetPackagePath>
-</o:Shortcut>
-<o:Shortcut Id="o6">
-<a:ObjectID>2F45044E-9F72-4A01-AB2A-07BE217A4951</a:ObjectID>
-<a:Name>BeforeDeleteTrigger</a:Name>
-<a:Code>BeforeDeleteTrigger</a:Code>
-<a:CreationDate>1373208950</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208983</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:TargetStereotype/>
-<a:TargetID>B9B9F30F-7DCD-4156-A212-A2D417A1545C</a:TargetID>
-<a:TargetClassID>D4B2DF42-0047-11D2-9952-006097355D9B</a:TargetClassID>
-<a:TargetPackagePath>&lt;Model&gt;::MySQL 5.0</a:TargetPackagePath>
-</o:Shortcut>
-</c:SubShortcuts>
-</o:Shortcut>
-</c:DBMS>
-<c:PhysicalDiagrams>
-<o:PhysicalDiagram Id="o7">
-<a:ObjectID>DEC81FBA-A38D-460C-9741-135A6DE4E52C</a:ObjectID>
-<a:Name>PhysicalDiagram_1</a:Name>
-<a:Code>PhysicalDiagram_1</a:Code>
-<a:CreationDate>1372517858</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208901</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DisplayPreferences>[DisplayPreferences]
-
-[DisplayPreferences\PDM]
-
-[DisplayPreferences\General]
-Adjust to text=Yes
-Snap Grid=No
-Constrain Labels=Yes
-Display Grid=No
-Show Page Delimiter=Yes
-Grid size=0
-Graphic unit=2
-Window color=255, 255, 255
-Background image=
-Background mode=8
-Watermark image=
-Watermark mode=8
-Show watermark on screen=No
-Gradient mode=0
-Gradient end color=255, 255, 255
-Show Swimlane=No
-SwimlaneVert=Yes
-TreeVert=No
-CompDark=0
-
-[DisplayPreferences\Object]
-Mode=0
-Trunc Length=80
-Word Length=80
-Word Text=!&quot;&quot;#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~
-Shortcut IntIcon=Yes
-Shortcut IntLoct=Yes
-Shortcut IntFullPath=No
-Shortcut IntLastPackage=Yes
-Shortcut ExtIcon=Yes
-Shortcut ExtLoct=No
-Shortcut ExtFullPath=No
-Shortcut ExtLastPackage=Yes
-Shortcut ExtIncludeModl=Yes
-EObjShowStrn=Yes
-ExtendedObject.Comment=No
-ExtendedObject.IconPicture=No
-ExtendedObject_SymbolLayout=
-ELnkShowStrn=Yes
-ELnkShowName=Yes
-ExtendedLink_SymbolLayout=
-FileObject.Stereotype=No
-FileObject.DisplayName=Yes
-FileObject.LocationOrName=No
-FileObject.IconPicture=No
-FileObject.IconMode=Yes
-FileObject_SymbolLayout=
-PckgShowStrn=Yes
-Package.Comment=No
-Package.IconPicture=No
-Package_SymbolLayout=
-Display Model Version=Yes
-Table.Stereotype=Yes
-Table.DisplayName=Yes
-Table.OwnerDisplayName=No
-Table.Columns=Yes
-Table.Columns._Filter=&quot;All Columns&quot; PDMCOLNALL
-Table.Columns._Columns=Stereotype DataType KeyIndicator
-Table.Columns._Limit=-5
-Table.Keys=No
-Table.Keys._Columns=Stereotype Indicator
-Table.Indexes=No
-Table.Indexes._Columns=Stereotype
-Table.Triggers=No
-Table.Triggers._Columns=Stereotype
-Table.Comment=No
-Table.IconPicture=No
-Table_SymbolLayout=&lt;Form&gt;[CRLF] &lt;StandardAttribute Name=&quot;Stereotype&quot; Attribute=&quot;Stereotype&quot; Prefix=&quot;&amp;lt;&amp;lt;&quot; Suffix=&quot;&amp;gt;&amp;gt;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;ExclusiveChoice Name=&quot;Exclusive Choice&quot; Mandatory=&quot;Yes&quot; Display=&quot;HorizontalRadios&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Name&quot; Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;StandardAttribute Name=&quot;Owner and Name&quot; Attribute=&quot;OwnerDisplayName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/ExclusiveChoice&gt;[CRLF] &lt;Separator Name=&quot;Separator&quot; /&gt;[CRLF] &lt;StandardCollection Name=&quot;Columns&quot; Collection=&quot;Columns&quot; Columns=&quot;Stereotype No\r\nDisplayName Yes\r\nDataType No\r\nSymbolDataType No &amp;quot;Domain or Data type&amp;quot;\r\nDomain No\r\nKeyIndicator No\r\nIndexIndicator No\r\nNullStatus No&quot; Filters=&quot;&amp;quot;All Columns&amp;quot;  PDMCOLNALL &amp;quot;&amp;quot;\r\n&amp;quot;PK Columns&amp;quot;  PDMCOLNPK &amp;quot;PRIM \&amp;quot;TRUE\&amp;quot; TRUE&amp;quot;\r\n&amp;quot;Key Columns&amp;quot;  PDMCOLNKEY &amp;quot;KEYS \&amp;quot;TRUE\&amp;quot; TRUE&amp;quot;&quot; HasLimit=&quot;Yes&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection Name=&quot;Keys&quot; Collection=&quot;Keys&quot; Columns=&quot;Stereotype No\r\nDisplayName Yes\r\nIndicator No&quot; HasLimit=&quot;No&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection Name=&quot;Indexes&quot; Collection=&quot;Indexes&quot; Columns=&quot;Stereotype No\r\nDisplayName Yes\r\nIndicator No&quot; HasLimit=&quot;No&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection Name=&quot;Triggers&quot; Collection=&quot;Triggers&quot; Columns=&quot;Stereotype No\r\nDisplayName Yes&quot; HasLimit=&quot;No&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute Name=&quot;Comment&quot; Attribute=&quot;Comment&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;LEFT&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute Name=&quot;Icon&quot; Attribute=&quot;IconPicture&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;Yes&quot; /&gt;[CRLF]&lt;/Form&gt;
-View.Stereotype=Yes
-View.DisplayName=Yes
-View.OwnerDisplayName=No
-View.Columns=Yes
-View.Columns._Columns=DisplayName
-View.Columns._Limit=-5
-View.TemporaryVTables=Yes
-View.Indexes=No
-View.Comment=No
-View.IconPicture=No
-View_SymbolLayout=&lt;Form&gt;[CRLF] &lt;StandardAttribute Name=&quot;Stereotype&quot; Attribute=&quot;Stereotype&quot; Prefix=&quot;&amp;lt;&amp;lt;&quot; Suffix=&quot;&amp;gt;&amp;gt;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;ExclusiveChoice Name=&quot;Exclusive Choice&quot; Mandatory=&quot;Yes&quot; Display=&quot;HorizontalRadios&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Name&quot; Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;StandardAttribute Name=&quot;Owner and Name&quot; Attribute=&quot;OwnerDisplayName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/ExclusiveChoice&gt;[CRLF] &lt;Separator Name=&quot;Separator&quot; /&gt;[CRLF] &lt;StandardCollection Name=&quot;Columns&quot; Collection=&quot;Columns&quot; Columns=&quot;DisplayName No\r\nExpression No\r\nDataType No\r\nSymbolDataType No &amp;quot;Domain or Data type&amp;quot;\r\nIndexIndicator No&quot; HasLimit=&quot;Yes&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection Name=&quot;Tables&quot; Collection=&quot;TemporaryVTables&quot; Columns=&quot;Name Yes&quot; HasLimit=&quot;No&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection Name=&quot;Indexes&quot; Collection=&quot;Indexes&quot; Columns=&quot;DisplayName Yes&quot; HasLimit=&quot;No&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute Name=&quot;Comment&quot; Attribute=&quot;Comment&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;LEFT&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute Name=&quot;Icon&quot; Attribute=&quot;IconPicture&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;Yes&quot; /&gt;[CRLF]&lt;/Form&gt;
-Procedure.Stereotype=No
-Procedure.DisplayName=Yes
-Procedure.OwnerDisplayName=No
-Procedure.Comment=No
-Procedure.IconPicture=No
-Procedure_SymbolLayout=&lt;Form&gt;[CRLF] &lt;StandardAttribute Name=&quot;Stereotype&quot; Attribute=&quot;Stereotype&quot; Prefix=&quot;&amp;lt;&amp;lt;&quot; Suffix=&quot;&amp;gt;&amp;gt;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;ExclusiveChoice Name=&quot;Exclusive Choice&quot; Mandatory=&quot;Yes&quot; Display=&quot;HorizontalRadios&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Name&quot; Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;StandardAttribute Name=&quot;Owner and Name&quot; Attribute=&quot;OwnerDisplayName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/ExclusiveChoice&gt;[CRLF] &lt;Separator Name=&quot;Separator&quot; /&gt;[CRLF] &lt;StandardAttribute Name=&quot;Comment&quot; Attribute=&quot;Comment&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;LEFT&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute Name=&quot;Icon&quot; Attribute=&quot;IconPicture&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Alignment=&quot;CNTR&quot; Caption=&quot;&quot; Mandatory=&quot;Yes&quot; /&gt;[CRLF]&lt;/Form&gt;
-Reference.Cardinality=No
-Reference.ImplementationType=No
-Reference.ChildRole=Yes
-Reference.Stereotype=Yes
-Reference.DisplayName=No
-Reference.ForeignKeyConstraintName=Yes
-Reference.JoinExpression=No
-Reference.Integrity=No
-Reference.ParentRole=Yes
-Reference_SymbolLayout=&lt;Form&gt;[CRLF] &lt;Form Name=&quot;Source&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Cardinality&quot; Attribute=&quot;Cardinality&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;StandardAttribute Name=&quot;Implementation&quot; Attribute=&quot;ImplementationType&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;StandardAttribute Name=&quot;Child Role&quot; Attribute=&quot;ChildRole&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/Form&gt;[CRLF] &lt;Form Name=&quot;Center&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Stereotype&quot; Attribute=&quot;Stereotype&quot; Prefix=&quot;&amp;lt;&amp;lt;&quot; Suffix=&quot;&amp;gt;&amp;gt;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;ExclusiveChoice Name=&quot;Exclusive Choice&quot; Mandatory=&quot;No&quot; Display=&quot;HorizontalRadios&quot; &gt;[CRLF]   &lt;StandardAttribute Name=&quot;Name&quot; Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]   &lt;StandardAttribute Name=&quot;Cons&amp;amp;traint Name&quot; Attribute=&quot;ForeignKeyConstraintName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;Cons&amp;amp;traint Name&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]   &lt;StandardAttribute Name=&quot;Join&quot; Attribute=&quot;JoinExpression&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;Join&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;/ExclusiveChoice&gt;[CRLF]  &lt;StandardAttribute Name=&quot;Referential integrity&quot; Attribute=&quot;Integrity&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;Referential integrity&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/Form&gt;[CRLF] &lt;Form Name=&quot;Destination&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Parent Role&quot; Attribute=&quot;ParentRole&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/Form&gt;[CRLF]&lt;/Form&gt;
-ViewReference.ChildRole=Yes
-ViewReference.Stereotype=Yes
-ViewReference.DisplayName=No
-ViewReference.JoinExpression=No
-ViewReference.ParentRole=Yes
-ViewReference_SymbolLayout=&lt;Form&gt;[CRLF] &lt;Form Name=&quot;Source&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Child Role&quot; Attribute=&quot;ChildRole&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/Form&gt;[CRLF] &lt;Form Name=&quot;Center&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Stereotype&quot; Attribute=&quot;Stereotype&quot; Prefix=&quot;&amp;lt;&amp;lt;&quot; Suffix=&quot;&amp;gt;&amp;gt;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;ExclusiveChoice Name=&quot;Exclusive Choice&quot; Mandatory=&quot;No&quot; Display=&quot;HorizontalRadios&quot; &gt;[CRLF]   &lt;StandardAttribute Name=&quot;Name&quot; Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]   &lt;StandardAttribute Name=&quot;Join Expression&quot; Attribute=&quot;JoinExpression&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]  &lt;/ExclusiveChoice&gt;[CRLF] &lt;/Form&gt;[CRLF] &lt;Form Name=&quot;Destination&quot; &gt;[CRLF]  &lt;StandardAttribute Name=&quot;Parent Role&quot; Attribute=&quot;ParentRole&quot; Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/Form&gt;[CRLF]&lt;/Form&gt;
-
-[DisplayPreferences\Symbol]
-
-[DisplayPreferences\Symbol\FRMEOBJ]
-STRNFont=Arial,8,N
-STRNFont color=0, 0, 0
-DISPNAMEFont=Arial,8,N
-DISPNAMEFont color=0, 0, 0
-LABLFont=Arial,8,N
-LABLFont color=0, 0, 0
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Width=6000
-Height=2000
-Brush color=255 255 255
-Fill Color=Yes
-Brush style=6
-Brush bitmap mode=12
-Brush gradient mode=64
-Brush gradient color=192 192 192
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 255 128 128
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\FRMELNK]
-CENTERFont=Arial,8,N
-CENTERFont color=0, 0, 0
-Line style=2
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Brush color=255 255 255
-Fill Color=Yes
-Brush style=1
-Brush bitmap mode=12
-Brush gradient mode=0
-Brush gradient color=118 118 118
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 128 128 255
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\FILO]
-OBJSTRNFont=新宋体,8,N
-OBJSTRNFont color=0, 0, 0
-DISPNAMEFont=新宋体,8,N
-DISPNAMEFont color=0, 0, 0
-LCNMFont=新宋体,8,N
-LCNMFont color=0, 0, 0
-AutoAdjustToText=Yes
-Keep aspect=Yes
-Keep center=Yes
-Keep size=No
-Width=2400
-Height=2400
-Brush color=255 255 255
-Fill Color=No
-Brush style=1
-Brush bitmap mode=12
-Brush gradient mode=0
-Brush gradient color=118 118 118
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 0 0 255
-Shadow color=192 192 192
-Shadow=-1
-
-[DisplayPreferences\Symbol\PDMPCKG]
-STRNFont=Arial,8,N
-STRNFont color=0, 0, 0
-DISPNAMEFont=Arial,8,N
-DISPNAMEFont color=0, 0, 0
-LABLFont=Arial,8,N
-LABLFont color=0, 0, 0
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Width=4800
-Height=3600
-Brush color=255 255 192
-Fill Color=Yes
-Brush style=6
-Brush bitmap mode=12
-Brush gradient mode=65
-Brush gradient color=255 255 255
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 178 178 178
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\TABL]
-STRNFont=Arial,8,N
-STRNFont color=0 0 0
-DISPNAMEFont=Arial,8,N
-DISPNAMEFont color=0 0 0
-OWNRDISPNAMEFont=新宋体,8,N
-OWNRDISPNAMEFont color=0, 0, 0
-ColumnsFont=Arial,8,N
-ColumnsFont color=0 0 0
-TablePkColumnsFont=Arial,8,U
-TablePkColumnsFont color=0 0 0
-TableFkColumnsFont=Arial,8,N
-TableFkColumnsFont color=0 0 0
-KeysFont=Arial,8,N
-KeysFont color=0 0 0
-IndexesFont=Arial,8,N
-IndexesFont color=0 0 0
-TriggersFont=Arial,8,N
-TriggersFont color=0 0 0
-LABLFont=Arial,8,N
-LABLFont color=0 0 0
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Width=4800
-Height=4000
-Brush color=210 137 2
-Fill Color=Yes
-Brush style=6
-Brush bitmap mode=12
-Brush gradient mode=65
-Brush gradient color=255 255 255
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 128 64 0
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\VIEW]
-STRNFont=Arial,8,N
-STRNFont color=0 0 0
-DISPNAMEFont=Arial,8,N
-DISPNAMEFont color=0 0 0
-OWNRDISPNAMEFont=新宋体,8,N
-OWNRDISPNAMEFont color=0, 0, 0
-ColumnsFont=Arial,8,N
-ColumnsFont color=0 0 0
-TablePkColumnsFont=新宋体,8,U
-TablePkColumnsFont color=0, 0, 0
-TableFkColumnsFont=新宋体,8,N
-TableFkColumnsFont color=0, 0, 0
-TemporaryVTablesFont=Arial,8,N
-TemporaryVTablesFont color=0 0 0
-IndexesFont=Arial,8,N
-IndexesFont color=0 0 0
-LABLFont=Arial,8,N
-LABLFont color=0 0 0
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Width=4800
-Height=4000
-Brush color=233 202 131
-Fill Color=Yes
-Brush style=6
-Brush bitmap mode=12
-Brush gradient mode=65
-Brush gradient color=255 255 255
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 128 128 128
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\PROC]
-STRNFont=Arial,8,N
-STRNFont color=0 0 0
-DISPNAMEFont=Arial,8,N
-DISPNAMEFont color=0 0 0
-OWNRDISPNAMEFont=新宋体,8,N
-OWNRDISPNAMEFont color=0, 0, 0
-LABLFont=Arial,8,N
-LABLFont color=0 0 0
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Width=4000
-Height=1000
-Brush color=255 255 192
-Fill Color=Yes
-Brush style=6
-Brush bitmap mode=12
-Brush gradient mode=65
-Brush gradient color=255 255 255
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 128 108 0
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\REFR]
-SOURCEFont=新宋体,8,N
-SOURCEFont color=0, 0, 0
-CENTERFont=新宋体,8,N
-CENTERFont color=0, 0, 0
-DESTINATIONFont=新宋体,8,N
-DESTINATIONFont color=0, 0, 0
-Line style=2
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Brush color=255 255 255
-Fill Color=Yes
-Brush style=1
-Brush bitmap mode=12
-Brush gradient mode=0
-Brush gradient color=118 118 118
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 128 0 64
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\VREF]
-SOURCEFont=新宋体,8,N
-SOURCEFont color=0, 0, 0
-CENTERFont=新宋体,8,N
-CENTERFont color=0, 0, 0
-DESTINATIONFont=新宋体,8,N
-DESTINATIONFont color=0, 0, 0
-Line style=2
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Brush color=255 255 255
-Fill Color=Yes
-Brush style=1
-Brush bitmap mode=12
-Brush gradient mode=0
-Brush gradient color=118 118 118
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 128 0 64
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\USRDEPD]
-OBJXSTRFont=Arial,8,N
-OBJXSTRFont color=0 0 0
-Line style=0
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Brush color=255 255 255
-Fill Color=Yes
-Brush style=1
-Brush bitmap mode=12
-Brush gradient mode=0
-Brush gradient color=118 118 118
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=2 0 128 0 64
-Shadow color=192 192 192
-Shadow=0
-
-[DisplayPreferences\Symbol\Free Symbol]
-Free TextFont=Arial,8,N
-Free TextFont color=0 0 0
-Line style=2
-AutoAdjustToText=Yes
-Keep aspect=No
-Keep center=No
-Keep size=No
-Brush color=255 255 255
-Fill Color=Yes
-Brush style=1
-Brush bitmap mode=12
-Brush gradient mode=0
-Brush gradient color=118 118 118
-Brush background image=
-Custom shape=
-Custom text mode=0
-Pen=1 0 128 64 0
-Shadow color=192 192 192
-Shadow=0</a:DisplayPreferences>
-<a:PaperSize>(8268, 11693)</a:PaperSize>
-<a:PageMargins>((315,354), (433,354))</a:PageMargins>
-<a:PageOrientation>1</a:PageOrientation>
-<a:PaperSource>1</a:PaperSource>
-<c:Symbols>
-<o:ReferenceSymbol Id="o8">
-<a:CreationDate>1372518815</a:CreationDate>
-<a:ModificationDate>1373208498</a:ModificationDate>
-<a:Rect>((-13275,10868), (-1262,12189))</a:Rect>
-<a:ListOfPoints>((-1262,11093),(-13275,11093))</a:ListOfPoints>
-<a:CornerStyle>2</a:CornerStyle>
-<a:ArrowStyle>1</a:ArrowStyle>
-<a:LineColor>4194432</a:LineColor>
-<a:ShadowColor>12632256</a:ShadowColor>
-<a:FontList>CENTER 0 新宋体,8,N
-SOURCE 0 新宋体,8,N
-DESTINATION 0 新宋体,8,N</a:FontList>
-<c:SourceSymbol>
-<o:TableSymbol Ref="o9"/>
-</c:SourceSymbol>
-<c:DestinationSymbol>
-<o:TableSymbol Ref="o10"/>
-</c:DestinationSymbol>
-<c:Object>
-<o:Reference Ref="o11"/>
-</c:Object>
-</o:ReferenceSymbol>
-<o:ReferenceSymbol Id="o12">
-<a:CreationDate>1373208901</a:CreationDate>
-<a:ModificationDate>1373208940</a:ModificationDate>
-<a:Rect>((-17586,241), (-11962,10441))</a:Rect>
-<a:ListOfPoints>((-14660,10441),(-14660,5053),(-14888,5053),(-14888,241))</a:ListOfPoints>
-<a:CornerStyle>2</a:CornerStyle>
-<a:ArrowStyle>1</a:ArrowStyle>
-<a:LineColor>4194432</a:LineColor>
-<a:ShadowColor>12632256</a:ShadowColor>
-<a:FontList>CENTER 0 新宋体,8,N
-SOURCE 0 新宋体,8,N
-DESTINATION 0 新宋体,8,N</a:FontList>
-<c:SourceSymbol>
-<o:TableSymbol Ref="o10"/>
-</c:SourceSymbol>
-<c:DestinationSymbol>
-<o:TableSymbol Ref="o13"/>
-</c:DestinationSymbol>
-<c:Object>
-<o:Reference Ref="o14"/>
-</c:Object>
-</o:ReferenceSymbol>
-<o:TableSymbol Id="o10">
-<a:CreationDate>1372517874</a:CreationDate>
-<a:ModificationDate>1373208901</a:ModificationDate>
-<a:IconMode>-1</a:IconMode>
-<a:Rect>((-19813,7728), (-9437,13196))</a:Rect>
-<a:LineColor>16512</a:LineColor>
-<a:FillColor>166354</a:FillColor>
-<a:ShadowColor>12632256</a:ShadowColor>
-<a:FontList>STRN 0 Arial,8,N
-DISPNAME 0 Arial,8,N
-OWNRDISPNAME 0 新宋体,8,N
-Columns 0 Arial,8,N
-TablePkColumns 0 Arial,8,U
-TableFkColumns 0 Arial,8,N
-Keys 0 Arial,8,N
-Indexes 0 Arial,8,N
-Triggers 0 Arial,8,N
-LABL 0 Arial,8,N</a:FontList>
-<a:BrushStyle>6</a:BrushStyle>
-<a:GradientFillMode>65</a:GradientFillMode>
-<a:GradientEndColor>16777215</a:GradientEndColor>
-<c:Object>
-<o:Table Ref="o15"/>
-</c:Object>
-</o:TableSymbol>
-<o:TableSymbol Id="o9">
-<a:CreationDate>1372517878</a:CreationDate>
-<a:ModificationDate>1373208496</a:ModificationDate>
-<a:IconMode>-1</a:IconMode>
-<a:Rect>((-4663,8517), (8261,13011))</a:Rect>
-<a:LineColor>16512</a:LineColor>
-<a:FillColor>166354</a:FillColor>
-<a:ShadowColor>12632256</a:ShadowColor>
-<a:FontList>STRN 0 Arial,8,N
-DISPNAME 0 Arial,8,N
-OWNRDISPNAME 0 新宋体,8,N
-Columns 0 Arial,8,N
-TablePkColumns 0 Arial,8,U
-TableFkColumns 0 Arial,8,N
-Keys 0 Arial,8,N
-Indexes 0 Arial,8,N
-Triggers 0 Arial,8,N
-LABL 0 Arial,8,N</a:FontList>
-<a:BrushStyle>6</a:BrushStyle>
-<a:GradientFillMode>65</a:GradientFillMode>
-<a:GradientEndColor>16777215</a:GradientEndColor>
-<c:Object>
-<o:Table Ref="o16"/>
-</c:Object>
-</o:TableSymbol>
-<o:TableSymbol Id="o13">
-<a:CreationDate>1373208512</a:CreationDate>
-<a:ModificationDate>1373208940</a:ModificationDate>
-<a:IconMode>-1</a:IconMode>
-<a:Rect>((-16803,-2341), (-7201,2153))</a:Rect>
-<a:LineColor>16512</a:LineColor>
-<a:FillColor>166354</a:FillColor>
-<a:ShadowColor>12632256</a:ShadowColor>
-<a:FontList>STRN 0 Arial,8,N
-DISPNAME 0 Arial,8,N
-OWNRDISPNAME 0 新宋体,8,N
-Columns 0 Arial,8,N
-TablePkColumns 0 Arial,8,U
-TableFkColumns 0 Arial,8,N
-Keys 0 Arial,8,N
-Indexes 0 Arial,8,N
-Triggers 0 Arial,8,N
-LABL 0 Arial,8,N</a:FontList>
-<a:BrushStyle>6</a:BrushStyle>
-<a:GradientFillMode>65</a:GradientFillMode>
-<a:GradientEndColor>16777215</a:GradientEndColor>
-<c:Object>
-<o:Table Ref="o17"/>
-</c:Object>
-</o:TableSymbol>
-</c:Symbols>
-</o:PhysicalDiagram>
-</c:PhysicalDiagrams>
-<c:DefaultDiagram>
-<o:PhysicalDiagram Ref="o7"/>
-</c:DefaultDiagram>
-<c:Domains>
-<o:PhysicalDomain Id="o18">
-<a:ObjectID>BB77AEEB-EF7E-4D90-934F-3105BCC2F2ED</a:ObjectID>
-<a:Name>Domain_1</a:Name>
-<a:Code>Domain_1</a:Code>
-<a:CreationDate>1372518488</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518939</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-</o:PhysicalDomain>
-</c:Domains>
-<c:Tables>
-<o:Table Id="o15">
-<a:ObjectID>40CDABE6-1A78-47C8-AFFB-B952FE5C4604</a:ObjectID>
-<a:Name>购物车</a:Name>
-<a:Code>SHOP_CAR</a:Code>
-<a:CreationDate>1372517874</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208983</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:TotalSavingCurrency/>
-<c:Columns>
-<o:Column Id="o19">
-<a:ObjectID>79F4B18F-5E4A-43E0-8B3E-8E81FA830BC5</a:ObjectID>
-<a:Name>主键</a:Name>
-<a:Code>ID</a:Code>
-<a:CreationDate>1372517999</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208911</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>int</a:DataType>
-<a:Mandatory>1</a:Mandatory>
-</o:Column>
-<o:Column Id="o20">
-<a:ObjectID>F6FF4B94-23A7-499B-984C-54861F254DD7</a:ObjectID>
-<a:Name>名称</a:Name>
-<a:Code>CAR_NAME</a:Code>
-<a:CreationDate>1372517999</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372519647</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>varchar(60)</a:DataType>
-<a:Length>60</a:Length>
-<a:Mandatory>1</a:Mandatory>
-</o:Column>
-<o:Column Id="o21">
-<a:ObjectID>B21B7A09-1393-4961-A527-2D12E80D1F39</a:ObjectID>
-<a:Name>用户ID</a:Name>
-<a:Code>USER_ID</a:Code>
-<a:CreationDate>1372517999</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208911</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>int</a:DataType>
-</o:Column>
-<o:Column Id="o22">
-<a:ObjectID>D4E7EC4E-62EC-4198-A1F6-3B7A0EA7EDD6</a:ObjectID>
-<a:Name>TS</a:Name>
-<a:Code>TS</a:Code>
-<a:CreationDate>1372517999</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518173</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-</o:Column>
-</c:Columns>
-<c:Keys>
-<o:Key Id="o23">
-<a:ObjectID>719A1F9D-C3BB-4268-AC21-86CE3008122B</a:ObjectID>
-<a:Name>Key_1</a:Name>
-<a:Code>Key_1</a:Code>
-<a:CreationDate>1372517999</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518173</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<c:Key.Columns>
-<o:Column Ref="o19"/>
-</c:Key.Columns>
-</o:Key>
-</c:Keys>
-<c:PrimaryKey>
-<o:Key Ref="o23"/>
-</c:PrimaryKey>
-</o:Table>
-<o:Table Id="o16">
-<a:ObjectID>D4FA1E73-DB3E-400B-97E9-161600CEAF6A</a:ObjectID>
-<a:Name>订单</a:Name>
-<a:Code>CAR_ORDER</a:Code>
-<a:CreationDate>1372517878</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518947</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:TotalSavingCurrency/>
-<c:Columns>
-<o:Column Id="o24">
-<a:ObjectID>E8AEFF89-B75B-4C2B-A6D3-746A86CB4B0C</a:ObjectID>
-<a:Name>主键</a:Name>
-<a:Code>ID</a:Code>
-<a:CreationDate>1372518234</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518830</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>int</a:DataType>
-<a:Mandatory>1</a:Mandatory>
-</o:Column>
-<o:Column Id="o25">
-<a:ObjectID>E200AB55-DA87-4D22-A2A6-78D22E48014C</a:ObjectID>
-<a:Name>订单号</a:Name>
-<a:Code>ORDER_NO</a:Code>
-<a:CreationDate>1372518234</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518425</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>varchar(30)</a:DataType>
-<a:Length>30</a:Length>
-</o:Column>
-<o:Column Id="o26">
-<a:ObjectID>2FC7292C-BBA9-426E-8183-15A415C03F84</a:ObjectID>
-<a:Name>SHOP_CAR_ID</a:Name>
-<a:Code>SHOP_CAR_ID</a:Code>
-<a:CreationDate>1372518833</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518947</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>int</a:DataType>
-</o:Column>
-</c:Columns>
-<c:Keys>
-<o:Key Id="o27">
-<a:ObjectID>8840C861-CE54-401F-823E-868C2855F5D6</a:ObjectID>
-<a:Name>Key_1</a:Name>
-<a:Code>Key_1</a:Code>
-<a:CreationDate>1372518234</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518425</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<c:Key.Columns>
-<o:Column Ref="o24"/>
-</c:Key.Columns>
-</o:Key>
-</c:Keys>
-<c:Indexes>
-<o:Index Id="o28">
-<a:ObjectID>B3952E60-D9DA-482A-ABDF-B899AEA45D92</a:ObjectID>
-<a:Name>FK_asdf</a:Name>
-<a:Code>FK_asdf</a:Code>
-<a:CreationDate>1372518425</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518454</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:Unique>1</a:Unique>
-</o:Index>
-</c:Indexes>
-<c:PrimaryKey>
-<o:Key Ref="o27"/>
-</c:PrimaryKey>
-</o:Table>
-<o:Table Id="o17">
-<a:ObjectID>ED7F8B40-FEC3-4721-A18E-000B370E34B1</a:ObjectID>
-<a:Name>用户</a:Name>
-<a:Code>USER</a:Code>
-<a:CreationDate>1373208512</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208983</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:TotalSavingCurrency/>
-<c:Columns>
-<o:Column Id="o29">
-<a:ObjectID>1BF78676-16DE-4B19-8AC2-D28156865040</a:ObjectID>
-<a:Name>ID</a:Name>
-<a:Code>ID</a:Code>
-<a:CreationDate>1373208799</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208897</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>int</a:DataType>
-<a:Mandatory>1</a:Mandatory>
-</o:Column>
-<o:Column Id="o30">
-<a:ObjectID>8F363045-A29B-4784-9B47-E8DA215BEF67</a:ObjectID>
-<a:Name>用户code</a:Name>
-<a:Code>USER_CODE</a:Code>
-<a:CreationDate>1373208532</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208672</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>char(30)</a:DataType>
-<a:Length>30</a:Length>
-</o:Column>
-<o:Column Id="o31">
-<a:ObjectID>C5A0A7F8-6BAB-496C-AFFE-B1891B89B7A7</a:ObjectID>
-<a:Name>名称</a:Name>
-<a:Code>USER_NAME</a:Code>
-<a:CreationDate>1373208532</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208672</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:DataType>char(30)</a:DataType>
-<a:Length>30</a:Length>
-</o:Column>
-</c:Columns>
-<c:Keys>
-<o:Key Id="o32">
-<a:ObjectID>F39D1F67-5871-4DCD-AA29-C9AD2DAEE817</a:ObjectID>
-<a:Name>Key_1</a:Name>
-<a:Code>Key_1</a:Code>
-<a:CreationDate>1373208878</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208897</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<c:Key.Columns>
-<o:Column Ref="o29"/>
-</c:Key.Columns>
-</o:Key>
-</c:Keys>
-<c:PrimaryKey>
-<o:Key Ref="o32"/>
-</c:PrimaryKey>
-</o:Table>
-</c:Tables>
-<c:References>
-<o:Reference Id="o11">
-<a:ObjectID>AEACE319-D379-4994-89B0-9ECC4FE5BBEA</a:ObjectID>
-<a:Name>Reference_1</a:Name>
-<a:Code>Reference_1</a:Code>
-<a:CreationDate>1372518815</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518947</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:Cardinality>0..*</a:Cardinality>
-<a:UpdateConstraint>1</a:UpdateConstraint>
-<a:DeleteConstraint>1</a:DeleteConstraint>
-<c:ParentTable>
-<o:Table Ref="o15" />
-</c:ParentTable>
-<c:ChildTable>
-<o:Table Ref="o16"/>
-</c:ChildTable>
-<c:ParentKey>
-<o:Key Ref="o23"/>
-</c:ParentKey>
-<c:Joins>
-<o:ReferenceJoin Id="o33">
-<a:ObjectID>4FB7BFFE-B0F4-4B87-84F2-7D0012A67EFB</a:ObjectID>
-<a:CreationDate>1372518815</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372518947</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<c:Object1>
-<o:Column Ref="o19"/>
-</c:Object1>
-<c:Object2>
-<o:Column Ref="o26"/>
-</c:Object2>
-</o:ReferenceJoin>
-</c:Joins>
-</o:Reference>
-<o:Reference Id="o14">
-<a:ObjectID>B811532F-E7CB-4FD1-ADE5-4117F1538D22</a:ObjectID>
-<a:Name>Reference_2</a:Name>
-<a:Code>Reference_2</a:Code>
-<a:CreationDate>1373208901</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208983</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:Cardinality>0..*</a:Cardinality>
-<a:UpdateConstraint>1</a:UpdateConstraint>
-<a:DeleteConstraint>1</a:DeleteConstraint>
-<c:ParentTable>
-<o:Table Ref="o17"/>
-</c:ParentTable>
-<c:ChildTable>
-<o:Table Ref="o15"/>
-</c:ChildTable>
-<c:ParentKey>
-<o:Key Ref="o32"/>
-</c:ParentKey>
-<c:Joins>
-<o:ReferenceJoin Id="o34">
-<a:ObjectID>37F8B531-E1DE-4788-BE47-BDC6146E8D21</a:ObjectID>
-<a:CreationDate>1373208901</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208911</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<c:Object1>
-<o:Column Ref="o29" />
-</c:Object1>
-<c:Object2>
-<o:Column Ref="o21"/>
-</c:Object2>
-</o:ReferenceJoin>
-</c:Joins>
-</o:Reference>
-</c:References>
-<c:DefaultGroups>
-<o:Group Id="o35">
-<a:ObjectID>352A18CF-9457-403D-B4D4-6AE3CF56A5EC</a:ObjectID>
-<a:Name>PUBLIC</a:Name>
-<a:Code>PUBLIC</a:Code>
-<a:CreationDate>1372517856</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1372517856</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-</o:Group>
-</c:DefaultGroups>
-<c:TargetModels>
-<o:TargetModel Id="o36">
-<a:ObjectID>FD6C82E3-7045-4342-AB1B-492075F7E019</a:ObjectID>
-<a:Name>MySQL 5.0</a:Name>
-<a:Code>MYSQL50</a:Code>
-<a:CreationDate>1372518204</a:CreationDate>
-<a:Creator>Administrator</a:Creator>
-<a:ModificationDate>1373208983</a:ModificationDate>
-<a:Modifier>Administrator</a:Modifier>
-<a:TargetModelURL>file:///%_DBMS%/mysql50.xdb</a:TargetModelURL>
-<a:TargetModelID>F4F16ECD-F2F1-4006-AF6F-638D5C65F35E</a:TargetModelID>
-<a:TargetModelClassID>4BA9F647-DAB1-11D1-9944-006097355D9B</a:TargetModelClassID>
-<c:SessionShortcuts>
-<o:Shortcut Ref="o3"/>
-<o:Shortcut Ref="o4"/>
-<o:Shortcut Ref="o5"/>
-<o:Shortcut Ref="o6"/>
-</c:SessionShortcuts>
-</o:TargetModel>
-</c:TargetModels>
-</o:Model>
-</c:Children>
-</o:RootObject>
+	<o:RootObject Id="o1">
+		<c:Children>
+			<o:Model Id="o2">
+				<a:ObjectID>B0BCAC59-E735-4E1C-8DE9-1BB1E0FF9D0F</a:ObjectID>
+				<a:Name>Test</a:Name>
+				<a:Code>Test</a:Code>
+				<a:CreationDate>1372517858</a:CreationDate>
+				<a:Creator>Administrator</a:Creator>
+				<a:ModificationDate>1373208901</a:ModificationDate>
+				<a:Modifier>Administrator</a:Modifier>
+				<a:PackageOptionsText>[FolderOptions]
+
+					[FolderOptions\Physical
+					Objects]
+					GenerationCheckModel=Yes
+					GenerationPath=
+					GenerationOptions=
+					GenerationTasks=
+					GenerationTargets=
+					GenerationSelections=
+					RevPkey=Yes
+					RevFkey=Yes
+					RevAkey=Yes
+					RevCheck=Yes
+					RevIndx=Yes
+					RevOpts=Yes
+					RevViewAsTabl=No
+					RevViewOpts=Yes
+					RevSystAsTabl=Yes
+					RevTablPerm=No
+					RevViewPerm=No
+					RevProcPerm=No
+					RevDbpkPerm=No
+					RevSqncPerm=No
+					RevAdtPerm=No
+					RevUserPriv=No
+					RevUserOpts=No
+					RevGrpePriv=No
+					RevRolePriv=No
+					RevDtbsOpts=Yes
+					RevDtbsPerm=No
+					RevViewIndx=Yes
+					RevJidxOpts=Yes
+					RevStats=No
+					RevTspcPerm=No
+					RevCaseSensitive=No
+					GenTrgrStdMsg=Yes
+					GenTrgrMsgTab=
+					GenTrgrMsgNo=
+					GenTrgrMsgTxt=
+					TrgrPreserve=No
+					TrgrIns=Yes
+					TrgrUpd=Yes
+					TrgrDel=Yes
+					TrgrC2Ins=Yes
+					TrgrC2Upd=Yes
+					TrgrC3=Yes
+					TrgrC4=Yes
+					TrgrC5=Yes
+					TrgrC6=Yes
+					TrgrC7=Yes
+					TrgrC8=Yes
+					TrgrC9=Yes
+					TrgrC10=Yes
+					TrgrC11=Yes
+					TrgrC1=Yes
+					TrgrC12Ins=Yes
+					TrgrC12Upd=Yes
+					TrgrC13=Yes
+					UpdateTableStatistics=Yes
+					UpdateColumnStatistics=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation]
+					GenScriptName=crebas
+					GenScriptName0=
+					GenScriptName1=
+					GenScriptName2=
+					GenScriptName3=
+					GenScriptName4=
+					GenScriptName5=
+					GenScriptName6=
+					GenScriptName7=
+					GenScriptName8=
+					GenScriptName9=
+					GenPathName=
+					GenSingleFile=Yes
+					GenODBC=No
+					GenCheckModel=Yes
+					GenScriptPrev=Yes
+					GenArchiveModel=No
+					GenUseSync=No
+					GenSyncChoice=0
+					GenSyncArch=
+					GenSyncRmg=0
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Format]
+					GenScriptTitle=Yes
+					GenScriptNamLabl=No
+					GenScriptQDtbs=No
+					GenScriptQOwnr=Yes
+					GenScriptCase=0
+					GenScriptEncoding=ANSI
+					GenScriptNAcct=No
+					IdentifierDelimiter=&quot;
+
+					[FolderOptions\Physical Objects\Database Generation\Database]
+					Create=Yes
+					Open=Yes
+					Close=Yes
+					Drop=Yes
+					Permission=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Database\Create]
+					Physical Options=Yes
+					Header=Yes
+					Footer=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Tablespace]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+					Permission=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Tablespace\Create]
+					Header=Yes
+					Footer=Yes
+
+					[FolderOptions\Physical Objects\Database Generation\Storage]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\User]
+					Create=Yes
+					Grant=Yes
+					Drop=Yes
+					Comment=Yes
+					Privilege=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\User\Create]
+					Physical Options=No
+
+					[FolderOptions\Physical
+					Objects\Database Generation\Group]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+					Privilege=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Role]
+					Create=Yes
+					Drop=Yes
+					Privilege=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\UserDefinedDataType]
+					Create=Yes
+					Comment=Yes
+					Drop=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\UserDefinedDataType\Create]
+					Default value=Yes
+					Check=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\AbstractDataType]
+					Create=Yes
+					Header=Yes
+					Footer=Yes
+					Drop=Yes
+					Comment=Yes
+					Install JAVA class=Yes
+					Remove JAVA class=Yes
+					Permission=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Rule]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Database Generation\Default]
+					Create=Yes
+					Comment=Yes
+					Drop=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\Sequence]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+					Permission=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column]
+
+					[FolderOptions\Physical
+					Objects\Database
+					Generation\Table&amp;&amp;Column\Table]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+					Permission=No
+
+					[FolderOptions\Physical
+					Objects\Database Generation\Table&amp;&amp;Column\Table\Create]
+					Check=Yes
+					Physical Options=Yes
+					Header=Yes
+					Footer=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Table\Create\Check]
+					Constraint
+					declaration=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Column]
+					User datatype=No
+					Default
+					value=Yes
+					Check=Yes
+					Physical Options=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Column\Check]
+					Constraint
+					declaration=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Key]
+
+					[FolderOptions\Physical
+					Objects\Database
+					Generation\Table&amp;&amp;Column\Key\Primary key]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\Table&amp;&amp;Column\Key\Primary
+					key\Create]
+					Constraint declaration=No
+					Physical Options=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Key\Alternate
+					key]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Key\Alternate
+					key\Create]
+					Constraint declaration=No
+					Physical Options=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Foreign key]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Foreign
+					key\Create]
+					Constraint
+					declaration=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Index]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Index\Create]
+					Constraint
+					declaration=Yes
+					Physical Options=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\Table&amp;&amp;Column\Index\Filter]
+					Primary key=No
+					Foreign key=No
+					Alternate key=No
+					Cluster=Yes
+					Other=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Trigger]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Table&amp;&amp;Column\Trigger\Filter]
+					For insert=Yes
+					For
+					update=Yes
+					For delete=Yes
+					For other=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\View]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+					Permission=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\View\Create]
+					Force Column list=No
+					Physical Options=Yes
+					Header=Yes
+					Footer=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\View\ViewColumn]
+					Comment=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\View\ViewIndex]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\View\ViewIndex\Create]
+					Physical Options=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\View\ViewIndex\Filter]
+					Cluster=Yes
+					Other=Yes
+
+					[FolderOptions\Physical Objects\Database Generation\View\Trigger]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\View\Trigger\Filter]
+					For insert=Yes
+					For
+					update=Yes
+					For delete=Yes
+					For other=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\DBMSTrigger]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Synonym]
+					Create=Yes
+					Drop=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\Synonym\Filter]
+					Table=Yes
+					View=Yes
+					Proc=Yes
+					Synonym=Yes
+					Database Package=Yes
+					Sequence=Yes
+
+					[FolderOptions\Physical Objects\Database Generation\JoinIndex]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\JoinIndex\Create]
+					Physical Options=Yes
+					Header=Yes
+					Footer=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Procedure]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+					Permission=No
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Procedure\Create]
+					Header=Yes
+					Footer=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\DatabasePackage]
+					Create=Yes
+					Drop=Yes
+					Permission=No
+
+					[FolderOptions\Physical Objects\Database Generation\WebService]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical
+					Objects\Database Generation\Dimension]
+					Create=Yes
+					Drop=Yes
+
+					[FolderOptions\Physical Objects\Database
+					Generation\Synchronization]
+					GenBackupTabl=1
+					GenKeepBackTabl=1
+					GenTmpTablDrop=No
+					GenKeepTablOpts=No
+
+					[FolderOptions\Physical
+					Objects\Database Generation\ExtendedObject &lt;&lt;Event&gt;&gt;]
+					Create=Yes
+					Drop=Yes
+					Comment=Yes
+
+					[FolderOptions\Physical Objects\Test
+					Data]
+					GenDataPathName=
+					GenDataSinglefile=Yes
+					GenDataScriptName=testdata
+					GenDataScriptName0=
+					GenDataScriptName1=
+					GenDataScriptName2=
+					GenDataScriptName3=
+					GenDataScriptName4=
+					GenDataScriptName5=
+					GenDataScriptName6=
+					GenDataScriptName7=
+					GenDataScriptName8=
+					GenDataScriptName9=
+					GenDataOdbc=0
+					GenDataDelOld=No
+					GenDataTitle=No
+					GenDataDefNumRows=20
+					GenDataCommit=0
+					GenDataPacket=0
+					GenDataOwner=No
+					GenDataProfNumb=
+					GenDataProfChar=
+					GenDataProfDate=
+					GenDataCSVSeparator=,
+					GenDataFileFormat=CSV
+					GenDataUseWizard=No
+
+					[FolderOptions\Pdm]
+					IndxIQName=%COLUMN%_%INDEXTYPE%
+					IndxPK=Yes
+					IndxFK=Yes
+					IndxAK=Yes
+					IndxPKName=%TABLE%_PK
+					IndxFKName=%REFR%_FK
+					IndxAKName=%AKEY%_AK
+					IndxPreserve=No
+					IndxThreshold=0
+					IndxStats=No
+					RefrPreserve=No
+					JidxPreserve=No
+					RbldMultiFact=Yes
+					RbldMultiDim=Yes
+					RbldMultiJidx=Yes
+					CubePreserve=No
+					TablStProcPreserve=No
+					ProcDepPreserve=Yes
+					TrgrDepPreserve=Yes
+					CubeScriptPath=
+					CubeScriptCase=0
+					CubeScriptEncoding=ANSI
+					CubeScriptNacct=No
+					CubeScriptHeader=No
+					CubeScriptExt=csv
+					CubeScriptExt0=txt
+					CubeScriptExt1=
+					CubeScriptExt2=
+					CubeScriptSep=,
+					CubeScriptDeli=&quot;
+					DfltDomnName=D_%.U:VALUE%
+					DfltColnName=D_%.U:VALUE%
+					DfltReuse=Yes
+					DfltDrop=Yes
+				</a:PackageOptionsText>
+				<a:ModelOptionsText>[ModelOptions]
+
+					[ModelOptions\Physical Objects]
+					CaseSensitive=No
+					DisplayName=Yes
+					EnableTrans=No
+					EnableRequirements=No
+					DefaultDttp=
+					IgnoreOwner=No
+					RebuildTrigger=Yes
+					RefrUnique=No
+					RefrAutoMigrate=Yes
+					RefrMigrateReuse=Yes
+					RefrMigrateDomain=Yes
+					RefrMigrateCheck=Yes
+					RefrMigrateRule=Yes
+					RefrMigrateExtd=No
+					RefrMigrDefaultLink=No
+					RefrDfltImpl=D
+					RefrPrgtColn=No
+					RefrMigrateToEnd=No
+					RebuildTriggerDep=No
+					ColnFKName=%.3:PARENT%_%COLUMN%
+					ColnFKNameUse=No
+					DomnCopyDttp=Yes
+					DomnCopyChck=No
+					DomnCopyRule=No
+					DomnCopyMand=No
+					DomnCopyExtd=No
+					DomnCopyProf=No
+					Notation=0
+					DomnDefaultMandatory=No
+					ColnDefaultMandatory=No
+					TablDefaultOwner=
+					ViewDefaultOwner=
+					TrgrDefaultOwnerTabl=
+					TrgrDefaultOwnerView=
+					IdxDefaultOwnerTabl=
+					IdxDefaultOwnerView=
+					JdxDefaultOwner=
+					DBPackDefaultOwner=
+					SeqDefaultOwner=
+					ProcDefaultOwner=
+					DBMSTrgrDefaultOwner=
+					Currency=USD
+					RefrDeleteConstraint=1
+					RefrUpdateConstraint=1
+					RefrParentMandatory=No
+					RefrParentChangeAllow=Yes
+					RefrCheckOnCommit=No
+
+					[ModelOptions\Physical Objects\NamingOptionsTemplates]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\PDMPCKG]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\PDMPCKG\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\PDMPCKG\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\PDMDOMN]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\PDMDOMN\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\PDMDOMN\Code]
+					Template=
+					MaxLen=30
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\TABL]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\TABL\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\TABL\Code]
+					Template=
+					MaxLen=128
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\COLN]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\COLN\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\COLN\Code]
+					Template=
+					MaxLen=128
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\INDX]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\INDX\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\INDX\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\REFR]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\REFR\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\REFR\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VREF]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VREF\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VREF\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VIEW]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VIEW\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VIEW\Code]
+					Template=
+					MaxLen=128
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VIEWC]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VIEWC\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\VIEWC\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WEBSERV]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WEBSERV\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WEBSERV\Code]
+					Template=
+					MaxLen=128
+					Case=M
+					ValidChar=&#39;a&#39;-&#39;z&#39;,&#39;A&#39;-&#39;Z&#39;,&#39;0&#39;-&#39;9&#39;,&quot;/-_.!~*&#39;()&quot;
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WEBOP]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WEBOP\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WEBOP\Code]
+					Template=
+					MaxLen=128
+					Case=M
+					ValidChar=&#39;a&#39;-&#39;z&#39;,&#39;A&#39;-&#39;Z&#39;,&#39;0&#39;-&#39;9&#39;,&quot;/-_.!~*&#39;()&quot;
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WPARAM]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WPARAM\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\WPARAM\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FACT]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FACT\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FACT\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DIMN]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DIMN\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DIMN\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\CUBE]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\CUBE\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\CUBE\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\MEAS]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\MEAS\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\MEAS\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DATTR]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DATTR\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DATTR\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FILO]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FILO\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FILO\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FRMEOBJ]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FRMEOBJ\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FRMEOBJ\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FRMELNK]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FRMELNK\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\FRMELNK\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DefaultClass]
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DefaultClass\Name]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Physical Objects\ClssNamingOptions\DefaultClass\Code]
+					Template=
+					MaxLen=254
+					Case=M
+					ValidChar=
+					InvldChar=
+					AllValid=Yes
+					NoAccent=No
+					DefaultChar=
+					Script=
+					ConvTable=
+					ConvTablePath=%_HOME%\Resource Files\Conversion Tables
+
+					[ModelOptions\Connection]
+
+					[ModelOptions\Pdm]
+
+					[ModelOptions\Generate]
+
+					[ModelOptions\Generate\Pdm]
+					RRMapping=No
+
+					[ModelOptions\Generate\Cdm]
+					CheckModel=Yes
+					SaveLinks=Yes
+					NameToCode=No
+					Notation=2
+
+					[ModelOptions\Generate\Oom]
+					CheckModel=Yes
+					SaveLinks=Yes
+					ORMapping=No
+					NameToCode=Yes
+					ClassPrefix=
+
+					[ModelOptions\Generate\Xsm]
+					CheckModel=Yes
+					SaveLinks=Yes
+					ORMapping=No
+					NameToCode=No
+
+					[ModelOptions\Generate\Ldm]
+					CheckModel=Yes
+					SaveLinks=Yes
+					NameToCode=No
+
+					[ModelOptions\Default Opts]
+
+					[ModelOptions\Default
+					Opts\TABL]
+					PhysOpts=
+
+					[ModelOptions\Default Opts\COLN]
+					PhysOpts=
+
+					[ModelOptions\Default Opts\INDX]
+					PhysOpts=
+
+					[ModelOptions\Default
+					Opts\AKEY]
+					PhysOpts=
+
+					[ModelOptions\Default Opts\PKEY]
+					PhysOpts=
+
+					[ModelOptions\Default Opts\STOR]
+					PhysOpts=
+
+					[ModelOptions\Default
+					Opts\TSPC]
+					PhysOpts=
+
+					[ModelOptions\Default Opts\SQNC]
+					PhysOpts=
+
+					[ModelOptions\Default Opts\DTBS]
+					PhysOpts=
+
+					[ModelOptions\Default
+					Opts\USER]
+					PhysOpts=
+
+					[ModelOptions\Default Opts\JIDX]
+					PhysOpts=
+				</a:ModelOptionsText>
+				<c:DBMS>
+					<o:Shortcut Id="o3">
+						<a:ObjectID>7BD93EA9-27CE-4C67-AB23-9B1C1D82ED5F</a:ObjectID>
+						<a:Name>MySQL 5.0</a:Name>
+						<a:Code>MYSQL50</a:Code>
+						<a:CreationDate>1372518204</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1373208983</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+						<a:TargetStereotype />
+						<a:TargetID>F4F16ECD-F2F1-4006-AF6F-638D5C65F35E</a:TargetID>
+						<a:TargetClassID>4BA9F647-DAB1-11D1-9944-006097355D9B
+						</a:TargetClassID>
+						<c:SubShortcuts>
+							<o:Shortcut Id="o4">
+								<a:ObjectID>9AA70463-852A-4976-A395-AD7A69DDD65A</a:ObjectID>
+								<a:Name>BeforeInsertTrigger</a:Name>
+								<a:Code>BeforeInsertTrigger</a:Code>
+								<a:CreationDate>1373208950</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208983</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:TargetStereotype />
+								<a:TargetID>63C341EF-60CE-4B9B-8429-5484200F90D5</a:TargetID>
+								<a:TargetClassID>D4B2DF42-0047-11D2-9952-006097355D9B
+								</a:TargetClassID>
+								<a:TargetPackagePath>&lt;Model&gt;::MySQL 5.0
+								</a:TargetPackagePath>
+							</o:Shortcut>
+							<o:Shortcut Id="o5">
+								<a:ObjectID>73DB3BDA-DF3C-4A02-94E9-33377CA32B7C</a:ObjectID>
+								<a:Name>BeforeUpdateTrigger</a:Name>
+								<a:Code>BeforeUpdateTrigger</a:Code>
+								<a:CreationDate>1373208950</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208983</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:TargetStereotype />
+								<a:TargetID>A4F66E74-54DB-4500-B8EF-67682F6BCA34</a:TargetID>
+								<a:TargetClassID>D4B2DF42-0047-11D2-9952-006097355D9B
+								</a:TargetClassID>
+								<a:TargetPackagePath>&lt;Model&gt;::MySQL 5.0
+								</a:TargetPackagePath>
+							</o:Shortcut>
+							<o:Shortcut Id="o6">
+								<a:ObjectID>2F45044E-9F72-4A01-AB2A-07BE217A4951</a:ObjectID>
+								<a:Name>BeforeDeleteTrigger</a:Name>
+								<a:Code>BeforeDeleteTrigger</a:Code>
+								<a:CreationDate>1373208950</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208983</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:TargetStereotype />
+								<a:TargetID>B9B9F30F-7DCD-4156-A212-A2D417A1545C</a:TargetID>
+								<a:TargetClassID>D4B2DF42-0047-11D2-9952-006097355D9B
+								</a:TargetClassID>
+								<a:TargetPackagePath>&lt;Model&gt;::MySQL 5.0
+								</a:TargetPackagePath>
+							</o:Shortcut>
+						</c:SubShortcuts>
+					</o:Shortcut>
+				</c:DBMS>
+				<c:PhysicalDiagrams>
+					<o:PhysicalDiagram Id="o7">
+						<a:ObjectID>DEC81FBA-A38D-460C-9741-135A6DE4E52C</a:ObjectID>
+						<a:Name>PhysicalDiagram_1</a:Name>
+						<a:Code>PhysicalDiagram_1</a:Code>
+						<a:CreationDate>1372517858</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1373208901</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+						<a:DisplayPreferences>[DisplayPreferences]
+
+							[DisplayPreferences\PDM]
+
+							[DisplayPreferences\General]
+							Adjust to
+							text=Yes
+							Snap Grid=No
+							Constrain Labels=Yes
+							Display Grid=No
+							Show Page
+							Delimiter=Yes
+							Grid size=0
+							Graphic unit=2
+							Window color=255, 255, 255
+							Background image=
+							Background mode=8
+							Watermark image=
+							Watermark
+							mode=8
+							Show watermark on screen=No
+							Gradient mode=0
+							Gradient end
+							color=255, 255, 255
+							Show Swimlane=No
+							SwimlaneVert=Yes
+							TreeVert=No
+							CompDark=0
+
+							[DisplayPreferences\Object]
+							Mode=0
+							Trunc Length=80
+							Word
+							Length=80
+							Word
+							Text=!&quot;&quot;#$%&amp;&#39;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~
+							Shortcut IntIcon=Yes
+							Shortcut IntLoct=Yes
+							Shortcut IntFullPath=No
+							Shortcut IntLastPackage=Yes
+							Shortcut ExtIcon=Yes
+							Shortcut
+							ExtLoct=No
+							Shortcut ExtFullPath=No
+							Shortcut ExtLastPackage=Yes
+							Shortcut ExtIncludeModl=Yes
+							EObjShowStrn=Yes
+							ExtendedObject.Comment=No
+							ExtendedObject.IconPicture=No
+							ExtendedObject_SymbolLayout=
+							ELnkShowStrn=Yes
+							ELnkShowName=Yes
+							ExtendedLink_SymbolLayout=
+							FileObject.Stereotype=No
+							FileObject.DisplayName=Yes
+							FileObject.LocationOrName=No
+							FileObject.IconPicture=No
+							FileObject.IconMode=Yes
+							FileObject_SymbolLayout=
+							PckgShowStrn=Yes
+							Package.Comment=No
+							Package.IconPicture=No
+							Package_SymbolLayout=
+							Display Model
+							Version=Yes
+							Table.Stereotype=Yes
+							Table.DisplayName=Yes
+							Table.OwnerDisplayName=No
+							Table.Columns=Yes
+							Table.Columns._Filter=&quot;All Columns&quot; PDMCOLNALL
+							Table.Columns._Columns=Stereotype DataType KeyIndicator
+							Table.Columns._Limit=-5
+							Table.Keys=No
+							Table.Keys._Columns=Stereotype Indicator
+							Table.Indexes=No
+							Table.Indexes._Columns=Stereotype
+							Table.Triggers=No
+							Table.Triggers._Columns=Stereotype
+							Table.Comment=No
+							Table.IconPicture=No
+							Table_SymbolLayout=&lt;Form&gt;[CRLF]
+							&lt;StandardAttribute Name=&quot;Stereotype&quot;
+							Attribute=&quot;Stereotype&quot;
+							Prefix=&quot;&amp;lt;&amp;lt;&quot;
+							Suffix=&quot;&amp;gt;&amp;gt;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;ExclusiveChoice Name=&quot;Exclusive Choice&quot;
+							Mandatory=&quot;Yes&quot; Display=&quot;HorizontalRadios&quot;
+							&gt;[CRLF] &lt;StandardAttribute Name=&quot;Name&quot;
+							Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;StandardAttribute Name=&quot;Owner and Name&quot;
+							Attribute=&quot;OwnerDisplayName&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;/ExclusiveChoice&gt;[CRLF] &lt;Separator
+							Name=&quot;Separator&quot; /&gt;[CRLF] &lt;StandardCollection
+							Name=&quot;Columns&quot; Collection=&quot;Columns&quot;
+							Columns=&quot;Stereotype No\r\nDisplayName Yes\r\nDataType
+							No\r\nSymbolDataType No &amp;quot;Domain or Data
+							type&amp;quot;\r\nDomain No\r\nKeyIndicator No\r\nIndexIndicator
+							No\r\nNullStatus No&quot; Filters=&quot;&amp;quot;All
+							Columns&amp;quot; PDMCOLNALL &amp;quot;&amp;quot;\r\n&amp;quot;PK
+							Columns&amp;quot; PDMCOLNPK &amp;quot;PRIM
+							\&amp;quot;TRUE\&amp;quot; TRUE&amp;quot;\r\n&amp;quot;Key
+							Columns&amp;quot; PDMCOLNKEY &amp;quot;KEYS
+							\&amp;quot;TRUE\&amp;quot; TRUE&amp;quot;&quot;
+							HasLimit=&quot;Yes&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection
+							Name=&quot;Keys&quot; Collection=&quot;Keys&quot;
+							Columns=&quot;Stereotype No\r\nDisplayName Yes\r\nIndicator
+							No&quot; HasLimit=&quot;No&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection
+							Name=&quot;Indexes&quot; Collection=&quot;Indexes&quot;
+							Columns=&quot;Stereotype No\r\nDisplayName Yes\r\nIndicator
+							No&quot; HasLimit=&quot;No&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection
+							Name=&quot;Triggers&quot; Collection=&quot;Triggers&quot;
+							Columns=&quot;Stereotype No\r\nDisplayName Yes&quot;
+							HasLimit=&quot;No&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Comment&quot; Attribute=&quot;Comment&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot;
+							Alignment=&quot;LEFT&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Icon&quot; Attribute=&quot;IconPicture&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot;
+							Alignment=&quot;CNTR&quot; Caption=&quot;&quot;
+							Mandatory=&quot;Yes&quot; /&gt;[CRLF]&lt;/Form&gt;
+							View.Stereotype=Yes
+							View.DisplayName=Yes
+							View.OwnerDisplayName=No
+							View.Columns=Yes
+							View.Columns._Columns=DisplayName
+							View.Columns._Limit=-5
+							View.TemporaryVTables=Yes
+							View.Indexes=No
+							View.Comment=No
+							View.IconPicture=No
+							View_SymbolLayout=&lt;Form&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Stereotype&quot;
+							Attribute=&quot;Stereotype&quot;
+							Prefix=&quot;&amp;lt;&amp;lt;&quot;
+							Suffix=&quot;&amp;gt;&amp;gt;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;ExclusiveChoice Name=&quot;Exclusive Choice&quot;
+							Mandatory=&quot;Yes&quot; Display=&quot;HorizontalRadios&quot;
+							&gt;[CRLF] &lt;StandardAttribute Name=&quot;Name&quot;
+							Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;StandardAttribute Name=&quot;Owner and Name&quot;
+							Attribute=&quot;OwnerDisplayName&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;/ExclusiveChoice&gt;[CRLF] &lt;Separator
+							Name=&quot;Separator&quot; /&gt;[CRLF] &lt;StandardCollection
+							Name=&quot;Columns&quot; Collection=&quot;Columns&quot;
+							Columns=&quot;DisplayName No\r\nExpression No\r\nDataType
+							No\r\nSymbolDataType No &amp;quot;Domain or Data
+							type&amp;quot;\r\nIndexIndicator No&quot;
+							HasLimit=&quot;Yes&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardCollection
+							Name=&quot;Tables&quot; Collection=&quot;TemporaryVTables&quot;
+							Columns=&quot;Name Yes&quot; HasLimit=&quot;No&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;StandardCollection Name=&quot;Indexes&quot;
+							Collection=&quot;Indexes&quot; Columns=&quot;DisplayName
+							Yes&quot; HasLimit=&quot;No&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Comment&quot; Attribute=&quot;Comment&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot;
+							Alignment=&quot;LEFT&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Icon&quot; Attribute=&quot;IconPicture&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot;
+							Alignment=&quot;CNTR&quot; Caption=&quot;&quot;
+							Mandatory=&quot;Yes&quot; /&gt;[CRLF]&lt;/Form&gt;
+							Procedure.Stereotype=No
+							Procedure.DisplayName=Yes
+							Procedure.OwnerDisplayName=No
+							Procedure.Comment=No
+							Procedure.IconPicture=No
+							Procedure_SymbolLayout=&lt;Form&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Stereotype&quot;
+							Attribute=&quot;Stereotype&quot;
+							Prefix=&quot;&amp;lt;&amp;lt;&quot;
+							Suffix=&quot;&amp;gt;&amp;gt;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;ExclusiveChoice Name=&quot;Exclusive Choice&quot;
+							Mandatory=&quot;Yes&quot; Display=&quot;HorizontalRadios&quot;
+							&gt;[CRLF] &lt;StandardAttribute Name=&quot;Name&quot;
+							Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;StandardAttribute Name=&quot;Owner and Name&quot;
+							Attribute=&quot;OwnerDisplayName&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Alignment=&quot;CNTR&quot;
+							Caption=&quot;&quot; Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;/ExclusiveChoice&gt;[CRLF] &lt;Separator
+							Name=&quot;Separator&quot; /&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Comment&quot; Attribute=&quot;Comment&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot;
+							Alignment=&quot;LEFT&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Icon&quot; Attribute=&quot;IconPicture&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot;
+							Alignment=&quot;CNTR&quot; Caption=&quot;&quot;
+							Mandatory=&quot;Yes&quot; /&gt;[CRLF]&lt;/Form&gt;
+							Reference.Cardinality=No
+							Reference.ImplementationType=No
+							Reference.ChildRole=Yes
+							Reference.Stereotype=Yes
+							Reference.DisplayName=No
+							Reference.ForeignKeyConstraintName=Yes
+							Reference.JoinExpression=No
+							Reference.Integrity=No
+							Reference.ParentRole=Yes
+							Reference_SymbolLayout=&lt;Form&gt;[CRLF] &lt;Form
+							Name=&quot;Source&quot; &gt;[CRLF]
+							&lt;StandardAttribute
+							Name=&quot;Cardinality&quot;
+							Attribute=&quot;Cardinality&quot;
+							Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot;
+							/&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Implementation&quot;
+							Attribute=&quot;ImplementationType&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot;
+							/&gt;[CRLF] &lt;StandardAttribute Name=&quot;Child Role&quot;
+							Attribute=&quot;ChildRole&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot;
+							/&gt;[CRLF] &lt;/Form&gt;[CRLF] &lt;Form Name=&quot;Center&quot;
+							&gt;[CRLF] &lt;StandardAttribute Name=&quot;Stereotype&quot;
+							Attribute=&quot;Stereotype&quot;
+							Prefix=&quot;&amp;lt;&amp;lt;&quot;
+							Suffix=&quot;&amp;gt;&amp;gt;&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;ExclusiveChoice
+							Name=&quot;Exclusive Choice&quot; Mandatory=&quot;No&quot;
+							Display=&quot;HorizontalRadios&quot; &gt;[CRLF]
+							&lt;StandardAttribute Name=&quot;Name&quot;
+							Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot;
+							/&gt;[CRLF] &lt;StandardAttribute Name=&quot;Cons&amp;amp;traint
+							Name&quot; Attribute=&quot;ForeignKeyConstraintName&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot;
+							Caption=&quot;Cons&amp;amp;traint Name&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Join&quot; Attribute=&quot;JoinExpression&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;Join&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;/ExclusiveChoice&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Referential integrity&quot;
+							Attribute=&quot;Integrity&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Caption=&quot;Referential integrity&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;/Form&gt;[CRLF] &lt;Form
+							Name=&quot;Destination&quot; &gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Parent Role&quot; Attribute=&quot;ParentRole&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;/Form&gt;[CRLF]&lt;/Form&gt;
+							ViewReference.ChildRole=Yes
+							ViewReference.Stereotype=Yes
+							ViewReference.DisplayName=No
+							ViewReference.JoinExpression=No
+							ViewReference.ParentRole=Yes
+							ViewReference_SymbolLayout=&lt;Form&gt;[CRLF] &lt;Form
+							Name=&quot;Source&quot; &gt;[CRLF]
+							&lt;StandardAttribute
+							Name=&quot;Child Role&quot;
+							Attribute=&quot;ChildRole&quot;
+							Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot;
+							/&gt;[CRLF] &lt;/Form&gt;[CRLF] &lt;Form
+							Name=&quot;Center&quot;
+							&gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Stereotype&quot;
+							Attribute=&quot;Stereotype&quot;
+							Prefix=&quot;&amp;lt;&amp;lt;&quot;
+							Suffix=&quot;&amp;gt;&amp;gt;&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF] &lt;ExclusiveChoice
+							Name=&quot;Exclusive Choice&quot; Mandatory=&quot;No&quot;
+							Display=&quot;HorizontalRadios&quot; &gt;[CRLF]
+							&lt;StandardAttribute Name=&quot;Name&quot;
+							Attribute=&quot;DisplayName&quot; Prefix=&quot;&quot;
+							Suffix=&quot;&quot; Caption=&quot;&quot; Mandatory=&quot;No&quot;
+							/&gt;[CRLF] &lt;StandardAttribute Name=&quot;Join
+							Expression&quot; Attribute=&quot;JoinExpression&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;/ExclusiveChoice&gt;[CRLF] &lt;/Form&gt;[CRLF] &lt;Form
+							Name=&quot;Destination&quot; &gt;[CRLF] &lt;StandardAttribute
+							Name=&quot;Parent Role&quot; Attribute=&quot;ParentRole&quot;
+							Prefix=&quot;&quot; Suffix=&quot;&quot; Caption=&quot;&quot;
+							Mandatory=&quot;No&quot; /&gt;[CRLF]
+							&lt;/Form&gt;[CRLF]&lt;/Form&gt;
+
+							[DisplayPreferences\Symbol]
+
+							[DisplayPreferences\Symbol\FRMEOBJ]
+							STRNFont=Arial,8,N
+							STRNFont
+							color=0, 0, 0
+							DISPNAMEFont=Arial,8,N
+							DISPNAMEFont color=0, 0, 0
+							LABLFont=Arial,8,N
+							LABLFont color=0, 0, 0
+							AutoAdjustToText=Yes
+							Keep
+							aspect=No
+							Keep center=No
+							Keep size=No
+							Width=6000
+							Height=2000
+							Brush
+							color=255 255 255
+							Fill Color=Yes
+							Brush style=6
+							Brush bitmap mode=12
+							Brush gradient mode=64
+							Brush gradient color=192 192 192
+							Brush
+							background image=
+							Custom shape=
+							Custom text mode=0
+							Pen=1 0 255 128
+							128
+							Shadow color=192 192 192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\FRMELNK]
+							CENTERFont=Arial,8,N
+							CENTERFont color=0, 0, 0
+							Line style=2
+							AutoAdjustToText=Yes
+							Keep
+							aspect=No
+							Keep center=No
+							Keep size=No
+							Brush color=255 255 255
+							Fill
+							Color=Yes
+							Brush style=1
+							Brush bitmap mode=12
+							Brush gradient mode=0
+							Brush gradient color=118 118 118
+							Brush background image=
+							Custom
+							shape=
+							Custom text mode=0
+							Pen=1 0 128 128 255
+							Shadow color=192 192
+							192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\FILO]
+							OBJSTRNFont=新宋体,8,N
+							OBJSTRNFont color=0, 0, 0
+							DISPNAMEFont=新宋体,8,N
+							DISPNAMEFont
+							color=0, 0, 0
+							LCNMFont=新宋体,8,N
+							LCNMFont color=0, 0, 0
+							AutoAdjustToText=Yes
+							Keep aspect=Yes
+							Keep center=Yes
+							Keep size=No
+							Width=2400
+							Height=2400
+							Brush color=255 255 255
+							Fill Color=No
+							Brush
+							style=1
+							Brush bitmap mode=12
+							Brush gradient mode=0
+							Brush gradient
+							color=118 118 118
+							Brush background image=
+							Custom shape=
+							Custom text
+							mode=0
+							Pen=1 0 0 0 255
+							Shadow color=192 192 192
+							Shadow=-1
+
+							[DisplayPreferences\Symbol\PDMPCKG]
+							STRNFont=Arial,8,N
+							STRNFont
+							color=0, 0, 0
+							DISPNAMEFont=Arial,8,N
+							DISPNAMEFont color=0, 0, 0
+							LABLFont=Arial,8,N
+							LABLFont color=0, 0, 0
+							AutoAdjustToText=Yes
+							Keep
+							aspect=No
+							Keep center=No
+							Keep size=No
+							Width=4800
+							Height=3600
+							Brush
+							color=255 255 192
+							Fill Color=Yes
+							Brush style=6
+							Brush bitmap mode=12
+							Brush gradient mode=65
+							Brush gradient color=255 255 255
+							Brush
+							background image=
+							Custom shape=
+							Custom text mode=0
+							Pen=1 0 178 178
+							178
+							Shadow color=192 192 192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\TABL]
+							STRNFont=Arial,8,N
+							STRNFont
+							color=0 0 0
+							DISPNAMEFont=Arial,8,N
+							DISPNAMEFont color=0 0 0
+							OWNRDISPNAMEFont=新宋体,8,N
+							OWNRDISPNAMEFont color=0, 0, 0
+							ColumnsFont=Arial,8,N
+							ColumnsFont color=0 0 0
+							TablePkColumnsFont=Arial,8,U
+							TablePkColumnsFont color=0 0 0
+							TableFkColumnsFont=Arial,8,N
+							TableFkColumnsFont color=0 0 0
+							KeysFont=Arial,8,N
+							KeysFont color=0 0 0
+							IndexesFont=Arial,8,N
+							IndexesFont color=0 0 0
+							TriggersFont=Arial,8,N
+							TriggersFont color=0
+							0 0
+							LABLFont=Arial,8,N
+							LABLFont color=0 0 0
+							AutoAdjustToText=Yes
+							Keep aspect=No
+							Keep center=No
+							Keep size=No
+							Width=4800
+							Height=4000
+							Brush color=210 137 2
+							Fill Color=Yes
+							Brush style=6
+							Brush bitmap
+							mode=12
+							Brush gradient mode=65
+							Brush gradient color=255 255 255
+							Brush background image=
+							Custom shape=
+							Custom text mode=0
+							Pen=1 0 128
+							64 0
+							Shadow color=192 192 192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\VIEW]
+							STRNFont=Arial,8,N
+							STRNFont
+							color=0 0 0
+							DISPNAMEFont=Arial,8,N
+							DISPNAMEFont color=0 0 0
+							OWNRDISPNAMEFont=新宋体,8,N
+							OWNRDISPNAMEFont color=0, 0, 0
+							ColumnsFont=Arial,8,N
+							ColumnsFont color=0 0 0
+							TablePkColumnsFont=新宋体,8,U
+							TablePkColumnsFont color=0, 0, 0
+							TableFkColumnsFont=新宋体,8,N
+							TableFkColumnsFont color=0, 0, 0
+							TemporaryVTablesFont=Arial,8,N
+							TemporaryVTablesFont color=0 0 0
+							IndexesFont=Arial,8,N
+							IndexesFont color=0 0 0
+							LABLFont=Arial,8,N
+							LABLFont color=0 0 0
+							AutoAdjustToText=Yes
+							Keep aspect=No
+							Keep
+							center=No
+							Keep size=No
+							Width=4800
+							Height=4000
+							Brush color=233 202 131
+							Fill Color=Yes
+							Brush style=6
+							Brush bitmap mode=12
+							Brush gradient
+							mode=65
+							Brush gradient color=255 255 255
+							Brush background image=
+							Custom shape=
+							Custom text mode=0
+							Pen=1 0 128 128 128
+							Shadow
+							color=192 192 192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\PROC]
+							STRNFont=Arial,8,N
+							STRNFont color=0 0 0
+							DISPNAMEFont=Arial,8,N
+							DISPNAMEFont color=0 0 0
+							OWNRDISPNAMEFont=新宋体,8,N
+							OWNRDISPNAMEFont
+							color=0, 0, 0
+							LABLFont=Arial,8,N
+							LABLFont color=0 0 0
+							AutoAdjustToText=Yes
+							Keep aspect=No
+							Keep center=No
+							Keep size=No
+							Width=4000
+							Height=1000
+							Brush color=255 255 192
+							Fill Color=Yes
+							Brush
+							style=6
+							Brush bitmap mode=12
+							Brush gradient mode=65
+							Brush gradient
+							color=255 255 255
+							Brush background image=
+							Custom shape=
+							Custom text
+							mode=0
+							Pen=1 0 128 108 0
+							Shadow color=192 192 192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\REFR]
+							SOURCEFont=新宋体,8,N
+							SOURCEFont
+							color=0, 0, 0
+							CENTERFont=新宋体,8,N
+							CENTERFont color=0, 0, 0
+							DESTINATIONFont=新宋体,8,N
+							DESTINATIONFont color=0, 0, 0
+							Line style=2
+							AutoAdjustToText=Yes
+							Keep aspect=No
+							Keep center=No
+							Keep size=No
+							Brush color=255 255 255
+							Fill Color=Yes
+							Brush style=1
+							Brush bitmap
+							mode=12
+							Brush gradient mode=0
+							Brush gradient color=118 118 118
+							Brush background image=
+							Custom shape=
+							Custom text mode=0
+							Pen=1 0 128
+							0 64
+							Shadow color=192 192 192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\VREF]
+							SOURCEFont=新宋体,8,N
+							SOURCEFont
+							color=0, 0, 0
+							CENTERFont=新宋体,8,N
+							CENTERFont color=0, 0, 0
+							DESTINATIONFont=新宋体,8,N
+							DESTINATIONFont color=0, 0, 0
+							Line style=2
+							AutoAdjustToText=Yes
+							Keep aspect=No
+							Keep center=No
+							Keep size=No
+							Brush color=255 255 255
+							Fill Color=Yes
+							Brush style=1
+							Brush bitmap
+							mode=12
+							Brush gradient mode=0
+							Brush gradient color=118 118 118
+							Brush background image=
+							Custom shape=
+							Custom text mode=0
+							Pen=1 0 128
+							0 64
+							Shadow color=192 192 192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\USRDEPD]
+							OBJXSTRFont=Arial,8,N
+							OBJXSTRFont color=0 0 0
+							Line style=0
+							AutoAdjustToText=Yes
+							Keep
+							aspect=No
+							Keep center=No
+							Keep size=No
+							Brush color=255 255 255
+							Fill
+							Color=Yes
+							Brush style=1
+							Brush bitmap mode=12
+							Brush gradient mode=0
+							Brush gradient color=118 118 118
+							Brush background image=
+							Custom
+							shape=
+							Custom text mode=0
+							Pen=2 0 128 0 64
+							Shadow color=192 192 192
+							Shadow=0
+
+							[DisplayPreferences\Symbol\Free Symbol]
+							Free
+							TextFont=Arial,8,N
+							Free TextFont color=0 0 0
+							Line style=2
+							AutoAdjustToText=Yes
+							Keep aspect=No
+							Keep center=No
+							Keep size=No
+							Brush color=255 255 255
+							Fill Color=Yes
+							Brush style=1
+							Brush bitmap
+							mode=12
+							Brush gradient mode=0
+							Brush gradient color=118 118 118
+							Brush background image=
+							Custom shape=
+							Custom text mode=0
+							Pen=1 0 128
+							64 0
+							Shadow color=192 192 192
+							Shadow=0
+						</a:DisplayPreferences>
+						<a:PaperSize>(8268, 11693)</a:PaperSize>
+						<a:PageMargins>((315,354), (433,354))</a:PageMargins>
+						<a:PageOrientation>1</a:PageOrientation>
+						<a:PaperSource>1</a:PaperSource>
+						<c:Symbols>
+							<o:ReferenceSymbol Id="o8">
+								<a:CreationDate>1372518815</a:CreationDate>
+								<a:ModificationDate>1373208498</a:ModificationDate>
+								<a:Rect>((-13275,10868), (-1262,12189))</a:Rect>
+								<a:ListOfPoints>((-1262,11093),(-13275,11093))</a:ListOfPoints>
+								<a:CornerStyle>2</a:CornerStyle>
+								<a:ArrowStyle>1</a:ArrowStyle>
+								<a:LineColor>4194432</a:LineColor>
+								<a:ShadowColor>12632256</a:ShadowColor>
+								<a:FontList>CENTER 0 新宋体,8,N
+									SOURCE 0 新宋体,8,N
+									DESTINATION 0
+									新宋体,8,N
+								</a:FontList>
+								<c:SourceSymbol>
+									<o:TableSymbol Ref="o9" />
+								</c:SourceSymbol>
+								<c:DestinationSymbol>
+									<o:TableSymbol Ref="o10" />
+								</c:DestinationSymbol>
+								<c:Object>
+									<o:Reference Ref="o11" />
+								</c:Object>
+							</o:ReferenceSymbol>
+							<o:ReferenceSymbol Id="o12">
+								<a:CreationDate>1373208901</a:CreationDate>
+								<a:ModificationDate>1373208940</a:ModificationDate>
+								<a:Rect>((-17586,241), (-11962,10441))</a:Rect>
+								<a:ListOfPoints>((-14660,10441),(-14660,5053),(-14888,5053),(-14888,241))
+								</a:ListOfPoints>
+								<a:CornerStyle>2</a:CornerStyle>
+								<a:ArrowStyle>1</a:ArrowStyle>
+								<a:LineColor>4194432</a:LineColor>
+								<a:ShadowColor>12632256</a:ShadowColor>
+								<a:FontList>CENTER 0 新宋体,8,N
+									SOURCE 0 新宋体,8,N
+									DESTINATION 0
+									新宋体,8,N
+								</a:FontList>
+								<c:SourceSymbol>
+									<o:TableSymbol Ref="o10" />
+								</c:SourceSymbol>
+								<c:DestinationSymbol>
+									<o:TableSymbol Ref="o13" />
+								</c:DestinationSymbol>
+								<c:Object>
+									<o:Reference Ref="o14" />
+								</c:Object>
+							</o:ReferenceSymbol>
+							<o:TableSymbol Id="o10">
+								<a:CreationDate>1372517874</a:CreationDate>
+								<a:ModificationDate>1373208901</a:ModificationDate>
+								<a:IconMode>-1</a:IconMode>
+								<a:Rect>((-19813,7728), (-9437,13196))</a:Rect>
+								<a:LineColor>16512</a:LineColor>
+								<a:FillColor>166354</a:FillColor>
+								<a:ShadowColor>12632256</a:ShadowColor>
+								<a:FontList>STRN 0 Arial,8,N
+									DISPNAME 0 Arial,8,N
+									OWNRDISPNAME 0
+									新宋体,8,N
+									Columns 0 Arial,8,N
+									TablePkColumns 0 Arial,8,U
+									TableFkColumns 0 Arial,8,N
+									Keys 0 Arial,8,N
+									Indexes 0 Arial,8,N
+									Triggers 0 Arial,8,N
+									LABL 0 Arial,8,N
+								</a:FontList>
+								<a:BrushStyle>6</a:BrushStyle>
+								<a:GradientFillMode>65</a:GradientFillMode>
+								<a:GradientEndColor>16777215</a:GradientEndColor>
+								<c:Object>
+									<o:Table Ref="o15" />
+								</c:Object>
+							</o:TableSymbol>
+							<o:TableSymbol Id="o9">
+								<a:CreationDate>1372517878</a:CreationDate>
+								<a:ModificationDate>1373208496</a:ModificationDate>
+								<a:IconMode>-1</a:IconMode>
+								<a:Rect>((-4663,8517), (8261,13011))</a:Rect>
+								<a:LineColor>16512</a:LineColor>
+								<a:FillColor>166354</a:FillColor>
+								<a:ShadowColor>12632256</a:ShadowColor>
+								<a:FontList>STRN 0 Arial,8,N
+									DISPNAME 0 Arial,8,N
+									OWNRDISPNAME 0
+									新宋体,8,N
+									Columns 0 Arial,8,N
+									TablePkColumns 0 Arial,8,U
+									TableFkColumns 0 Arial,8,N
+									Keys 0 Arial,8,N
+									Indexes 0 Arial,8,N
+									Triggers 0 Arial,8,N
+									LABL 0 Arial,8,N
+								</a:FontList>
+								<a:BrushStyle>6</a:BrushStyle>
+								<a:GradientFillMode>65</a:GradientFillMode>
+								<a:GradientEndColor>16777215</a:GradientEndColor>
+								<c:Object>
+									<o:Table Ref="o16" />
+								</c:Object>
+							</o:TableSymbol>
+							<o:TableSymbol Id="o13">
+								<a:CreationDate>1373208512</a:CreationDate>
+								<a:ModificationDate>1373208940</a:ModificationDate>
+								<a:IconMode>-1</a:IconMode>
+								<a:Rect>((-16803,-2341), (-7201,2153))</a:Rect>
+								<a:LineColor>16512</a:LineColor>
+								<a:FillColor>166354</a:FillColor>
+								<a:ShadowColor>12632256</a:ShadowColor>
+								<a:FontList>STRN 0 Arial,8,N
+									DISPNAME 0 Arial,8,N
+									OWNRDISPNAME 0
+									新宋体,8,N
+									Columns 0 Arial,8,N
+									TablePkColumns 0 Arial,8,U
+									TableFkColumns 0 Arial,8,N
+									Keys 0 Arial,8,N
+									Indexes 0 Arial,8,N
+									Triggers 0 Arial,8,N
+									LABL 0 Arial,8,N
+								</a:FontList>
+								<a:BrushStyle>6</a:BrushStyle>
+								<a:GradientFillMode>65</a:GradientFillMode>
+								<a:GradientEndColor>16777215</a:GradientEndColor>
+								<c:Object>
+									<o:Table Ref="o17" />
+								</c:Object>
+							</o:TableSymbol>
+						</c:Symbols>
+					</o:PhysicalDiagram>
+				</c:PhysicalDiagrams>
+				<c:DefaultDiagram>
+					<o:PhysicalDiagram Ref="o7" />
+				</c:DefaultDiagram>
+				<c:Domains>
+					<o:PhysicalDomain Id="o18">
+						<a:ObjectID>BB77AEEB-EF7E-4D90-934F-3105BCC2F2ED</a:ObjectID>
+						<a:Name>Domain_1</a:Name>
+						<a:Code>Domain_1</a:Code>
+						<a:CreationDate>1372518488</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1372518939</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+					</o:PhysicalDomain>
+				</c:Domains>
+				<c:Tables>
+					<o:Table Id="o15">
+						<a:ObjectID>40CDABE6-1A78-47C8-AFFB-B952FE5C4604</a:ObjectID>
+						<a:Name>购物车</a:Name>
+						<a:Code>SHOP_CAR</a:Code>
+						<a:CreationDate>1372517874</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1373208983</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+						<a:TotalSavingCurrency />
+						<c:Columns>
+							<o:Column Id="o19">
+								<a:ObjectID>79F4B18F-5E4A-43E0-8B3E-8E81FA830BC5</a:ObjectID>
+								<a:Name>主键</a:Name>
+								<a:Code>ID</a:Code>
+								<a:CreationDate>1372517999</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208911</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>int</a:DataType>
+								<a:Mandatory>1</a:Mandatory>
+							</o:Column>
+							<o:Column Id="o20">
+								<a:ObjectID>F6FF4B94-23A7-499B-984C-54861F254DD7</a:ObjectID>
+								<a:Name>名称</a:Name>
+								<a:Code>CAR_NAME</a:Code>
+								<a:CreationDate>1372517999</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372519647</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>varchar(60)</a:DataType>
+								<a:Length>60</a:Length>
+								<a:Mandatory>1</a:Mandatory>
+							</o:Column>
+							<o:Column Id="o21">
+								<a:ObjectID>B21B7A09-1393-4961-A527-2D12E80D1F39</a:ObjectID>
+								<a:Name>用户ID</a:Name>
+								<a:Code>USER_ID</a:Code>
+								<a:CreationDate>1372517999</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208911</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>int</a:DataType>
+							</o:Column>
+							<o:Column Id="o22">
+								<a:ObjectID>D4E7EC4E-62EC-4198-A1F6-3B7A0EA7EDD6</a:ObjectID>
+								<a:Name>TS</a:Name>
+								<a:Code>TS</a:Code>
+								<a:CreationDate>1372517999</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372518173</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+							</o:Column>
+						</c:Columns>
+						<c:Keys>
+							<o:Key Id="o23">
+								<a:ObjectID>719A1F9D-C3BB-4268-AC21-86CE3008122B</a:ObjectID>
+								<a:Name>Key_1</a:Name>
+								<a:Code>Key_1</a:Code>
+								<a:CreationDate>1372517999</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372518173</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<c:Key.Columns>
+									<o:Column Ref="o19" />
+								</c:Key.Columns>
+							</o:Key>
+						</c:Keys>
+						<c:PrimaryKey>
+							<o:Key Ref="o23" />
+						</c:PrimaryKey>
+					</o:Table>
+					<o:Table Id="o16">
+						<a:ObjectID>D4FA1E73-DB3E-400B-97E9-161600CEAF6A</a:ObjectID>
+						<a:Name>订单</a:Name>
+						<a:Code>CAR_ORDER</a:Code>
+						<a:CreationDate>1372517878</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1372518947</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+						<a:TotalSavingCurrency />
+						<c:Columns>
+							<o:Column Id="o24">
+								<a:ObjectID>E8AEFF89-B75B-4C2B-A6D3-746A86CB4B0C</a:ObjectID>
+								<a:Name>主键</a:Name>
+								<a:Code>ID</a:Code>
+								<a:CreationDate>1372518234</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372518830</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>int</a:DataType>
+								<a:Mandatory>1</a:Mandatory>
+							</o:Column>
+							<o:Column Id="o25">
+								<a:ObjectID>E200AB55-DA87-4D22-A2A6-78D22E48014C</a:ObjectID>
+								<a:Name>订单号</a:Name>
+								<a:Code>ORDER_NO</a:Code>
+								<a:CreationDate>1372518234</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372518425</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>varchar(30)</a:DataType>
+								<a:Length>30</a:Length>
+							</o:Column>
+							<o:Column Id="o26">
+								<a:ObjectID>2FC7292C-BBA9-426E-8183-15A415C03F84</a:ObjectID>
+								<a:Name>SHOP_CAR_ID</a:Name>
+								<a:Code>SHOP_CAR_ID</a:Code>
+								<a:CreationDate>1372518833</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372518947</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>int</a:DataType>
+							</o:Column>
+						</c:Columns>
+						<c:Keys>
+							<o:Key Id="o27">
+								<a:ObjectID>8840C861-CE54-401F-823E-868C2855F5D6</a:ObjectID>
+								<a:Name>Key_1</a:Name>
+								<a:Code>Key_1</a:Code>
+								<a:CreationDate>1372518234</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372518425</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<c:Key.Columns>
+									<o:Column Ref="o24" />
+								</c:Key.Columns>
+							</o:Key>
+						</c:Keys>
+						<c:Indexes>
+							<o:Index Id="o28">
+								<a:ObjectID>B3952E60-D9DA-482A-ABDF-B899AEA45D92</a:ObjectID>
+								<a:Name>FK_asdf</a:Name>
+								<a:Code>FK_asdf</a:Code>
+								<a:CreationDate>1372518425</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372518454</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:Unique>1</a:Unique>
+							</o:Index>
+						</c:Indexes>
+						<c:PrimaryKey>
+							<o:Key Ref="o27" />
+						</c:PrimaryKey>
+					</o:Table>
+					<o:Table Id="o17">
+						<a:ObjectID>ED7F8B40-FEC3-4721-A18E-000B370E34B1</a:ObjectID>
+						<a:Name>用户</a:Name>
+						<a:Code>USER</a:Code>
+						<a:CreationDate>1373208512</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1373208983</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+						<a:TotalSavingCurrency />
+						<c:Columns>
+							<o:Column Id="o29">
+								<a:ObjectID>1BF78676-16DE-4B19-8AC2-D28156865040</a:ObjectID>
+								<a:Name>ID</a:Name>
+								<a:Code>ID</a:Code>
+								<a:CreationDate>1373208799</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208897</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>int</a:DataType>
+								<a:Mandatory>1</a:Mandatory>
+							</o:Column>
+							<o:Column Id="o30">
+								<a:ObjectID>8F363045-A29B-4784-9B47-E8DA215BEF67</a:ObjectID>
+								<a:Name>用户code</a:Name>
+								<a:Code>USER_CODE</a:Code>
+								<a:CreationDate>1373208532</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208672</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>char(30)</a:DataType>
+								<a:Length>30</a:Length>
+							</o:Column>
+							<o:Column Id="o31">
+								<a:ObjectID>C5A0A7F8-6BAB-496C-AFFE-B1891B89B7A7</a:ObjectID>
+								<a:Name>名称</a:Name>
+								<a:Code>USER_NAME</a:Code>
+								<a:CreationDate>1373208532</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208672</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<a:DataType>char(30)</a:DataType>
+								<a:Length>30</a:Length>
+							</o:Column>
+						</c:Columns>
+						<c:Keys>
+							<o:Key Id="o32">
+								<a:ObjectID>F39D1F67-5871-4DCD-AA29-C9AD2DAEE817</a:ObjectID>
+								<a:Name>Key_1</a:Name>
+								<a:Code>Key_1</a:Code>
+								<a:CreationDate>1373208878</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208897</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<c:Key.Columns>
+									<o:Column Ref="o29" />
+								</c:Key.Columns>
+							</o:Key>
+						</c:Keys>
+						<c:PrimaryKey>
+							<o:Key Ref="o32" />
+						</c:PrimaryKey>
+					</o:Table>
+				</c:Tables>
+				<c:References>
+					<o:Reference Id="o11">
+						<a:ObjectID>AEACE319-D379-4994-89B0-9ECC4FE5BBEA</a:ObjectID>
+						<a:Name>Reference_1</a:Name>
+						<a:Code>Reference_1</a:Code>
+						<a:CreationDate>1372518815</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1372518947</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+						<a:Cardinality>0..*</a:Cardinality>
+						<a:UpdateConstraint>1</a:UpdateConstraint>
+						<a:DeleteConstraint>1</a:DeleteConstraint>
+						<c:ParentTable>
+							<o:Table Ref="o15" />
+						</c:ParentTable>
+						<c:ChildTable>
+							<o:Table Ref="o16" />
+						</c:ChildTable>
+						<c:ParentKey>
+							<o:Key Ref="o23" />
+						</c:ParentKey>
+						<c:Joins>
+							<o:ReferenceJoin Id="o33">
+								<a:ObjectID>4FB7BFFE-B0F4-4B87-84F2-7D0012A67EFB</a:ObjectID>
+								<a:CreationDate>1372518815</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1372518947</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<c:Object1>
+									<o:Column Ref="o19" />
+								</c:Object1>
+								<c:Object2>
+									<o:Column Ref="o26" />
+								</c:Object2>
+							</o:ReferenceJoin>
+						</c:Joins>
+					</o:Reference>
+					<o:Reference Id="o14">
+						<a:ObjectID>B811532F-E7CB-4FD1-ADE5-4117F1538D22</a:ObjectID>
+						<a:Name>Reference_2</a:Name>
+						<a:Code>Reference_2</a:Code>
+						<a:CreationDate>1373208901</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1373208983</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+						<a:Cardinality>0..*</a:Cardinality>
+						<a:UpdateConstraint>1</a:UpdateConstraint>
+						<a:DeleteConstraint>1</a:DeleteConstraint>
+						<c:ParentTable>
+							<o:Table Ref="o17" />
+						</c:ParentTable>
+						<c:ChildTable>
+							<o:Table Ref="o15" />
+						</c:ChildTable>
+						<c:ParentKey>
+							<o:Key Ref="o32" />
+						</c:ParentKey>
+						<c:Joins>
+							<o:ReferenceJoin Id="o34">
+								<a:ObjectID>37F8B531-E1DE-4788-BE47-BDC6146E8D21</a:ObjectID>
+								<a:CreationDate>1373208901</a:CreationDate>
+								<a:Creator>Administrator</a:Creator>
+								<a:ModificationDate>1373208911</a:ModificationDate>
+								<a:Modifier>Administrator</a:Modifier>
+								<c:Object1>
+									<o:Column Ref="o29" />
+								</c:Object1>
+								<c:Object2>
+									<o:Column Ref="o21" />
+								</c:Object2>
+							</o:ReferenceJoin>
+						</c:Joins>
+					</o:Reference>
+				</c:References>
+				<c:DefaultGroups>
+					<o:Group Id="o35">
+						<a:ObjectID>352A18CF-9457-403D-B4D4-6AE3CF56A5EC</a:ObjectID>
+						<a:Name>PUBLIC</a:Name>
+						<a:Code>PUBLIC</a:Code>
+						<a:CreationDate>1372517856</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1372517856</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+					</o:Group>
+				</c:DefaultGroups>
+				<c:TargetModels>
+					<o:TargetModel Id="o36">
+						<a:ObjectID>FD6C82E3-7045-4342-AB1B-492075F7E019</a:ObjectID>
+						<a:Name>MySQL 5.0</a:Name>
+						<a:Code>MYSQL50</a:Code>
+						<a:CreationDate>1372518204</a:CreationDate>
+						<a:Creator>Administrator</a:Creator>
+						<a:ModificationDate>1373208983</a:ModificationDate>
+						<a:Modifier>Administrator</a:Modifier>
+						<a:TargetModelURL>file:///%_DBMS%/mysql50.xdb</a:TargetModelURL>
+						<a:TargetModelID>F4F16ECD-F2F1-4006-AF6F-638D5C65F35E
+						</a:TargetModelID>
+						<a:TargetModelClassID>4BA9F647-DAB1-11D1-9944-006097355D9B
+						</a:TargetModelClassID>
+						<c:SessionShortcuts>
+							<o:Shortcut Ref="o3" />
+							<o:Shortcut Ref="o4" />
+							<o:Shortcut Ref="o5" />
+							<o:Shortcut Ref="o6" />
+						</c:SessionShortcuts>
+					</o:TargetModel>
+				</c:TargetModels>
+			</o:Model>
+		</c:Children>
+	</o:RootObject>
 
 </Model>

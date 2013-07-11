@@ -27,7 +27,7 @@ import org.richie.codeGen.core.model.Table;
  */
 public abstract class FileReaderImpl extends BaseReader implements DatabaseReader {
 
-    private File file;
+    private String filePath;
 
     /**
      * @param databaseType
@@ -35,53 +35,45 @@ public abstract class FileReaderImpl extends BaseReader implements DatabaseReade
     public FileReaderImpl(String databaseType){
         super(databaseType);
     }
+    public FileReaderImpl(String databaseType,String filePath){
+        super(databaseType);
+        setFilePath(filePath);
+    }
+    
+    
 
     /*
      * (non-Javadoc)
      * @see org.richie.codeGen.database.DatabaseReader#getTables()
      */
     @Override
-    public List<Table> getTables() {
-        
-        return null;
+    public List<Table> getTables() throws Exception {
+        List<Table> list = parseFile(filePath);
+        return list;
     }
 
+    public abstract List<Table> parseFile(String filePath)throws Exception;
     /*
      * (non-Javadoc)
      * @see org.richie.codeGen.database.DatabaseReader#getDettailByTableName(java.lang.String)
      */
     @Override
     public Table getDettailByTableName(String name) {
-        // TODO Auto-generated method stub
         return null;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.richie.codeGen.database.DatabaseReader#check()
-     */
-    @Override
-    public boolean check() {
-        // TODO Auto-generated method stub
-        return false;
+    protected File getFile(){
+        return null;
+    }
+    
+    public String getFilePath() {
+        return filePath;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.richie.codeGen.database.DatabaseReader#setPrepareObj(java.lang.Object)
-     */
-    @Override
-    public void setPrepareObj(Object obj) {
-        setFile((File) obj);
-
+    
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
+    
 
 }

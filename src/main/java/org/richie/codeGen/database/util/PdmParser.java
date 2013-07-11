@@ -39,7 +39,7 @@ import org.richie.codeGen.core.model.Table;
 public class PdmParser {
 
     @SuppressWarnings("unchecked")
-    public List<Table> parsePdmFile(String filePath) throws CGException {
+    public static  List<Table> parsePdmFile(String filePath) throws CGException {
         List<Table> tables = new ArrayList<Table>();
         Table table = null;
         File f = new File(filePath);
@@ -57,12 +57,20 @@ public class PdmParser {
         }
         Map<String, Table> tableMap = new HashMap<String, Table>();
         Map<String, Column> columnMap = new HashMap<String, Column>();
+        String dataBaseCode =null;
+        String dataBaseName =null;
+        List<Element> dList = doc.selectNodes("//o:Model");
+        for (Element element : dList) {
+            dataBaseName = element.elementText("Name");
+            dataBaseCode = element.elementText("Code");
+            
+        }
         Iterator<Element> itr = doc.selectNodes("//c:Tables//o:Table").iterator();
         while (itr.hasNext()) {
             List<Column> list = new ArrayList<Column>();
             Column column = null;
             Element tableElement = itr.next();
-            table = parseTableElement(tableElement);
+            table = parseTableElement(tableElement,dataBaseCode,dataBaseName);
             tableMap.put(table.getId(), table);
             String primaryKeyId = getPrimaryKeyId(tableElement);
             Iterator<Element> colItr = tableElement.element("Columns").elements("Column").iterator();
@@ -84,14 +92,14 @@ public class PdmParser {
     }
 
     @SuppressWarnings("unchecked")
-    private void parseReference(Document doc,Map<String, Table> tableMap ,Map<String, Column> columnMap ){
+    private static void parseReference(Document doc,Map<String, Table> tableMap ,Map<String, Column> columnMap ){
         Iterator<Element> itr = doc.selectNodes("//c:References//o:Reference").iterator();
         while (itr.hasNext()) {
             Element refElement = itr.next();
             Table parentTable = tableMap.get(refElement.element("ParentTable").element("Table").attributeValue("Ref"));
-            System.out.println("parentTable:"+parentTable);
+//            System.out.println("parentTable:"+parentTable);
             Table childTable = tableMap.get(refElement.element("ChildTable").element("Table").attributeValue("Ref"));
-            System.out.println("childTable:"+childTable);
+//            System.out.println("childTable:"+childTable);
             parentTable.setOneToManyTables(childTable);
             childTable.addManyToOneTable(parentTable);
             Column pkColumn = columnMap.get(refElement.element("Joins").element("ReferenceJoin").element("Object2").element("Column").attributeValue("Ref"));
@@ -106,7 +114,7 @@ public class PdmParser {
      * @param primaryKeyId
      * @param colElement
      */
-    private Column parseColumn(String primaryKeyId, Element colElement) {
+    private static Column parseColumn(String primaryKeyId, Element colElement) {
         Column col = new Column();
         String columnId = colElement.attributeValue("Id");
         col.setId(columnId);
@@ -134,15 +142,17 @@ public class PdmParser {
      * @param vo
      * @param tableElement
      */
-    private Table parseTableElement(Element tableElement) {
+    private static Table parseTableElement(Element tableElement,String dataBaseCode,String dataBaseName) {
         Table table = new Table();
         table.setId(tableElement.attributeValue("Id"));
         table.setTableName(tableElement.elementTextTrim("Name"));
         table.setTableCode(tableElement.elementTextTrim("Code"));
+        table.setDataBaseCode(dataBaseCode);
+        table.setDataBaseName(dataBaseName);
         return table;
     }
 
-    private String getPrimaryKeyId(Element tableElement) {
+    private  static String getPrimaryKeyId(Element tableElement) {
         String primaryKeyId = null;
         String keys_key_id = tableElement.element("Keys").element("Key").attributeValue("Id");
         String keys_column_ref = tableElement.element("Keys").element("Key").element("Key.Columns").element("Column").attributeValue("Ref");

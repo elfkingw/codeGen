@@ -42,7 +42,7 @@ public abstract class DbReaderImpl extends BaseReader implements DatabaseReader 
      * @see org.richie.codeGen.database.DatabaseReader#getTables()
      */
     @Override
-    public List<Table> getTables() {
+    public List<Table> getTables() throws Exception{
         // TODO Auto-generated method stub
         return null;
     }
@@ -60,25 +60,6 @@ public abstract class DbReaderImpl extends BaseReader implements DatabaseReader 
     public Connection getConnection() {
         // TODO 链接到数据库
         return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see org.richie.codeGen.database.DatabaseReader#check()
-     */
-    @Override
-    public boolean check() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see org.richie.codeGen.database.DatabaseReader#setPrepareObj(java.lang.Object)
-     */
-    @Override
-    public void setPrepareObj(Object obj) {
-       setJdbcCon((JdbcConnection) obj);
     }
 
     public JdbcConnection getJdbcCon() {

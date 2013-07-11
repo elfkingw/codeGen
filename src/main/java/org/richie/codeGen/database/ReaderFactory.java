@@ -27,10 +27,10 @@ import org.richie.codeGen.database.pdm.PdmReaderImpl;
  */
 public class ReaderFactory {
 
-   public static DatabaseReader getReaderInstance(String readType,String databaseType) throws CGException{
+   public static DatabaseReader getReaderInstance(String readType,String databaseType,String filePath) throws CGException{
        DatabaseReader reader = null;
        if(Constants.DATABASE_READER_TYPE_PDM.equals(readType)){
-           reader = new PdmReaderImpl(databaseType);
+           reader = new PdmReaderImpl(databaseType,filePath);
        }else{
            throw new CGException("don't support the readType:"+readType);
        }

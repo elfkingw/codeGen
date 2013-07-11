@@ -17,7 +17,11 @@
 
 package org.richie.codeGen.database.pdm;
 
+import java.util.List;
+
+import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.database.FileReaderImpl;
+import org.richie.codeGen.database.util.PdmParser;
 
 
 /**
@@ -31,6 +35,20 @@ public class PdmReaderImpl extends FileReaderImpl {
      */
     public PdmReaderImpl(String databaseType){
         super(databaseType);
+    }
+   
+    public PdmReaderImpl(String databaseType,String filePath){
+        super(databaseType,filePath);
+    }
+    
+
+    /* (non-Javadoc)
+     * @see org.richie.codeGen.database.FileReaderImpl#parseFile(java.io.File)
+     */
+    @Override
+    public List<Table> parseFile(String filePath) throws Exception{
+        List<Table> list = PdmParser.parsePdmFile(filePath);
+        return list;
     }
 
 }

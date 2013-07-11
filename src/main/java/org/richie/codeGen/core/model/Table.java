@@ -32,6 +32,28 @@ public class Table {
     private List<Table>  manyToOneTables;
     private Table        oneToManyTables;
     private long         updateTime;
+    private String       dataBaseName;
+    private String       dataBaseCode;
+
+    
+    public String getDataBaseName() {
+        return dataBaseName;
+    }
+
+    
+    public void setDataBaseName(String dataBaseName) {
+        this.dataBaseName = dataBaseName;
+    }
+
+    
+    public String getDataBaseCode() {
+        return dataBaseCode;
+    }
+
+    
+    public void setDataBaseCode(String dataBaseCode) {
+        this.dataBaseCode = dataBaseCode;
+    }
 
     public List<Table> getManyToOneTables() {
         return manyToOneTables;
