@@ -24,6 +24,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
 import org.richie.codeGen.core.model.Column;
+import org.richie.codeGen.ui.model.TableTreeNode;
 
 public class TableTreeRender extends DefaultTreeCellRenderer {
 

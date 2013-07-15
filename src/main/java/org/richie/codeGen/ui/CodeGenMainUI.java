@@ -22,6 +22,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,11 +49,17 @@ import javax.swing.text.Document;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.richie.codeGen.core.exception.CGException;
+import org.richie.codeGen.core.log.Log;
+import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.core.model.Column;
 import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.database.Constants;
 import org.richie.codeGen.database.DatabaseReader;
 import org.richie.codeGen.database.ReaderFactory;
+import org.richie.codeGen.ui.configui.ConstantConfigWin;
+import org.richie.codeGen.ui.configui.TemplateConfigWin;
+import org.richie.codeGen.ui.model.LastOperateVo;
+import org.richie.codeGen.ui.model.TableTreeNode;
 
 /**
  * @author elfkingw
@@ -62,23 +70,27 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private Log               log              = LogFacotry.getLogger(CodeGenMainUI.class);
 
     private JTree             tree;
     private List<Table>       tableList;
-    private JPanel            westPanel;            // 左边面板
-    private JTabbedPane       centerPanel;          // 中间面板
-    private JScrollPane       treePanel;            // 树面板
-    private GenAndPreviewUI   genAndPreviewPanel;   // 生成代码面板
-    private JTextField filterField;
+    private JPanel            westPanel;                                                   // 左边面板
+    private JTabbedPane       centerPanel;                                                 // 中间面板
+    private JScrollPane       treePanel;                                                   // 树面板
+    private GenAndPreviewUI   genAndPreviewPanel;                                          // 生成代码面板
+    private JTextField        filterField;
 
-    private JMenuItem         openPdmFileItem;      // pdm文件菜单项
-    private JMenuItem         miAbout;              // 关于菜单项
+    private JMenuItem         openPdmFileItem;                                             // pdm文件菜单项
+    private JMenuItem         miAbout;                                                     // 关于菜单项
+    private JMenuItem         templateConfigItem;                                          // 模板配置菜单项
+    private JMenuItem         consConfigItem;                                              // 常量配置菜单项
 
     public CodeGenMainUI(){
         initlize();
     }
 
     private void initlize() {
+        setTitle("代码生成器");
         setBounds(120, 80, 1000, 550);
         setDefaultCloseOperation(3);
         setLayout(new BorderLayout(5, 5));
@@ -86,7 +98,8 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         initMenuBar();
         add(getWestPanel(), BorderLayout.WEST);
         add(getCenterPanel(), BorderLayout.CENTER);
-        setTitle("代码生成器");
+        openLastPdmFile();
+        addCloseListener();
     }
 
     public void initMenuBar() {
@@ -95,6 +108,14 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         menuBar.add(fileMenu);
         openPdmFileItem = new JMenuItem("打开dpm");
         fileMenu.add(openPdmFileItem);
+        JMenu configMenu = new JMenu("系统配置");
+        menuBar.add(configMenu);
+        templateConfigItem = new JMenuItem("模板配置");
+        templateConfigItem.addActionListener(this);
+        configMenu.add(templateConfigItem);
+        consConfigItem = new JMenuItem("常量配置");
+        consConfigItem.addActionListener(this);
+        configMenu.add(consConfigItem);
         JMenu mnHelp = new JMenu("帮助");
         menuBar.add(mnHelp);
         miAbout = new JMenuItem("关于");
@@ -111,8 +132,8 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             JLabel filterLable = new JLabel("过滤");
             JPanel filterPanel = new JPanel();
             filterPanel.add(filterLable);
-            filterField =new JTextField(15);
-            Document doc = filterField.getDocument(); 
+            filterField = new JTextField(15);
+            Document doc = filterField.getDocument();
             doc.addDocumentListener(new TextDocumentListener());
             filterPanel.add(filterField);
             filterPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -122,7 +143,6 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         }
         return westPanel;
     }
-    
 
     public JTabbedPane getCenterPanel() {
         if (centerPanel == null) {
@@ -149,9 +169,10 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         return treePanel;
     }
 
-    private class TextDocumentListener implements DocumentListener{
+    private class TextDocumentListener implements DocumentListener {
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.event.DocumentListener#insertUpdate(javax.swing.event.DocumentEvent)
          */
         @Override
@@ -159,7 +180,8 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             processChange(e);
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.event.DocumentListener#removeUpdate(javax.swing.event.DocumentEvent)
          */
         @Override
@@ -167,24 +189,27 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             processChange(e);
         }
 
-        /* (non-Javadoc)
+        /*
+         * (non-Javadoc)
          * @see javax.swing.event.DocumentListener#changedUpdate(javax.swing.event.DocumentEvent)
          */
         @Override
         public void changedUpdate(DocumentEvent e) {
             processChange(e);
         }
-        private void processChange(DocumentEvent e){
-            Document doc = e.getDocument();  
+
+        private void processChange(DocumentEvent e) {
+            Document doc = e.getDocument();
             try {
                 String s = doc.getText(0, doc.getLength());
                 filterTree(s);
             } catch (BadLocationException e1) {
                 e1.printStackTrace();
-            } 
+            }
         }
-        
+
     }
+
     private void initTree(String filePath) {
         try {
             DatabaseReader reader = ReaderFactory.getReaderInstance(Constants.DATABASE_READER_TYPE_PDM,
@@ -199,27 +224,27 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             e.printStackTrace();
         }
     }
-    
-    private void filterTree(String filterStr){
-        if(filterStr == null || filterStr.equals("")){
+
+    private void filterTree(String filterStr) {
+        if (filterStr == null || filterStr.equals("")) {
             tree = initTreeData(tableList);
             treePanel.setViewportView(tree);
             getTreepanel().updateUI();
         }
-        if(filterStr!= null && filterStr.length()<=1){
+        if (filterStr != null && filterStr.length() <= 1) {
             return;
         }
         List<Table> list = new ArrayList<Table>();
         for (Table table : tableList) {
-            if(table.getTableName().toLowerCase().contains(filterStr.toLowerCase())
-                    ||table.getTableCode().toLowerCase().contains(filterStr.toLowerCase())){
+            if (table.getTableName().toLowerCase().contains(filterStr.toLowerCase())
+                || table.getTableCode().toLowerCase().contains(filterStr.toLowerCase())) {
                 list.add(table);
             }
         }
         tree = initTreeData(list);
         treePanel.setViewportView(tree);
         getTreepanel().updateUI();
-        
+
     }
 
     /**
@@ -247,7 +272,60 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         newTree.setCellRenderer(new TableTreeRender());
         return newTree;
     }
+    private void openLastPdmFile() {
+        LastOperateVo lastOperateVo = null;
+        try {
+            lastOperateVo = GlobalData.getLastOperateVo();
+            if (lastOperateVo != null && lastOperateVo.getPdmFilePath() != null) {
+                File f = new File(lastOperateVo.getPdmFilePath());
+                if (f.exists()) {
+                    initTree(f.getAbsolutePath());
+                    return;
+                }
+            }
+        } catch (Exception e1) {
+            log.error("获取最后操作文xml件失败", e1);
+        }
+    }
 
+    public void addCloseListener(){
+        this.addWindowListener(new WindowListener() {
+            
+            @Override
+            public void windowOpened(WindowEvent e) {
+                
+            }
+            
+            @Override
+            public void windowIconified(WindowEvent e) {
+                
+            }
+            
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+                
+            }
+            
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+            
+            @Override
+            public void windowClosing(WindowEvent e) {
+                getGenAndPreviewPanel().saveLastTemplate();
+            }
+            
+            @Override
+            public void windowClosed(WindowEvent e) {
+                
+            }
+            
+            @Override
+            public void windowActivated(WindowEvent e) {
+                
+            }
+        });
+    }
     /*
      * (non-Javadoc)
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
@@ -277,10 +355,31 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             } else {
                 File f = jfc.getSelectedFile();
                 initTree(f.getAbsolutePath());
+                LastOperateVo lastOperateVo = null;
+                try {
+                    lastOperateVo = GlobalData.getLastOperateVo();
+                    if (lastOperateVo == null) {
+                        lastOperateVo = new LastOperateVo();
+                    }
+                    lastOperateVo.setPdmFilePath(f.getAbsolutePath());
+                    GlobalData.saveLastOperateVo();
+                } catch (Exception e1) {
+                    log.error("保存最后一次代码pdm路径出错", e1);
+                }
             }
         } else if (e.getSource() == miAbout) {
             JOptionPane.showMessageDialog(this, "elfkingw版权所有  elfkingw@gmail.com", "提示",
                                           JOptionPane.INFORMATION_MESSAGE);
+        } else if (e.getSource() == templateConfigItem) {
+            TemplateConfigWin win = new TemplateConfigWin(getGenAndPreviewPanel());
+            win.setModal(true);
+            win.setBounds(this.getX() + 100, this.getY() + 30, win.getWidth(), win.getHeight());
+            win.setVisible(true);
+        } else if (e.getSource() == consConfigItem) {
+            ConstantConfigWin win = new ConstantConfigWin(getGenAndPreviewPanel());
+            win.setModal(true);
+            win.setBounds(this.getX() + 100, this.getY() + 30, win.getWidth(), win.getHeight());
+            win.setVisible(true);
         }
     }
 

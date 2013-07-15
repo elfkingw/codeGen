@@ -15,7 +15,7 @@
  */
 // Created on 2013-7-9
 
-package org.richie.codeGen.ui;
+package org.richie.codeGen.ui.model;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 

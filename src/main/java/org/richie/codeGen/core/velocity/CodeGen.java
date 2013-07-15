@@ -135,7 +135,7 @@ public class CodeGen {
     public static void initCustomerVelocityContext(Map<String,Object> map){
         Map<String,Object> customerMap = CustomerVelocityContext.getCustomerVelociTyContext();
         if(customerMap != null)
-            customerMap.putAll(customerMap);
+            map.putAll(customerMap);
     }
     /**
      * 将数据库表模型加入到velocityContext
