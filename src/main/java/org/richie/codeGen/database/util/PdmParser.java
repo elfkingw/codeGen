@@ -39,7 +39,7 @@ import org.richie.codeGen.core.model.Table;
 public class PdmParser {
 
     @SuppressWarnings("unchecked")
-    public static  List<Table> parsePdmFile(String filePath) throws CGException {
+    public static List<Table> parsePdmFile(String filePath) throws CGException {
         List<Table> tables = new ArrayList<Table>();
         Table table = null;
         File f = new File(filePath);
@@ -57,20 +57,20 @@ public class PdmParser {
         }
         Map<String, Table> tableMap = new HashMap<String, Table>();
         Map<String, Column> columnMap = new HashMap<String, Column>();
-        String dataBaseCode =null;
-        String dataBaseName =null;
+        String dataBaseCode = null;
+        String dataBaseName = null;
         List<Element> dList = doc.selectNodes("//o:Model");
         for (Element element : dList) {
             dataBaseName = element.elementText("Name");
             dataBaseCode = element.elementText("Code");
-            
+
         }
         Iterator<Element> itr = doc.selectNodes("//c:Tables//o:Table").iterator();
         while (itr.hasNext()) {
             List<Column> list = new ArrayList<Column>();
             Column column = null;
             Element tableElement = itr.next();
-            table = parseTableElement(tableElement,dataBaseCode,dataBaseName);
+            table = parseTableElement(tableElement, dataBaseCode, dataBaseName);
             tableMap.put(table.getId(), table);
             String primaryKeyId = getPrimaryKeyId(tableElement);
             Iterator<Element> colItr = tableElement.element("Columns").elements("Column").iterator();
@@ -84,7 +84,7 @@ public class PdmParser {
                     ex.printStackTrace();
                 }
             }
-            table.setFieldList(list);
+            table.setFields(list);
             tables.add(table);
         }
         parseReference(doc, tableMap, columnMap);
@@ -92,23 +92,24 @@ public class PdmParser {
     }
 
     @SuppressWarnings("unchecked")
-    private static void parseReference(Document doc,Map<String, Table> tableMap ,Map<String, Column> columnMap ){
+    private static void parseReference(Document doc, Map<String, Table> tableMap, Map<String, Column> columnMap) {
         Iterator<Element> itr = doc.selectNodes("//c:References//o:Reference").iterator();
         while (itr.hasNext()) {
             Element refElement = itr.next();
             Table parentTable = tableMap.get(refElement.element("ParentTable").element("Table").attributeValue("Ref"));
-//            System.out.println("parentTable:"+parentTable);
+            // System.out.println("parentTable:"+parentTable);
             Table childTable = tableMap.get(refElement.element("ChildTable").element("Table").attributeValue("Ref"));
-//            System.out.println("childTable:"+childTable);
+            // System.out.println("childTable:"+childTable);
             parentTable.setOneToManyTables(childTable);
             childTable.addManyToOneTable(parentTable);
             Column pkColumn = columnMap.get(refElement.element("Joins").element("ReferenceJoin").element("Object2").element("Column").attributeValue("Ref"));
-            if(pkColumn != null){
-                pkColumn.setForeignKey(true);
+            if (pkColumn != null) {
+                pkColumn.setIsForeignKey(true);
                 pkColumn.setRefTable(parentTable);
             }
         }
     }
+
     /**
      * @param col
      * @param primaryKeyId
@@ -120,6 +121,9 @@ public class PdmParser {
         col.setId(columnId);
         col.setDefaultValue(colElement.elementTextTrim("DefaultValue"));
         col.setName(colElement.elementTextTrim("Name"));
+        col.setIsForeignKey(false);
+        col.setIsPrimarykey(false);
+        col.setIsHiden(false);
         if (colElement.elementTextTrim("DataType") == null) {
             col.setDataType(null);
         } else if (colElement.elementTextTrim("DataType").indexOf("(") > 0) {
@@ -132,8 +136,18 @@ public class PdmParser {
         if (colElement.elementTextTrim("Length") != null) {
             col.setLength(Integer.parseInt(colElement.elementTextTrim("Length")));
         }
+        if (colElement.elementTextTrim("Precision") != null) {
+            col.setPrecision(Integer.parseInt(colElement.elementTextTrim("Precision")));
+        }
+        if (colElement.elementTextTrim("Mandatory") != null && "1".equals(colElement.elementTextTrim("Mandatory"))) {
+            col.setIsNotNull(true);
+        }else{
+            col.setIsNotNull(false);
+        }
         if (columnId.equals(primaryKeyId)) {
-            col.setPrimarykey(true);
+            col.setIsPrimarykey(true);
+            col.setIsNotNull(true);
+            col.setIsHiden(true);
         }
         return col;
     }
@@ -142,7 +156,7 @@ public class PdmParser {
      * @param vo
      * @param tableElement
      */
-    private static Table parseTableElement(Element tableElement,String dataBaseCode,String dataBaseName) {
+    private static Table parseTableElement(Element tableElement, String dataBaseCode, String dataBaseName) {
         Table table = new Table();
         table.setId(tableElement.attributeValue("Id"));
         table.setTableName(tableElement.elementTextTrim("Name"));
@@ -152,7 +166,7 @@ public class PdmParser {
         return table;
     }
 
-    private  static String getPrimaryKeyId(Element tableElement) {
+    private static String getPrimaryKeyId(Element tableElement) {
         String primaryKeyId = null;
         String keys_key_id = tableElement.element("Keys").element("Key").attributeValue("Id");
         String keys_column_ref = tableElement.element("Keys").element("Key").element("Key.Columns").element("Column").attributeValue("Ref");

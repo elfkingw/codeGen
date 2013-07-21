@@ -19,6 +19,10 @@ package org.richie.codeGen.core.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.richie.codeGen.core.util.StringUtil;
+import org.richie.codeGen.ui.GlobalData;
+import org.richie.codeGen.ui.model.OutFileRootPathVo;
+
 /**
  * @author wanghua 2013-6-29
  */
@@ -27,30 +31,26 @@ public class Table {
     private String       id;
     private String       tableCode;
     private String       tableName;
-    private List<Column> fieldList;
-    private String       javaName;
+    private List<Column> fields;
+    private String       className;
     private List<Table>  manyToOneTables;
     private Table        oneToManyTables;
     private long         updateTime;
     private String       dataBaseName;
     private String       dataBaseCode;
 
-    
     public String getDataBaseName() {
         return dataBaseName;
     }
 
-    
     public void setDataBaseName(String dataBaseName) {
         this.dataBaseName = dataBaseName;
     }
 
-    
     public String getDataBaseCode() {
         return dataBaseCode;
     }
 
-    
     public void setDataBaseCode(String dataBaseCode) {
         this.dataBaseCode = dataBaseCode;
     }
@@ -95,20 +95,45 @@ public class Table {
         this.tableName = tableName;
     }
 
-    public List<Column> getFieldList() {
-        return fieldList;
+    public List<Column> getFields() {
+        return fields;
     }
 
-    public void setFieldList(List<Column> fieldList) {
-        this.fieldList = fieldList;
+    public void setFields(List<Column> fields) {
+        this.fields = fields;
     }
 
-    public String getJavaName() {
-        return javaName;
+    public String getClassName() {
+        if (className == null && tableCode != null) {
+            String prefix = null;
+            try {
+                OutFileRootPathVo vo = GlobalData.getOutFileRootPathVo();
+               if(vo != null){
+                   prefix = vo.getTablePrefix();
+               }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String tableCode = getTableCode();
+            if(prefix != null){
+                String[] prefixs = prefix.split(",");
+                for (String prefixStr : prefixs) {
+                    if(tableCode.startsWith(prefixStr)){
+                        tableCode = tableCode.substring(prefixStr.length());
+                    }
+                    if(tableCode.startsWith(prefixStr+"_")){
+                        tableCode = tableCode.substring(prefixStr.length()+1);
+                    }
+                }
+            }
+            StringUtil util = new StringUtil();
+            className = util.getClassName(tableCode);
+        }
+        return className;
     }
 
-    public void setJavaName(String javaName) {
-        this.javaName = javaName;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     public long getUpdateTime() {
@@ -127,8 +152,7 @@ public class Table {
     }
 
     public String toString() {
-        return ("tableCode:" + getTableCode() + " tableName:" + getTableName()
-                + " Id:" + getId() + " ManyToOne:[" + (getManyToOneTables()!= null ?getManyToOneTables().size()+"" : null)
-                + "] onToMany:" + getOneToManyTables());
+        return ("tableCode:" + getTableCode() + " tableName:" + getTableName() + " Id:" + getId() + " ManyToOne:["
+                + (getManyToOneTables() != null ? getManyToOneTables().size() + "" : null) + "] onToMany:" + getOneToManyTables());
     }
 }

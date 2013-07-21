@@ -53,9 +53,9 @@ public class TableTreeRender extends DefaultTreeCellRenderer {
             Column column = node.getColumn();
             if(column == null){
                 this.setIcon(imageColumn);
-            }else if(column.isForeignKey()){
+            }else if(column.getIsForeignKey()){
                 this.setIcon(imageFK);
-            }else if(column.isPrimarykey()){
+            }else if(column.getIsPrimarykey()){
                 this.setIcon(imagePK);
             }else{
                 this.setIcon(imageColumn);

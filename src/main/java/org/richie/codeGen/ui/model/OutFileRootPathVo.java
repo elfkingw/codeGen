@@ -30,6 +30,7 @@ public class OutFileRootPathVo {
     private String path3;
     private String name4;
     private String path4;
+    private String tablePrefix;
 
     public String getName1() {
         return name1;
@@ -93,6 +94,16 @@ public class OutFileRootPathVo {
 
     public void setPath4(String path4) {
         this.path4 = path4;
+    }
+
+    
+    public String getTablePrefix() {
+        return tablePrefix;
+    }
+
+    
+    public void setTablePrefix(String tablePrefix) {
+        this.tablePrefix = tablePrefix;
     }
 
 }

@@ -34,7 +34,7 @@ public class CodeTemplateModel extends AbstractTableModel {
      */
     private static final long    serialVersionUID = 1L;
     private List<CodeTemplateVo> templateList;
-    private boolean isTemplateEdit;
+    private boolean              isTemplateEdit;
 
     public CodeTemplateModel(boolean isTemplateEdit){
         this.isTemplateEdit = isTemplateEdit;
@@ -45,7 +45,7 @@ public class CodeTemplateModel extends AbstractTableModel {
         templateList = list;
     }
 
-    private String[] titles = { "选择", "模板名称", "模板文件","输出文件根目录", "输出包", "后缀", "生成预览","编辑模板","删除" };
+    private String[] titles = { "选择", "模板名称", "模板文件", "输出文件根目录", "输出包", "后缀", "生成预览", "编辑模板", "删除" };
 
     public void addRow(CodeTemplateVo vo) {
         templateList.add(vo);
@@ -67,7 +67,7 @@ public class CodeTemplateModel extends AbstractTableModel {
      * 让表格中某些值可修改，但需要setValueAt(Object value, int row, int col)方法配合才能使修改生效
      */
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if (!isTemplateEdit && columnIndex == 2 ) {
+        if (!isTemplateEdit && columnIndex == 2) {
             return false;
         }
         return true;
@@ -78,25 +78,25 @@ public class CodeTemplateModel extends AbstractTableModel {
      */
     public void setValueAt(Object value, int row, int col) {
         CodeTemplateVo vo = templateList.get(row);
-        if(col == 4 && value != null){
-             for (int i = 0; i < templateList.size(); i++) {
-                 CodeTemplateVo templatVo = templateList.get(i);
-                if(i != row && (templatVo.getOutFilePath() == null || "".equals(templatVo.getOutFilePath()))){
+        if (col == 4 && value != null) {
+            for (int i = 0; i < templateList.size(); i++) {
+                CodeTemplateVo templatVo = templateList.get(i);
+                if (i != row && (templatVo.getOutFilePath() == null || "".equals(templatVo.getOutFilePath()))) {
                     templateList.get(i).setOutFilePath((String) value);
                 }
             }
         }
-        if(col == 1 && value != null){
+        if (col == 1 && value != null) {
             CodeTemplateVo tvo;
             try {
-                tvo = GlobalData.getTemplateByName((String)value);
-                if(tvo != null){
+                tvo = GlobalData.getTemplateByName((String) value);
+                if (tvo != null) {
                     vo.setFileName(tvo.getFileName());
                     vo.setOutFilePath(tvo.getOutFilePath());
                     vo.setOutFilePathRoot(tvo.getOutFilePathRoot());
                     vo.setSuffix(tvo.getSuffix());
-                    for (int i = 0; i < titles.length-1; i++) {
-                        fireTableCellUpdated(row, i);  
+                    for (int i = 0; i < titles.length - 1; i++) {
+                        fireTableCellUpdated(row, i);
                     }
                 }
             } catch (Exception e) {
@@ -123,7 +123,7 @@ public class CodeTemplateModel extends AbstractTableModel {
                 vo.setSuffix((String) value);
                 break;
         }
-        fireTableCellUpdated(row, col);  
+        fireTableCellUpdated(row, col);
     }
 
     /*
@@ -137,7 +137,8 @@ public class CodeTemplateModel extends AbstractTableModel {
 
     public String getColumnName(int col) {
         return titles[col];
-       }
+    }
+
     /*
      * (non-Javadoc)
      * @see javax.swing.table.TableModel#getColumnCount()
@@ -166,7 +167,7 @@ public class CodeTemplateModel extends AbstractTableModel {
                 value = vo.getTemplateName();
                 break;
             case 2:
-                value = vo.getFileName() ;
+                value = vo.getFileName();
                 break;
             case 3:
                 value = vo.getOutFilePathRoot();
@@ -175,33 +176,35 @@ public class CodeTemplateModel extends AbstractTableModel {
                 value = vo.getOutFilePath();
                 break;
             case 5:
-                value = vo.getSuffix(); break;
-            case 6:value = "预览";
+                value = vo.getSuffix();
                 break;
-            case 7:value = "编辑";
-            break;
-            case 8:value = "删除";
-            break;
+            case 6:
+                value = "预览";
+                break;
+            case 7:
+                value = "编辑";
+                break;
+            case 8:
+                value = "删除";
+                break;
         }
         return value;
     }
 
-    
     public List<CodeTemplateVo> getTemplateList() {
         return templateList;
     }
 
-    
     public void setTemplateList(List<CodeTemplateVo> templateList) {
         this.templateList = templateList;
     }
-    
+
     public Class<?> getColumnClass(int col) {
-        if(col ==0){
+        if (col == 0) {
             return Boolean.class;
-        }else{
+        } else {
             return String.class;
         }
-       }
+    }
 
 }

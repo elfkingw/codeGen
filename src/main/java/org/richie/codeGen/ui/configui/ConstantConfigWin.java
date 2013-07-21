@@ -28,7 +28,9 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.List;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -40,6 +42,7 @@ import javax.swing.JTextField;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import org.apache.commons.lang.StringUtils;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.ui.ButtonEditor;
@@ -76,6 +79,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
     private JTextField          rootPathValue3;
     private JTextField          rootPathName4;
     private JTextField          rootPathValue4;
+    private JTextField          tablePrefix;
     private JButton             chooseBtn1;
     private JButton             chooseBtn2;
     private JButton             chooseBtn3;
@@ -94,7 +98,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
 
     public void initLize() {
         setTitle("常量设置");
-        setSize(560, 400);
+        setSize(560, 500);
         add(getConfigPanel());
         initData();
     }
@@ -128,7 +132,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
         if (northPanel == null) {
             northPanel = new JPanel();
             northPanel.setSize(560, 100);
-            northPanel.setLayout(new GridLayout(4, 1));
+            northPanel.setLayout(new GridLayout(5, 1));
             JPanel panel1 = new JPanel();
             JLabel rootPahthLabel1 = new JLabel("输出文件根目录1:");
             panel1.add(rootPahthLabel1);
@@ -192,6 +196,15 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
             chooseBtn4.addActionListener(this);
             panel4.add(chooseBtn4);
             northPanel.add(panel4);
+            
+            JPanel panel5 = new JPanel();
+            JLabel tablePrefixLabel = new JLabel("表名前缀(用逗号隔开): ");
+            panel5.add(tablePrefixLabel);
+            tablePrefix = new JTextField(23);
+            panel5.add(tablePrefix);
+            JLabel tablePrefixNoteLabel = new JLabel("例如 (SM,GL)，生成代码时会去掉表名前缀");
+            panel5.add(tablePrefixNoteLabel);
+            northPanel.add(panel5);
         }
         return northPanel;
     }
@@ -208,13 +221,16 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
             tableHeader.setReorderingAllowed(false);// 表格列不可移动
             table.setFont(new Font("Dialog", 0, 13));
             table.setRowHeight(23);
+            TemplateConfigWin.hideColumn(table, 3);
+            JComboBox cm = new JComboBox(GlobalData.costantType);
             TableColumnModel tcm = table.getColumnModel();
-            tcm.getColumn(3).setCellRenderer(new ButtonRenderer());
-            tcm.getColumn(3).setCellEditor(new ButtonEditor());
-            tcm.getColumn(0).setPreferredWidth(80);
-            tcm.getColumn(1).setPreferredWidth(80);
-            tcm.getColumn(2).setPreferredWidth(150);
-            tcm.getColumn(3).setPreferredWidth(10);
+            tcm.getColumn(4).setCellRenderer(new ButtonRenderer());
+            tcm.getColumn(4).setCellEditor(new ButtonEditor());
+            tcm.getColumn(1).setCellEditor(new DefaultCellEditor(cm));
+            tcm.getColumn(0).setPreferredWidth(50);
+            tcm.getColumn(1).setPreferredWidth(30);
+            tcm.getColumn(2).setPreferredWidth(240);
+            tcm.getColumn(4).setPreferredWidth(20);
             centerPanel = new JScrollPane(table);
             // 增加table里按钮点击事件
             addTableListener();
@@ -246,20 +262,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
             constantConfigModel.addRow(vo);
             table.updateUI();
         } else if (e.getSource() == saveBtn) {
-            try {
-                List<ConstantConfigVo> constList = constantConfigModel.getConstantConfigList();
-                XmlParse<ConstantConfigVo> consXmlParse = new XmlParse<ConstantConfigVo>(ConstantConfigVo.class);
-                consXmlParse.genVoToXmlFile(constList, FileUtils.getConstantConfigPath());
-                OutFileRootPathVo rootVo = GlobalData.getOutFileRootPathVo();
-                getOutFileRootPathVo(rootVo);
-                XmlParse<OutFileRootPathVo> outFileXmlParse = new XmlParse<OutFileRootPathVo>(OutFileRootPathVo.class);
-                outFileXmlParse.genVoToXmlFile(rootVo, FileUtils.getOutFileRootPath());
-                previewUI.refreshComBoBox();
-                JOptionPane.showMessageDialog(this, "保存成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception ex) {
-                handException("保存失败", ex);
-            }
-
+            onSave();
         } else if (e.getSource() == chooseBtn1 || e.getSource() == chooseBtn2 || e.getSource() == chooseBtn3
                    || e.getSource() == chooseBtn4) {
             JFileChooser jfc = new JFileChooser();// 文件选择器
@@ -292,6 +295,38 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
 
     }
 
+    /**
+     * 
+     */
+    private void onSave() {
+        try {
+            List<ConstantConfigVo> constList = constantConfigModel.getConstantConfigList();
+            XmlParse<ConstantConfigVo> consXmlParse = new XmlParse<ConstantConfigVo>(ConstantConfigVo.class);
+            consXmlParse.genVoToXmlFile(constList, FileUtils.getConstantConfigPath());
+            OutFileRootPathVo rootVo = GlobalData.getOutFileRootPathVo();
+            getOutFileRootPathVo(rootVo);
+            if(!StringUtils.isEmpty(rootVo.getName1()) && StringUtils.isEmpty(rootVo.getPath1())){
+                JOptionPane.showMessageDialog(this, "请输入根目录1的路径！", "提示", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }else if(!StringUtils.isEmpty(rootVo.getName2()) && StringUtils.isEmpty(rootVo.getPath2())){
+                JOptionPane.showMessageDialog(this, "请输入根目录2的路径！", "提示", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }else if(!StringUtils.isEmpty(rootVo.getName3()) && StringUtils.isEmpty(rootVo.getPath3())){
+                JOptionPane.showMessageDialog(this, "请输入根目录3的路径！", "提示", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }else if(!StringUtils.isEmpty(rootVo.getName4()) && StringUtils.isEmpty(rootVo.getPath4())){
+                JOptionPane.showMessageDialog(this, "请输入根目录4的路径！", "提示", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            XmlParse<OutFileRootPathVo> outFileXmlParse = new XmlParse<OutFileRootPathVo>(OutFileRootPathVo.class);
+            outFileXmlParse.genVoToXmlFile(rootVo, FileUtils.getOutFileRootPath());
+            previewUI.refreshComBoBox();
+            JOptionPane.showMessageDialog(this, "保存成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            handException("保存失败", ex);
+        }
+    }
+
     private OutFileRootPathVo getOutFileRootPathVo(OutFileRootPathVo rootVo) {
         rootVo.setName1(rootPathName1.getText());
         rootVo.setName2(rootPathName2.getText());
@@ -301,6 +336,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
         rootVo.setPath2(rootPathValue2.getText());
         rootVo.setPath3(rootPathValue3.getText());
         rootVo.setPath4(rootPathValue4.getText());
+        rootVo.setTablePrefix(tablePrefix.getText());
         return rootVo;
     }
 
@@ -313,6 +349,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
         rootPathValue2.setText(vo.getPath2());
         rootPathValue3.setText(vo.getPath3());
         rootPathValue4.setText(vo.getPath4());
+        tablePrefix.setText(vo.getTablePrefix());
     }
 
     /*
@@ -345,7 +382,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
             public void mouseClicked(MouseEvent e) {
                 int col = table.getSelectedColumn();
                 int row = table.getSelectedRow();
-                if (col == 3) {
+                if (col == 4) {
                     constantConfigModel.removeRow(row);
                     table.updateUI();
                 }

@@ -22,34 +22,36 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import org.richie.codeGen.core.model.DataType;
+
 /**
  * @author elfkingw
  */
-public class ConstantConfigModel extends AbstractTableModel {
+public class DataTypeModel extends AbstractTableModel {
 
     /**
      * 
      */
     private static final long      serialVersionUID = 1L;
-    private List<ConstantConfigVo> constantConfigList;
-    private String[]               titles           = { "常量名称","类型", "常量值", "备注", "删除" };
+    private List<DataType> dataTypeList;
+    private String[]               titles           = { "数据类型","编程语言程序类型",  "备注", "删除" };
 
-    public ConstantConfigModel(){
-        constantConfigList = new ArrayList<ConstantConfigVo>();
+    public DataTypeModel(){
+        dataTypeList = new ArrayList<DataType>();
     }
 
-    public void addRow(ConstantConfigVo vo) {
-        constantConfigList.add(vo);
+    public void addRow(DataType vo) {
+        dataTypeList.add(vo);
     }
 
     public void removeRow(int row) {
-        constantConfigList.remove(row);
+        dataTypeList.remove(row);
     }
 
     public void removeRows(int row, int count) {
         for (int i = 0; i < count; i++) {
-            if (constantConfigList.size() > row) {
-                constantConfigList.remove(row);
+            if (dataTypeList.size() > row) {
+                dataTypeList.remove(row);
             }
         }
     }
@@ -67,7 +69,7 @@ public class ConstantConfigModel extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        return constantConfigList.size();
+        return dataTypeList.size();
     }
 
     /*
@@ -87,18 +89,15 @@ public class ConstantConfigModel extends AbstractTableModel {
      * 使修改的内容生效
      */
     public void setValueAt(Object value, int row, int col) {
-        ConstantConfigVo vo = constantConfigList.get(row);
+        DataType vo = dataTypeList.get(row);
         switch (col) {
             case 0:
-                vo.setKey((String)value);
+                vo.setDataType((String)value);
                 break;
             case 1:
-                vo.setType((String) value);
+                vo.setJavaType((String) value);
                 break;
             case 2:
-                vo.setValue((String) value);
-                break;
-            case 3:
                 vo.setNote((String) value);
                 break;
         }
@@ -111,37 +110,34 @@ public class ConstantConfigModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        if (constantConfigList == null || constantConfigList.size() == 0) {
+        if (dataTypeList == null || dataTypeList.size() == 0) {
             return null;
         }
-        ConstantConfigVo vo = constantConfigList.get(rowIndex);
+        DataType vo = dataTypeList.get(rowIndex);
         Object value = null;
         switch (columnIndex) {
             case 0:
-                value = vo.getKey();
+                value = vo.getDataType();
                 break;
             case 1:
-                value = vo.getType();
+                value = vo.getJavaType();
                 break;
             case 2:
-                value = vo.getValue();
-                break;
-            case 3:
                 value = vo.getNote();
                 break;
-            case 4:
+            case 3:
                 value = "删除";
                 break;
         }
         return value;
     }
 
-    public List<ConstantConfigVo> getConstantConfigList() {
-        return constantConfigList;
+    public List<DataType> getConstantConfigList() {
+        return dataTypeList;
     }
 
-    public void setConstantConfigList(List<ConstantConfigVo> constantConfigList) {
-        this.constantConfigList = constantConfigList;
+    public void setConstantConfigList(List<DataType> dataTypeList) {
+        this.dataTypeList = dataTypeList;
     }
 
 }

@@ -88,7 +88,7 @@ public class CodeGen {
         if (f.exists()) {
             VelocityContext context = new VelocityContext();
             putToolsToVelocityContext();
-            initCustomerVelocityContext(map);
+            initCustomerVelocityContext();
             insertInVelocityContext(map, context);
             context.put("map", map);
             FileReader reader = null;
@@ -132,8 +132,13 @@ public class CodeGen {
      * 设置用户自定义velocity Context
      * @param map
      */
-    public static void initCustomerVelocityContext(Map<String,Object> map){
+    public static void initCustomerVelocityContext(){
         Map<String,Object> customerMap = CustomerVelocityContext.getCustomerVelociTyContext();
+        if(customerMap != null)
+            map.putAll(customerMap);
+    }
+    
+    public static void initCustomerVelocityContext( Map<String,Object> customerMap){
         if(customerMap != null)
             map.putAll(customerMap);
     }

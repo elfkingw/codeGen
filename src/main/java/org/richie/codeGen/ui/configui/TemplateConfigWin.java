@@ -36,6 +36,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JToolBar;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.table.JTableHeader;
@@ -94,14 +95,15 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
             configPanel = new JPanel();
             configPanel.setLayout(new BorderLayout());
             configPanel.add(getTemplatePanel(), BorderLayout.CENTER);
-            JPanel northPanel = new JPanel();
+            JToolBar toolBar = new JToolBar();
             addLineBtn = new JButton("增加模板");
             addLineBtn.addActionListener(this);
-            northPanel.add(addLineBtn);
+            toolBar.add(addLineBtn);
+            toolBar.addSeparator();
             saveBtn = new JButton("保存");
             saveBtn.addActionListener(this);
-            northPanel.add(saveBtn);
-            configPanel.add(northPanel, BorderLayout.SOUTH);
+            toolBar.add(saveBtn);
+            configPanel.add(toolBar, BorderLayout.NORTH);
         }
         return configPanel;
     }

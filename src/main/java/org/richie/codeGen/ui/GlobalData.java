@@ -18,8 +18,13 @@
 package org.richie.codeGen.ui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.richie.codeGen.core.log.Log;
+import org.richie.codeGen.core.log.LogFacotry;
+import org.richie.codeGen.core.model.DataType;
 import org.richie.codeGen.core.util.StringUtil;
 import org.richie.codeGen.ui.model.CodeTemplateVo;
 import org.richie.codeGen.ui.model.ConstantConfigVo;
@@ -33,10 +38,16 @@ import org.richie.codeGen.ui.util.XmlParse;
  */
 public class GlobalData {
 
-    public static List<CodeTemplateVo>   templateList;     // 模板
-    public static List<ConstantConfigVo> constList;        // 常量
-    public static OutFileRootPathVo      outFileRootPathVo; // 输出路径根目录
-    public static LastOperateVo          lastOperateVo;    // 用户最后一次操作
+    private static Log                   log         = LogFacotry.getLogger(GlobalData.class);
+    public static List<CodeTemplateVo>   templateList;                                        // 模板
+    public static List<ConstantConfigVo> constList;                                           // 常量
+    public static OutFileRootPathVo      outFileRootPathVo;                                   // 输出路径根目录
+    public static LastOperateVo          lastOperateVo;                                       // 用户最后一次操
+    public static List<DataType>         dataTypeList;                                        // 数据类型
+
+    public static String[]               costantType = new String[] { "常量", "类" };
+    public static String[]               uiType      = new String[] { "TextField", "DateField", "ComboBox", "Radio",
+            "Textarea", "Tree", "CheckBox", "Other" };
 
     public static List<CodeTemplateVo> getTemplateList() throws Exception {
         if (templateList == null) {
@@ -119,7 +130,7 @@ public class GlobalData {
     }
 
     public static String getOutFilePathByName(String rootName) throws Exception {
-        if(StringUtil.isEmpty(rootName)){
+        if (StringUtil.isEmpty(rootName)) {
             return null;
         }
         String path = null;
@@ -151,9 +162,55 @@ public class GlobalData {
         return lastOperateVo;
     }
 
+    public static List<DataType> getDataType() throws Exception {
+        XmlParse<DataType> xmlParse = new XmlParse<DataType>(DataType.class);
+        dataTypeList = xmlParse.parseXmlFileToVo(FileUtils.getDataTypePath());
+        return dataTypeList;
+    }
+
+    public static Map<String, String> getDataTypeMap() throws Exception {
+        Map<String, String> dataTypeMap = new HashMap<String, String>();
+        List<DataType> dataTypeList = getDataType();
+        for (DataType dataType : dataTypeList) {
+            String dataTypeStr = dataType.getDataType() != null ? dataType.getDataType().toLowerCase() : null;
+            dataTypeMap.put(dataTypeStr, dataType.getJavaType());
+        }
+        return dataTypeMap;
+    }
+
     public static void saveLastOperateVo() throws Exception {
         XmlParse<LastOperateVo> xmlParse = new XmlParse<LastOperateVo>(LastOperateVo.class);
         xmlParse.genVoToXmlFile(lastOperateVo, FileUtils.getLastOperatePath());
     }
 
+    public static Map<String, Object> getConstentMap() throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        XmlParse<ConstantConfigVo> xmlParse = new XmlParse<ConstantConfigVo>(ConstantConfigVo.class);
+        List<ConstantConfigVo> list = xmlParse.parseXmlFileToVo(FileUtils.getConstantConfigPath());
+        if (list != null) {
+            for (ConstantConfigVo constantConfigVo : list) {
+                if (isClassType(constantConfigVo.getType())) {
+                    String className = constantConfigVo.getValue();
+                    try {
+                        Object obj = Class.forName(className).newInstance();
+                        map.put(constantConfigVo.getKey(), obj);
+                        log.info("成功载入自定义类：" + className);
+                    } catch (Exception e) {
+                        log.error("载入自定义类失败：" + e.getMessage());
+                    }
+                } else {
+                    map.put(constantConfigVo.getKey(), constantConfigVo.getValue());
+                    log.info("成功载入自定义常量：" + constantConfigVo.getKey() + ":" + constantConfigVo.getValue());
+                }
+            }
+        }
+        return map;
+    }
+
+    public static boolean isClassType(String type) {
+        if (costantType[1].equals(type)) {
+            return true;
+        }
+        return false;
+    }
 }

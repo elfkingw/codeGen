@@ -17,6 +17,7 @@
 
 package org.richie.codeGen.core.velocity;
 
+import org.apache.velocity.tools.generic.MathTool;
 import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.model.Table;
 

@@ -35,6 +35,7 @@ public class FileUtils {
     public static final String CONFIG_OUTFILEPATH_FILENAME   = "OutFilePath.xml";
     public static final String CONFIG_LASTOPERATE_FILENAME   = "LastOperate.xml";
     public static final String CONFIG_LASTTTEMPLATE_FILENAME = "LastTemplate.xml";
+    public static final String CONFIG_DATA_TYPE_FILENAME     = "DataType.xml";
 
     /**
      * upload the file to given filePath
@@ -135,8 +136,14 @@ public class FileUtils {
         String path = getConfigPath() + File.separator + CONFIG_LASTOPERATE_FILENAME;
         return path;
     }
+
     public static String getLastTemplatePath() throws IOException {
         String path = getConfigPath() + File.separator + CONFIG_LASTTTEMPLATE_FILENAME;
+        return path;
+    }
+
+    public static String getDataTypePath() throws IOException {
+        String path = getConfigPath() + File.separator + CONFIG_DATA_TYPE_FILENAME;
         return path;
     }
 }

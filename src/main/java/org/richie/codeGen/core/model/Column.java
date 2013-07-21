@@ -22,19 +22,49 @@ package org.richie.codeGen.core.model;
  */
 public class Column {
 
+    private Boolean isHiden;
     private String  id;
     private String  code;
     private String  name;
     private String  javaName;
     private String  defaultValue;
     private String  dataType;
+    private String  codeType;
     private int     length;
     private int     precision;
-    private boolean isNull;
+    private Boolean isNotNull;
     private String  note;
-    private boolean isForeignKey;
-    private boolean isPrimarykey;
+    private Boolean isForeignKey;
+    private Boolean isPrimarykey;
     private Table   refTable;
+    private String  uiType;
+    private String  extension1;
+    private String  extension2;
+    private String  extension3;
+
+    public String getExtension1() {
+        return extension1;
+    }
+
+    public void setExtension1(String extension1) {
+        this.extension1 = extension1;
+    }
+
+    public String getExtension2() {
+        return extension2;
+    }
+
+    public void setExtension2(String extension2) {
+        this.extension2 = extension2;
+    }
+
+    public String getExtension3() {
+        return extension3;
+    }
+
+    public void setExtension3(String extension3) {
+        this.extension3 = extension3;
+    }
 
     public String getId() {
         return id;
@@ -100,36 +130,12 @@ public class Column {
         this.precision = precision;
     }
 
-    public boolean isNull() {
-        return isNull;
-    }
-
-    public void setNull(boolean isNull) {
-        this.isNull = isNull;
-    }
-
     public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public boolean isForeignKey() {
-        return isForeignKey;
-    }
-
-    public void setForeignKey(boolean isForeignKey) {
-        this.isForeignKey = isForeignKey;
-    }
-
-    public boolean isPrimarykey() {
-        return isPrimarykey;
-    }
-
-    public void setPrimarykey(boolean isPrimarykey) {
-        this.isPrimarykey = isPrimarykey;
     }
 
     public Table getRefTable() {
@@ -140,8 +146,58 @@ public class Column {
         this.refTable = refTable;
     }
 
+    public Boolean getIsHiden() {
+        return isHiden;
+    }
+
+    public void setIsHiden(Boolean isHiden) {
+        this.isHiden = isHiden;
+    }
+
+    public Boolean getIsNotNull() {
+        return isNotNull;
+    }
+
+    public void setIsNotNull(Boolean isNotNull) {
+        this.isNotNull = isNotNull;
+    }
+
+    public Boolean getIsForeignKey() {
+        return isForeignKey;
+    }
+
+    public void setIsForeignKey(Boolean isForeignKey) {
+        this.isForeignKey = isForeignKey;
+    }
+
+    public Boolean getIsPrimarykey() {
+        return isPrimarykey;
+    }
+
+    public void setIsPrimarykey(Boolean isPrimarykey) {
+        this.isPrimarykey = isPrimarykey;
+    }
+
+    public String getUiType() {
+        return uiType;
+    }
+
+    public void setUiType(String uiType) {
+        this.uiType = uiType;
+    }
+
+    public String getCodeType() {
+        return codeType;
+    }
+
+    public void setCodeType(String codeType) {
+        this.codeType = codeType;
+    }
+
     public String toString() {
         return "id:" + getId() + " code:" + getCode() + " name:" + getName() + " javaName:" + getJavaName()
-               + " isForeignKey:" + isForeignKey() + " isPrimaryKey:" + isPrimarykey()+" refTable:"+getRefTable();
+               + " isForeignKey:" + getIsForeignKey() + " isPrimaryKey:" + getIsPrimarykey() + " refTable:"
+               + getRefTable();
     }
+
 }

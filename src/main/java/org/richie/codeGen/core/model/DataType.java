@@ -13,44 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Created on 2013-7-14
+// Created on 2013-7-19
 
-package org.richie.codeGen.ui.model;
+package org.richie.codeGen.core.model;
 
 /**
  * @author elfkingw
  */
-public class ConstantConfigVo {
+public class DataType {
 
-    private String key;
-    private String type;
-    private String value;
+    private String dataType;
+    private String javaType;
     private String note;
 
-    public String getKey() {
-        return key;
+    public String getDataType() {
+        return dataType;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
     }
 
-    
-    public String getType() {
-        return type;
+    public String getJavaType() {
+        return javaType;
     }
 
-    
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
+    public void setJavaType(String javaType) {
+        this.javaType = javaType;
     }
 
     public String getNote() {

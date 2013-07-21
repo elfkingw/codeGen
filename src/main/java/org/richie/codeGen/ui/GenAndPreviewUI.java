@@ -25,14 +25,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -42,11 +40,14 @@ import javax.swing.JTextArea;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import org.apache.commons.lang.StringUtils;
 import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
+import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.core.util.StringUtil;
 import org.richie.codeGen.core.velocity.CodeGen;
+import org.richie.codeGen.database.util.DataTypeUtils;
 import org.richie.codeGen.ui.configui.TemplateConfigWin;
 import org.richie.codeGen.ui.model.CodeTemplateModel;
 import org.richie.codeGen.ui.model.CodeTemplateVo;
@@ -64,7 +65,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
     private Log               log              = LogFacotry.getLogger(GenAndPreviewUI.class);
 
-    private JFrame            parent;
+    private TableSelectUI     parent;
     private JTabbedPane       mainPanel;
     private JPanel            genPanel;
     private JScrollPane       previewPanel;
@@ -78,7 +79,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     private JComboBox         templateNameCom;
     private JComboBox         rootPathCom;
 
-    public GenAndPreviewUI(JFrame parent){
+    public GenAndPreviewUI(TableSelectUI parent){
         super();
         this.parent = parent;
         initLize();
@@ -199,10 +200,11 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, "模板文件不能为空！", "提示", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            Map<String, Object> map = new HashMap<String, Object>();
-            CodeGen.putToolsToVelocityContext("package", vo.getOutFilePath());
-            CodeGen.putToolsToVelocityContext("userName", "elfkingw");
-            CodeGen.initCustomerVelocityContext(map);
+            setPackageContext(complateModel.getTemplateList());
+            boolean isSuccess = initCustomerVelocityContext(vo);
+            if (!isSuccess) {
+                return;
+            }
             String codeText = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
             getPreviewText().setText(codeText);
             getMainPanel().setSelectedComponent(getPreviewPanel());
@@ -223,26 +225,54 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 return;
             }
             StringBuilder sb = new StringBuilder();
-            sb.append("成功生成如下文件：/n");
+            sb.append("成功生成如下文件：\n");
+            setPackageContext(list);
             for (int i = 0; i < list.size(); i++) {
                 CodeTemplateVo vo = list.get(i);
                 if (!vo.getIsSelected()) continue;
+                boolean isSuccess = initCustomerVelocityContext(vo);
+                if (!isSuccess) {
+                    return;
+                }
                 String templateName = vo.getFileName();
-                Map<String, Object> map = new HashMap<String, Object>();
-                CodeGen.putToolsToVelocityContext("package", vo.getOutFilePath());
-                CodeGen.initCustomerVelocityContext(map);
                 String outFilePath = GlobalData.getOutFilePathByName(vo.getOutFilePathRoot()) + File.separator
                                      + vo.getOutFilePath().replace("\u002E", File.separator);
-                // TODO
-                CodeGen.genCode(templateName, FileUtils.getTemplatePath(), outFilePath, vo.getSuffix());
-                sb.append(outFilePath + File.separator + vo.getSuffix() + "/n");
+                String fileName = parent.getTable().getClassName() + vo.getSuffix();
+                CodeGen.genCode(templateName, FileUtils.getTemplatePath(), outFilePath, fileName);
+                sb.append(outFilePath + File.separator + fileName + "\n");
             }
             JOptionPane.showMessageDialog(this, sb.toString(), "提示", JOptionPane.INFORMATION_MESSAGE);
         } catch (CGException e) {
-            handException("预览出错", e);
+            handException("生成文件出错", e);
         } catch (Exception e) {
-            handException("预览出错", e);
+            handException("生成文件出错", e);
         }
+    }
+
+    private void setPackageContext(List<CodeTemplateVo> list) {
+        for (CodeTemplateVo vo : list) {
+            String fileName = vo.getFileName();
+            if (!StringUtils.isEmpty(fileName)) {
+                String packageKey = fileName.substring(0, fileName.length() - 3) + "_package";
+                CodeGen.putToolsToVelocityContext(packageKey, vo.getOutFilePath().replace("\\", "."));
+            }
+        }
+    }
+
+    private boolean initCustomerVelocityContext(CodeTemplateVo vo) throws Exception {
+        Table selectedTable = parent.getTable();
+        if (selectedTable == null) {
+            int status = JOptionPane.showConfirmDialog(this, "没有选择表是否继续？", "提示", JOptionPane.OK_CANCEL_OPTION);
+            if (status != JOptionPane.OK_OPTION) {
+                return false;
+            }
+        }
+        // 根据数据类型的配置来设置表字段的代码类型
+        DataTypeUtils.setDataType(selectedTable);
+        Map<String, Object> map = GlobalData.getConstentMap();
+        CodeGen.initTableVelocityContext(selectedTable);
+        CodeGen.initCustomerVelocityContext(map);
+        return true;
     }
 
     private boolean isTemplateValidate(List<CodeTemplateVo> list) {

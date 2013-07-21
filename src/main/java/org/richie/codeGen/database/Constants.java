@@ -32,6 +32,7 @@ public interface Constants {
     public final static String DATABASE_TYPE_ORACLE      = "oracle";
     public final static String DATABASE_TYPE_MYSQL       = "mysql";
     public final static String DATABASE_TYPE_MSSQL       = "sqlserver";
+    public final static String DATABASE_TYPE_INFORMIX       = "informix";
 
     //--database jdbc URL
     public final static String JDBC_URL_ORACLE           = "jdbc:oracle:thin:@ip:1521:database";
