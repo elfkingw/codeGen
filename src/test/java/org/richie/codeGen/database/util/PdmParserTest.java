@@ -40,7 +40,7 @@ public class PdmParserTest extends TestCase {
             tabs = pp.parsePdmFile("C:\\Users\\Administrator\\Desktop\\velocity.pdm");
             for (Table tab : tabs) {
                 System.out.println(tab);
-                List<Column> cList = tab.getFieldList();
+                List<Column> cList = tab.getFields();
                 for (Column column : cList) {
                     System.out.println("   " + column);
                 }

@@ -141,7 +141,7 @@ public class PdmParser {
         }
         if (colElement.elementTextTrim("Mandatory") != null && "1".equals(colElement.elementTextTrim("Mandatory"))) {
             col.setIsNotNull(true);
-        }else{
+        } else {
             col.setIsNotNull(false);
         }
         if (columnId.equals(primaryKeyId)) {
@@ -168,6 +168,10 @@ public class PdmParser {
 
     private static String getPrimaryKeyId(Element tableElement) {
         String primaryKeyId = null;
+        Element keys = tableElement.element("Keys");
+        if (keys == null) {
+            return null;
+        }
         String keys_key_id = tableElement.element("Keys").element("Key").attributeValue("Id");
         String keys_column_ref = tableElement.element("Keys").element("Key").element("Key.Columns").element("Column").attributeValue("Ref");
         String keys_primarykey_ref_id = tableElement.element("PrimaryKey").element("Key").attributeValue("Ref");

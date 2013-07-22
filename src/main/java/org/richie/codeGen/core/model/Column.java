@@ -179,6 +179,15 @@ public class Column {
     }
 
     public String getUiType() {
+        if (uiType == null) {
+            if ("date".equalsIgnoreCase(dataType)) {
+                uiType = "DateField";
+            } else if (isForeignKey) {
+                uiType = "ComboBox";
+            } else {
+                uiType = "TextField";
+            }
+        }
         return uiType;
     }
 

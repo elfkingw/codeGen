@@ -45,7 +45,7 @@ public class CodeTemplateModel extends AbstractTableModel {
         templateList = list;
     }
 
-    private String[] titles = { "选择", "模板名称", "模板文件", "输出文件根目录", "输出包", "后缀", "生成预览", "编辑模板", "删除" };
+    private String[] titles = { "选择", "模板名称", "模板文件", "输出文件根目录", "输出包", "是否生成子表","后缀", "生成预览", "编辑模板", "删除" };
 
     public void addRow(CodeTemplateVo vo) {
         templateList.add(vo);
@@ -120,6 +120,9 @@ public class CodeTemplateModel extends AbstractTableModel {
                 vo.setOutFilePath((String) value);
                 break;
             case 5:
+                vo.setIsGenSubTable((Boolean) value);
+                break;
+            case 6:
                 vo.setSuffix((String) value);
                 break;
         }
@@ -176,15 +179,18 @@ public class CodeTemplateModel extends AbstractTableModel {
                 value = vo.getOutFilePath();
                 break;
             case 5:
-                value = vo.getSuffix();
+                value = vo.getIsGenSubTable();
                 break;
             case 6:
-                value = "预览";
+                value = vo.getSuffix();
                 break;
             case 7:
-                value = "编辑";
+                value = "预览";
                 break;
             case 8:
+                value = "编辑";
+                break;
+            case 9:
                 value = "删除";
                 break;
         }
@@ -200,7 +206,7 @@ public class CodeTemplateModel extends AbstractTableModel {
     }
 
     public Class<?> getColumnClass(int col) {
-        if (col == 0) {
+        if (col == 0 || col == 5) {
             return Boolean.class;
         } else {
             return String.class;

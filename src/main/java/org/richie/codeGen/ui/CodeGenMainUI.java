@@ -96,7 +96,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
 
     private void initlize() {
         setTitle("代码生成器");
-        setBounds(120, 80, 1000, 550);
+        setBounds(120, 80, 1024, 550);
         setDefaultCloseOperation(3);
         setLayout(new BorderLayout(5, 5));
         // 初始化MenuBar

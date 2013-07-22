@@ -127,19 +127,20 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
             }
             rootPathCom = new JComboBox(rootPathNames);
             hideColumn(table, 0);
-            hideColumn(table, 6);
+            hideColumn(table, 5);
+            hideColumn(table, 7);
             tcm.getColumn(3).setCellEditor(new DefaultCellEditor(rootPathCom));
-            tcm.getColumn(7).setCellRenderer(new ButtonRenderer());
-            tcm.getColumn(7).setCellEditor(new ButtonEditor());
             tcm.getColumn(8).setCellRenderer(new ButtonRenderer());
             tcm.getColumn(8).setCellEditor(new ButtonEditor());
+            tcm.getColumn(9).setCellRenderer(new ButtonRenderer());
+            tcm.getColumn(9).setCellEditor(new ButtonEditor());
             tcm.getColumn(1).setPreferredWidth(50);
             tcm.getColumn(2).setPreferredWidth(30);
             tcm.getColumn(3).setPreferredWidth(40);
             tcm.getColumn(4).setPreferredWidth(150);
             tcm.getColumn(5).setPreferredWidth(15);
-            tcm.getColumn(7).setPreferredWidth(8);
             tcm.getColumn(8).setPreferredWidth(8);
+            tcm.getColumn(9).setPreferredWidth(8);
             templatePanel = new JScrollPane(table);
             // 增加table里按钮点击事件
             addTableListener();
@@ -189,7 +190,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
             public void mouseClicked(MouseEvent e) {
                 int col = table.getSelectedColumn();
                 int row = table.getSelectedRow();
-                if (col == 7) {
+                if (col == 8) {
                     CodeTemplateVo vo = templateModel.getTemplateList().get(row);
                     if(StringUtil.isEmpty(vo.getFileName())){
                         JOptionPane.showMessageDialog(getTemplatePanel(), "该行没有选选择模板文件，请选择！", "提示", JOptionPane.INFORMATION_MESSAGE);
@@ -246,7 +247,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
                         }
                     }
 
-                } else if (col == 8) {
+                } else if (col == 9) {
                     templateModel.removeRow(row);
                     table.updateUI();
                 }

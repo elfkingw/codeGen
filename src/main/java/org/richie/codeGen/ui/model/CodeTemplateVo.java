@@ -28,6 +28,16 @@ public class CodeTemplateVo {
     private String  outFilePathRoot;
     private String  outFilePath;
     private String  suffix;
+    private Boolean isGenSubTable;
+    
+    public Boolean getIsGenSubTable() {
+        return isGenSubTable;
+    }
+
+    
+    public void setIsGenSubTable(Boolean isGenSubTable) {
+        this.isGenSubTable = isGenSubTable;
+    }
 
     public String getTemplateName() {
         return templateName;
