@@ -68,7 +68,7 @@ public class DataTypeConfigWin extends JDialog implements ActionListener {
     private JPanel            configPanel;
     private JScrollPane       centerPanel;
     private JTable            table;
-    private JToolBar          toooBar;
+    private JToolBar          toolBar;
     private JButton           addLineBtn;
     private JButton           saveBtn;
 
@@ -137,23 +137,23 @@ public class DataTypeConfigWin extends JDialog implements ActionListener {
     }
 
     private JToolBar getButtonPanel() {
-        if (toooBar == null) {
-            toooBar = new JToolBar();
+        if (toolBar == null) {
+            toolBar = new JToolBar();
             addLineBtn = new JButton("增加类型");
             addLineBtn.addActionListener(this);
-            toooBar.add(addLineBtn);
-            toooBar.addSeparator();
+            toolBar.add(addLineBtn);
+            toolBar.addSeparator();
             saveBtn = new JButton("保存");
             saveBtn.addActionListener(this);
-            toooBar.add(saveBtn);
-            toooBar.addSeparator();
+            toolBar.add(saveBtn);
+            toolBar.addSeparator();
             JButton setDefaultBtn = new JButton("设置默认类型");
             new DropDownComponent(setDefaultBtn, getButtonPanel());
-            toooBar.add(setDefaultBtn);
-            toooBar.setFloatable(false);
-            toooBar.setBorderPainted(true);
+            toolBar.add(setDefaultBtn);
+            toolBar.setFloatable(false);
+            toolBar.setBorderPainted(true);
         }
-        return toooBar;
+        return toolBar;
     }
 
     /*

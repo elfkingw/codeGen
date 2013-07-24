@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,6 +34,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
@@ -55,6 +58,20 @@ public class TableSelectUI extends JPanel implements ActionListener {
     private ColumnModel       subTableModel;
     private JTable            subTable;
     private Table             table;
+
+    private JTextField        mainTableCode;
+    private JTextField        mainTableName;
+    private JTextField        mainExtension1;
+    private JTextField        mainExtension2;
+
+    private JLabel            subTableCodeLabel;
+    private JTextField        subTableCode;
+    private JLabel            subTableNameLabel;
+    private JTextField        subTableName;
+    private JLabel            subExtension1Label;
+    private JTextField        subExtension1;
+    private JLabel            subExtension2Label;
+    private JTextField        subExtension2;
 
     public TableSelectUI(JFrame parent){
         super();
@@ -114,11 +131,59 @@ public class TableSelectUI extends JPanel implements ActionListener {
         // addTableListener();
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        JPanel nPanel = new JPanel();
-        nPanel.add(new JLabel("--主表区--"));
-        panel.add(nPanel, BorderLayout.NORTH);
+        panel.add(getMainToolBar(), BorderLayout.NORTH);
         panel.add(tablePanel, BorderLayout.CENTER);
         return panel;
+    }
+
+    public JToolBar getMainToolBar() {
+        JToolBar mainToolBar = new JToolBar();
+        mainToolBar.add(new JLabel("主表表名："));
+        mainTableCode = new JTextField(15);
+        mainToolBar.add(mainTableCode);
+        mainTableCode.setEnabled(false);
+        mainToolBar.add(new JLabel("名称："));
+        mainTableName = new JTextField(20);
+        mainToolBar.add(mainTableName);
+        mainToolBar.add(new JLabel("扩展1："));
+        mainExtension1 = new JTextField(20);
+        mainToolBar.add(mainExtension1);
+        mainToolBar.add(new JLabel("扩展2："));
+        mainExtension2 = new JTextField(20);
+        mainToolBar.add(mainExtension2);
+        mainToolBar.add(new JLabel("                    "));
+        mainToolBar.setFloatable(false);
+        return mainToolBar;
+    }
+
+    public JToolBar getSubToolBar() {
+        JToolBar subToolBar = new JToolBar();
+        JButton button = new JButton("增加子表");
+        subToolBar.add(button);
+        subToolBar.addSeparator();
+        JButton button1 = new JButton("删除子表");
+        subToolBar.add(button1);
+        subToolBar.addSeparator();
+        subTableCodeLabel = new JLabel("子表表名：");
+        subToolBar.add(subTableCodeLabel);
+        subTableCode = new JTextField(15);
+        subToolBar.add(subTableCode);
+        subTableCode.setEnabled(false);
+        subTableNameLabel = new JLabel("名称：");
+        subToolBar.add(subTableNameLabel);
+        subTableName = new JTextField(20);
+        subToolBar.add(subTableName);
+        subExtension1Label = new JLabel("扩展1：");
+        subToolBar.add(subExtension1Label);
+        subExtension1 = new JTextField(20);
+        subToolBar.add(subExtension1);
+        subExtension2Label = new JLabel("扩展2：");
+        subToolBar.add(subExtension2Label);
+        subExtension2 = new JTextField(20);
+        subToolBar.add(subExtension2);
+        subToolBar.setFloatable(false);
+        showSubDescription(false);
+        return subToolBar;
     }
 
     public JPanel getSubTablePanel() {
@@ -152,27 +217,54 @@ public class TableSelectUI extends JPanel implements ActionListener {
         // addTableListener();
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        JPanel nPanel = new JPanel();
-        nPanel.add(new JLabel("--子表区--"));
-        panel.add(nPanel, BorderLayout.NORTH);
+        panel.add(getSubToolBar(), BorderLayout.NORTH);
         panel.add(tablePanel, BorderLayout.CENTER);
         return panel;
     }
 
     public void initTable(Table table) {
         setTable(table);
+        mainTableCode.setText(table.getTableCode());
+        mainTableName.setText(table.getTableName());
         List<Column> list = table.getFields();
         mainTableModel.setList(list);
         mainTable.updateUI();
         Table sTable = table.getOneToManyTables();
         if (sTable != null) {
+            showSubDescription(true);
+            subTableCode.setText(sTable.getTableCode());
+            subTableName.setText(sTable.getTableName());
             List<Column> subList = sTable.getFields();
             subTableModel.setList(subList);
             subTable.updateUI();
         } else {
+            showSubDescription(false);
             subTableModel.setList(new ArrayList<Column>());
             subTable.updateUI();
         }
+    }
+
+    private void showSubDescription(boolean isVisible) {
+        if (isVisible) {
+            subTableCodeLabel.setVisible(true);
+            subTableNameLabel.setVisible(true);
+            subExtension1Label.setVisible(true);
+            subExtension2Label.setVisible(true);
+            subTableCode.setVisible(true);
+            subTableName.setVisible(true);
+            subExtension1.setVisible(true);
+            subExtension2.setVisible(true);
+        } else {
+            subTableCodeLabel.setVisible(false);
+            subTableNameLabel.setVisible(false);
+            subExtension1Label.setVisible(false);
+            subExtension2Label.setVisible(false);
+            subTableCode.setVisible(false);
+            subTableName.setVisible(false);
+            subExtension1.setVisible(false);
+            subExtension2.setVisible(false);
+        }
+
     }
 
     public Table getTable() {

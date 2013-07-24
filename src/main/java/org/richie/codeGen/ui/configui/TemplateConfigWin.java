@@ -103,6 +103,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
             saveBtn = new JButton("保存");
             saveBtn.addActionListener(this);
             toolBar.add(saveBtn);
+            toolBar.setFloatable(false);
             configPanel.add(toolBar, BorderLayout.NORTH);
         }
         return configPanel;

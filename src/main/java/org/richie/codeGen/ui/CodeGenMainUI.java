@@ -88,7 +88,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
     private JMenuItem         miAbout;                                                     // 关于菜单项
     private JMenuItem         templateConfigItem;                                          // 模板配置菜单项
     private JMenuItem         consConfigItem;                                              // 常量配置菜单项
-    private JMenuItem         dataTypeConfigItem;                                              // 数据类型菜单项
+    private JMenuItem         dataTypeConfigItem;                                          // 数据类型菜单项
 
     public CodeGenMainUI(){
         initlize();
@@ -243,13 +243,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             tableList = reader.getTables();
             tree = initTreeData(tableList);
             treePanel.setViewportView(tree);
-            tree.addMouseListener(new MouseAdapter() {
-
-                public void mouseClicked(MouseEvent me) {
-                    doMouseClicked(me);
-                }
-
-            });
+          
             getTreepanel().updateUI();
         } catch (CGException e) {
             e.printStackTrace();
@@ -275,6 +269,13 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             }
         }
         tree = initTreeData(list);
+//        tree.addMouseListener(new MouseAdapter() {
+//
+//            public void mouseClicked(MouseEvent me) {
+//                doMouseClicked(me);
+//            }
+//
+//        });
         treePanel.setViewportView(tree);
         getTreepanel().updateUI();
 
@@ -303,9 +304,16 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         }
         JTree newTree = new JTree(root);
         newTree.setCellRenderer(new TableTreeRender());
+        newTree.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent me) {
+                doMouseClicked(me);
+            }
+
+        });
         return newTree;
     }
-    
+
     private void openLastPdmFile() {
         LastOperateVo lastOperateVo = null;
         try {
@@ -382,12 +390,12 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             win.setModal(true);
             win.setBounds(this.getX() + 250, this.getY() + 30, win.getWidth(), win.getHeight());
             win.setVisible(true);
-    } else if (e.getSource() == dataTypeConfigItem) {
-        DataTypeConfigWin win = new DataTypeConfigWin();
-//        win.setModal(true);
-        win.setBounds(this.getX() + 250, this.getY() + 30, win.getWidth(), win.getHeight());
-        win.setVisible(true);
-    }
+        } else if (e.getSource() == dataTypeConfigItem) {
+            DataTypeConfigWin win = new DataTypeConfigWin();
+            win.setModal(true);
+            win.setBounds(this.getX() + 250, this.getY() + 30, win.getWidth(), win.getHeight());
+            win.setVisible(true);
+        }
     }
 
     /**

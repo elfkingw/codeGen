@@ -266,9 +266,11 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
+                if (e.getClickCount() == 2 ) {
                     int closeTabNumber = mainPanel.getSelectedIndex();
-                    mainPanel.removeTabAt(closeTabNumber);
+                    if(closeTabNumber != 0){
+                        mainPanel.removeTabAt(closeTabNumber);
+                    }
                 }
 
             }
@@ -289,7 +291,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             setPackageContext(list);
             for (int i = 0; i < list.size(); i++) {
                 CodeTemplateVo vo = list.get(i);
-                if (!vo.getIsSelected()) continue;
+                if (vo.getIsSelected()== null || !vo.getIsSelected()) continue;
                 boolean isSuccess = initCustomerVelocityContext(vo);
                 if (!isSuccess) {
                     return;
