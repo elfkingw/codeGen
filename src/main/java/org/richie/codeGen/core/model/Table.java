@@ -26,7 +26,7 @@ import org.richie.codeGen.ui.model.OutFileRootPathVo;
 /**
  * @author wanghua 2013-6-29
  */
-public class Table {
+public class Table implements Cloneable {
 
     private String       id;
     private String       tableCode;
@@ -38,6 +38,8 @@ public class Table {
     private long         updateTime;
     private String       dataBaseName;
     private String       dataBaseCode;
+    private String       extension1;
+    private String       extension2;
 
     public String getDataBaseName() {
         return dataBaseName;
@@ -108,21 +110,21 @@ public class Table {
             String prefix = null;
             try {
                 OutFileRootPathVo vo = GlobalData.getOutFileRootPathVo();
-               if(vo != null){
-                   prefix = vo.getTablePrefix();
-               }
+                if (vo != null) {
+                    prefix = vo.getTablePrefix();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
             String tableCode = getTableCode();
-            if(prefix != null){
+            if (prefix != null) {
                 String[] prefixs = prefix.split(",");
                 for (String prefixStr : prefixs) {
-                    if(tableCode.startsWith(prefixStr)){
+                    if (tableCode.startsWith(prefixStr)) {
                         tableCode = tableCode.substring(prefixStr.length());
                     }
-                    if(tableCode.startsWith(prefixStr+"_")){
-                        tableCode = tableCode.substring(prefixStr.length()+1);
+                    if (tableCode.startsWith(prefixStr + "_")) {
+                        tableCode = tableCode.substring(prefixStr.length() + 1);
                     }
                 }
             }
@@ -151,8 +153,34 @@ public class Table {
         manyToOneTables.add(table);
     }
 
+    public String getExtension1() {
+        return extension1;
+    }
+
+    public void setExtension1(String extension1) {
+        this.extension1 = extension1;
+    }
+
+    public String getExtension2() {
+        return extension2;
+    }
+
+    public void setExtension2(String extension2) {
+        this.extension2 = extension2;
+    }
+
     public String toString() {
         return ("tableCode:" + getTableCode() + " tableName:" + getTableName() + " Id:" + getId() + " ManyToOne:["
                 + (getManyToOneTables() != null ? getManyToOneTables().size() + "" : null) + "] onToMany:" + getOneToManyTables());
+    }
+
+    public Object clone() {
+        Table o = null;
+        try {
+            o = (Table) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return o;
     }
 }

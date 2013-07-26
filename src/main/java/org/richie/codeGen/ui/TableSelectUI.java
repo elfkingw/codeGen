@@ -22,6 +22,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -41,6 +44,7 @@ import javax.swing.table.TableColumnModel;
 
 import org.richie.codeGen.core.model.Column;
 import org.richie.codeGen.core.model.Table;
+import org.richie.codeGen.ui.configui.TableTreeWin;
 import org.richie.codeGen.ui.model.ColumnModel;
 
 /**
@@ -60,21 +64,26 @@ public class TableSelectUI extends JPanel implements ActionListener {
     private Table             table;
 
     private JTextField        mainTableCode;
-    private JTextField        mainTableName;
-    private JTextField        mainExtension1;
-    private JTextField        mainExtension2;
+    public JTextField         mainTableName;
+    public JTextField         mainExtension1;
+    public JTextField         mainExtension2;
 
     private JLabel            subTableCodeLabel;
     private JTextField        subTableCode;
     private JLabel            subTableNameLabel;
-    private JTextField        subTableName;
+    public JTextField         subTableName;
     private JLabel            subExtension1Label;
-    private JTextField        subExtension1;
+    public JTextField         subExtension1;
     private JLabel            subExtension2Label;
-    private JTextField        subExtension2;
+    public JTextField         subExtension2;
+
+    private JButton           addBtn;
+    private JButton           delBtn;
+    private CodeGenMainUI     parent;
 
     public TableSelectUI(JFrame parent){
         super();
+        this.parent = (CodeGenMainUI) parent;
         initLize();
     }
 
@@ -128,7 +137,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
         tcm.getColumn(14).setPreferredWidth(10);
         JScrollPane tablePanel = new JScrollPane(mainTable);
         // 增加table里按钮点击事件
-        // addTableListener();
+         addTableListener(mainTable);
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(getMainToolBar(), BorderLayout.NORTH);
@@ -158,11 +167,12 @@ public class TableSelectUI extends JPanel implements ActionListener {
 
     public JToolBar getSubToolBar() {
         JToolBar subToolBar = new JToolBar();
-        JButton button = new JButton("增加子表");
-        subToolBar.add(button);
-        subToolBar.addSeparator();
-        JButton button1 = new JButton("删除子表");
-        subToolBar.add(button1);
+        addBtn = new JButton("增加子表");
+        addBtn.addActionListener(this);
+        subToolBar.add(addBtn);
+        delBtn = new JButton("删除子表");
+        delBtn.addActionListener(this);
+        subToolBar.add(delBtn);
         subToolBar.addSeparator();
         subTableCodeLabel = new JLabel("子表表名：");
         subToolBar.add(subTableCodeLabel);
@@ -197,6 +207,8 @@ public class TableSelectUI extends JPanel implements ActionListener {
         subTable.setFont(new Font("Dialog", 0, 12));
         subTable.setRowHeight(23);
         TableColumnModel tcm = subTable.getColumnModel();
+        JComboBox uiTypeComboBox = new JComboBox(GlobalData.uiType);
+        tcm.getColumn(11).setCellEditor(new DefaultCellEditor(uiTypeComboBox));
         tcm.getColumn(0).setPreferredWidth(70);
         tcm.getColumn(1).setPreferredWidth(60);
         tcm.getColumn(2).setPreferredWidth(4);
@@ -219,9 +231,15 @@ public class TableSelectUI extends JPanel implements ActionListener {
         panel.setLayout(new BorderLayout());
         panel.add(getSubToolBar(), BorderLayout.NORTH);
         panel.add(tablePanel, BorderLayout.CENTER);
+        addTableListener(subTable);
         return panel;
     }
 
+    /**
+     * 主界面菜单选择数据库表，界面联动显示表明细
+     * 
+     * @param table
+     */
     public void initTable(Table table) {
         setTable(table);
         mainTableCode.setText(table.getTableCode());
@@ -254,6 +272,8 @@ public class TableSelectUI extends JPanel implements ActionListener {
             subTableName.setVisible(true);
             subExtension1.setVisible(true);
             subExtension2.setVisible(true);
+            delBtn.setVisible(true);
+            addBtn.setVisible(false);
         } else {
             subTableCodeLabel.setVisible(false);
             subTableNameLabel.setVisible(false);
@@ -263,6 +283,8 @@ public class TableSelectUI extends JPanel implements ActionListener {
             subTableName.setVisible(false);
             subExtension1.setVisible(false);
             subExtension2.setVisible(false);
+            delBtn.setVisible(false);
+            addBtn.setVisible(true);
         }
 
     }
@@ -281,8 +303,95 @@ public class TableSelectUI extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
+        if(e.getSource() == delBtn){
+            table.setOneToManyTables(null);
+            showSubDescription(false);
+            subTableModel.setList(new ArrayList<Column>());
+            subTable.updateUI();
+        }else if(e.getSource() == addBtn){
+            TableTreeWin win = new TableTreeWin(parent);
+            win.setBounds(this.getX()+400, this.getY()+150, win.getWidth(), win.getHeight());
+            win.setModal(true);
+            win.setVisible(true);
+            doSelected(win.getSelectedTable(), "addBtn");
+        }
+    }
 
+    /* (non-Javadoc)
+     * @see org.richie.codeGen.ui.configui.TreeSelectListener#doSelected(org.richie.codeGen.core.model.Table, java.lang.String)
+     */
+    public void doSelected(Table selectTable, String targetSource) {
+        if("addBtn".equals(targetSource)){
+            if(table == null){
+                JOptionPane.showMessageDialog(this, "请先选择主表");
+                return;
+            }
+            table.setOneToManyTables(selectTable);
+            Table sTable = selectTable;
+            if (sTable != null) {
+                showSubDescription(true);
+                subTableCode.setText(sTable.getTableCode());
+                subTableName.setText(sTable.getTableName());
+                List<Column> subList = sTable.getFields();
+                subTableModel.setList(subList);
+                subTable.updateUI();
+            } else {
+                showSubDescription(false);
+                subTableModel.setList(new ArrayList<Column>());
+                subTable.updateUI();
+            }
+        }
+    }
+    /**
+     * table cell里按钮的事件
+     */
+    private void addTableListener(JTable selectedTable) {
+        selectedTable.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JTable table =   (JTable) e.getSource();
+                int col = table.getSelectedColumn();
+                int row = table.getSelectedRow();
+                if (col == 9) {
+                    List<Column> list = mainTableModel.getList();
+                    if(table == mainTable){
+                        list = mainTableModel.getList();
+                    }else{
+                        list = subTableModel.getList();
+                    }
+                    Column column = list.get(row);
+                    TableTreeWin win = new TableTreeWin(parent);
+                    win.setBounds(getMainPanel().getX()+400, getMainPanel().getY()+150, win.getWidth(), win.getHeight());
+                    win.setModal(true);
+                    win.setVisible(true);
+                    Table selectedTable = win.getSelectedTable();
+                    column.setRefTable(selectedTable);
+                    if(selectedTable !=  null){
+                        column.setIsForeignKey(true);
+                    }else{
+                        column.setIsForeignKey(false);
+                    }
+                    table.updateUI();
+                }
+            }
+        });
     }
 
 }

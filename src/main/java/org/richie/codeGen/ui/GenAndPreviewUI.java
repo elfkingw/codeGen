@@ -90,7 +90,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         setSize(400, 400);
         setLayout(new BorderLayout());
         add(getMainPanel(), BorderLayout.CENTER);
-        initLastTemplate();// 加载最后一次推出的模板
+        initLastTemplate();// 加载最后一次退出的模板
         addTabbedPaneMouseListener();
     }
 
@@ -180,6 +180,11 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         rootPathCom.updateUI();
     }
 
+    /**
+     * 根据模板预览生成代码
+     * 
+     * @param vo
+     */
     public void previewCode(CodeTemplateVo vo) {
         try {
             String templateName = vo.getFileName();
@@ -201,12 +206,12 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             } else {
                 fileName = vo.getSuffix();
             }
-            add(fileName, codeText);
-            if (vo.getIsGenSubTable() && table != null && table.getOneToManyTables() != null) {// 如果生成子表
+            addPreviewTablePanel(fileName, codeText);
+            if (vo.getIsGenSubTable()!= null && vo.getIsGenSubTable() && table != null && table.getOneToManyTables() != null) {// 如果生成子表
                 CodeGen.initTableVelocityContext(table.getOneToManyTables());
                 codeText = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
                 fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
-                add(fileName, codeText);
+                addPreviewTablePanel(fileName, codeText);
             }
         } catch (CGException e) {
             handException("预览出错", e);
@@ -215,7 +220,13 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         }
     }
 
-    public void add(String fileName, String fileContent) {
+    /**
+     * 增加文件预览卡片页面
+     * 
+     * @param fileName
+     * @param fileContent
+     */
+    private void addPreviewTablePanel(String fileName, String fileContent) {
         final JScrollPane content = new JScrollPane();
         JTextArea viewTextArea = new JTextArea();
         viewTextArea.setText(fileContent);
@@ -245,38 +256,6 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         mainPanel.setSelectedComponent(content);
     }
 
-    private void addTabbedPaneMouseListener() {
-        mainPanel.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2 ) {
-                    int closeTabNumber = mainPanel.getSelectedIndex();
-                    if(closeTabNumber != 0){
-                        mainPanel.removeTabAt(closeTabNumber);
-                    }
-                }
-
-            }
-        });
-    }
-
     /**
      * 根据模板生成文件
      */
@@ -291,7 +270,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             setPackageContext(list);
             for (int i = 0; i < list.size(); i++) {
                 CodeTemplateVo vo = list.get(i);
-                if (vo.getIsSelected()== null || !vo.getIsSelected()) continue;
+                if (vo.getIsSelected() == null || !vo.getIsSelected()) continue;
                 boolean isSuccess = initCustomerVelocityContext(vo);
                 if (!isSuccess) {
                     return;
@@ -319,6 +298,18 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         }
     }
 
+    private void setTableValue() {
+        parent.getTable().setTableName(parent.mainTableName.getText());
+        parent.getTable().setExtension1(parent.mainExtension1.getText());
+        parent.getTable().setExtension2(parent.mainExtension2.getText());
+        Table subTable = parent.getTable().getOneToManyTables();
+        if (subTable != null) {
+            subTable.setTableName(parent.subTableName.getText());
+            subTable.setExtension1(parent.subExtension1.getText());
+            subTable.setExtension2(parent.subExtension2.getText());
+        }
+    }
+
     private void setPackageContext(List<CodeTemplateVo> list) {
         for (CodeTemplateVo vo : list) {
             String fileName = vo.getFileName();
@@ -337,6 +328,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 return false;
             }
         }
+        setTableValue();
         // 根据数据类型的配置来设置表字段的代码类型
         DataTypeUtils.setDataType(selectedTable);
         if (selectedTable != null && selectedTable.getOneToManyTables() != null) {
@@ -398,6 +390,41 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             table.updateUI();
         }
 
+    }
+
+    /**
+     * 增加tab面片事件 双击事件时，关闭所双击的tab
+     */
+    private void addTabbedPaneMouseListener() {
+        mainPanel.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int closeTabNumber = mainPanel.getSelectedIndex();
+                    if (closeTabNumber != 0) {
+                        mainPanel.removeTabAt(closeTabNumber);
+                    }
+                }
+
+            }
+        });
     }
 
     public void initLastTemplate() {

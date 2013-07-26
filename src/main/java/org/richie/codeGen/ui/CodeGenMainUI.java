@@ -189,7 +189,9 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         TableTreeNode node = (TableTreeNode) tree.getLastSelectedPathComponent();
         if (node != null && !node.isRoot() && getCenterPanel().getSelectedIndex() == 0) {
             if (node.getTable() != null) {
-                getTableSelectPanel().initTable(node.getTable());
+                //克隆一份
+                Table table = (Table) node.getTable().clone();
+                getTableSelectPanel().initTable(table);
             }
         }
 
@@ -243,7 +245,6 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             tableList = reader.getTables();
             tree = initTreeData(tableList);
             treePanel.setViewportView(tree);
-          
             getTreepanel().updateUI();
         } catch (CGException e) {
             e.printStackTrace();
@@ -269,13 +270,6 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             }
         }
         tree = initTreeData(list);
-//        tree.addMouseListener(new MouseAdapter() {
-//
-//            public void mouseClicked(MouseEvent me) {
-//                doMouseClicked(me);
-//            }
-//
-//        });
         treePanel.setViewportView(tree);
         getTreepanel().updateUI();
 
@@ -445,6 +439,16 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
                 log.error("保存最后一次代码pdm路径出错", e1);
             }
         }
+    }
+
+    
+    public List<Table> getTableList() {
+        return tableList;
+    }
+
+    
+    public void setTableList(List<Table> tableList) {
+        this.tableList = tableList;
     }
 
     public static void main(String[] args) {

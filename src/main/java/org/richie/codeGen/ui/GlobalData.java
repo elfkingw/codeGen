@@ -46,7 +46,7 @@ public class GlobalData {
     public static List<DataType>         dataTypeList;                                        // 数据类型
 
     public static String[]               costantType = new String[] { "常量", "类" };
-    public static String[]               uiType      = new String[] { "TextField", "DateField", "ComboBox", "Radio",
+    public static String[]               uiType      = new String[] { "TextField", "DateField", "ComboBox","ComboBoxTree","ComboBoxGrid", "Radio",
             "Textarea", "Tree", "CheckBox", "Other" };
 
     public static List<CodeTemplateVo> getTemplateList() throws Exception {
