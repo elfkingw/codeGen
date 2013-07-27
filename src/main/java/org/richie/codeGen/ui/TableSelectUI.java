@@ -309,6 +309,10 @@ public class TableSelectUI extends JPanel implements ActionListener {
             subTableModel.setList(new ArrayList<Column>());
             subTable.updateUI();
         }else if(e.getSource() == addBtn){
+            if(table == null){
+                JOptionPane.showMessageDialog(this, "请先选择主表");
+                return;
+            }
             TableTreeWin win = new TableTreeWin(parent);
             win.setBounds(this.getX()+400, this.getY()+150, win.getWidth(), win.getHeight());
             win.setModal(true);
@@ -322,10 +326,6 @@ public class TableSelectUI extends JPanel implements ActionListener {
      */
     public void doSelected(Table selectTable, String targetSource) {
         if("addBtn".equals(targetSource)){
-            if(table == null){
-                JOptionPane.showMessageDialog(this, "请先选择主表");
-                return;
-            }
             table.setOneToManyTables(selectTable);
             Table sTable = selectTable;
             if (sTable != null) {

@@ -17,6 +17,7 @@
 
 package org.richie.codeGen.database.util;
 
+import java.io.File;
 import java.util.List;
 
 import org.richie.codeGen.core.exception.CGException;
@@ -37,7 +38,9 @@ public class PdmParserTest extends TestCase {
         PdmParser pp = new PdmParser();
         List<Table> tabs;
         try {
-            tabs = pp.parsePdmFile("C:\\Users\\Administrator\\Desktop\\velocity.pdm");
+            String path = ClassLoader.getSystemResource("org/richie/codeGen/database/util/mysqlPdm.xml").getPath();
+            tabs = pp.parsePdmFile(path);
+            
             for (Table tab : tabs) {
                 System.out.println(tab);
                 List<Column> cList = tab.getFields();
@@ -45,7 +48,7 @@ public class PdmParserTest extends TestCase {
                     System.out.println("   " + column);
                 }
             }
-        } catch (CGException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

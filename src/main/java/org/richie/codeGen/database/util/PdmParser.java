@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -32,6 +33,7 @@ import org.dom4j.io.SAXReader;
 import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.model.Column;
 import org.richie.codeGen.core.model.Table;
+import org.richie.codeGen.database.Constants;
 
 /**
  * @author elfkingw
@@ -59,6 +61,12 @@ public class PdmParser {
         Map<String, Column> columnMap = new HashMap<String, Column>();
         String dataBaseCode = null;
         String dataBaseName = null;
+        String dataBaseType = null;
+        List<Element> headerList = doc.selectNodes("//?PowerDesigner");
+        if(headerList!= null){
+            Element rootElement= doc.getRootElement();
+            dataBaseType  =  rootElement.attributeValue("Target");
+        }
         List<Element> dList = doc.selectNodes("//o:Model");
         for (Element element : dList) {
             dataBaseName = element.elementText("Name");
@@ -70,7 +78,7 @@ public class PdmParser {
             List<Column> list = new ArrayList<Column>();
             Column column = null;
             Element tableElement = itr.next();
-            table = parseTableElement(tableElement, dataBaseCode, dataBaseName);
+            table = parseTableElement(tableElement, dataBaseCode, dataBaseName,dataBaseType);
             tableMap.put(table.getId(), table);
             String primaryKeyId = getPrimaryKeyId(tableElement);
             Iterator<Element> colItr = tableElement.element("Columns").elements("Column").iterator();
@@ -156,13 +164,14 @@ public class PdmParser {
      * @param vo
      * @param tableElement
      */
-    private static Table parseTableElement(Element tableElement, String dataBaseCode, String dataBaseName) {
+    private static Table parseTableElement(Element tableElement, String dataBaseCode, String dataBaseName,String dataBaseType) {
         Table table = new Table();
         table.setId(tableElement.attributeValue("Id"));
         table.setTableName(tableElement.elementTextTrim("Name"));
         table.setTableCode(tableElement.elementTextTrim("Code"));
         table.setDataBaseCode(dataBaseCode);
         table.setDataBaseName(dataBaseName);
+        table.setDataBaseType(getDataBaseByPdmFile(dataBaseType));
         return table;
     }
 
@@ -177,5 +186,23 @@ public class PdmParser {
         String keys_primarykey_ref_id = tableElement.element("PrimaryKey").element("Key").attributeValue("Ref");
         if (keys_primarykey_ref_id.equals(keys_key_id)) primaryKeyId = keys_column_ref;
         return primaryKeyId;
+    }
+    
+    private static String getDataBaseByPdmFile(String fileDataBaseType){
+        if(StringUtils.isEmpty(fileDataBaseType)){
+            return null;
+        }
+        if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_MYSQL)){
+            return Constants.DATABASE_TYPE_MYSQL;
+        }else if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_MSSQL)){
+            return Constants.DATABASE_TYPE_MSSQL;
+        }else if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_ORACLE)){
+            return Constants.DATABASE_TYPE_ORACLE;
+        }else if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_DB2)){
+            return Constants.DATABASE_TYPE_DB2;
+        }else if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_INFORMIX)){
+            return Constants.DATABASE_TYPE_INFORMIX;
+        }
+        return null;
     }
 }

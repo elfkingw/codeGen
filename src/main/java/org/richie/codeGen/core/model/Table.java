@@ -40,6 +40,7 @@ public class Table implements Cloneable {
     private String       dataBaseCode;
     private String       extension1;
     private String       extension2;
+    private String      dataBaseType;
 
     public String getDataBaseName() {
         return dataBaseName;
@@ -169,6 +170,14 @@ public class Table implements Cloneable {
         this.extension2 = extension2;
     }
 
+    public String getDataBaseType() {
+        return dataBaseType;
+    }
+
+    public void setDataBaseType(String dataBaseType) {
+        this.dataBaseType = dataBaseType;
+    }
+
     public String toString() {
         return ("tableCode:" + getTableCode() + " tableName:" + getTableName() + " Id:" + getId() + " ManyToOne:["
                 + (getManyToOneTables() != null ? getManyToOneTables().size() + "" : null) + "] onToMany:" + getOneToManyTables());
@@ -183,4 +192,7 @@ public class Table implements Cloneable {
         }
         return o;
     }
+
+    
+    
 }

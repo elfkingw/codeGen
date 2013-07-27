@@ -19,7 +19,7 @@ package org.richie.codeGen.core.log;
 
 
 /**
- * @author Administrator
+ * @author elfkingw
  *
  */
 public interface Log {

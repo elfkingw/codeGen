@@ -328,6 +328,9 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
     }
 
     private OutFileRootPathVo getOutFileRootPathVo(OutFileRootPathVo rootVo) {
+        if(rootVo == null){
+            rootVo= new OutFileRootPathVo();
+        }
         rootVo.setName1(rootPathName1.getText());
         rootVo.setName2(rootPathName2.getText());
         rootVo.setName3(rootPathName3.getText());

@@ -72,6 +72,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     private JTabbedPane       mainPanel;
     private JPanel            genPanel;
     private JButton           genBtn;
+    private JButton           previewBtn;
     private JButton           addLineBtn;
     private CodeTemplateModel complateModel;
     private JTable            table;
@@ -112,6 +113,9 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             addLineBtn = new JButton("增加模板");
             addLineBtn.addActionListener(this);
             northPanel.add(addLineBtn);
+            previewBtn = new JButton("生成预览");
+            previewBtn.addActionListener(this);
+            northPanel.add(previewBtn);
             genBtn = new JButton("生成文件");
             genBtn.addActionListener(this);
             northPanel.add(genBtn);
@@ -134,7 +138,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             templateNames = GlobalData.getTemplateNames();
             rootPathNames = GlobalData.getOutFileRootNames();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("界面初始", e);
         }
         templateNameCom = new JComboBox(templateNames);
         rootPathCom = new JComboBox(rootPathNames);
@@ -207,7 +211,8 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 fileName = vo.getSuffix();
             }
             addPreviewTablePanel(fileName, codeText);
-            if (vo.getIsGenSubTable()!= null && vo.getIsGenSubTable() && table != null && table.getOneToManyTables() != null) {// 如果生成子表
+            if (vo.getIsGenSubTable() != null && vo.getIsGenSubTable() && table != null
+                && table.getOneToManyTables() != null) {// 如果生成子表
                 CodeGen.initTableVelocityContext(table.getOneToManyTables());
                 codeText = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
                 fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
@@ -259,7 +264,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     /**
      * 根据模板生成文件
      */
-    private void genCodeFiles() {
+    private void genCodeFiles(boolean isPreview) {
         try {
             List<CodeTemplateVo> list = complateModel.getTemplateList();
             if (!isTemplateValidate(list)) {
@@ -281,16 +286,28 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 String fileName = parent.getTable().getClassName() + vo.getSuffix();
                 Table table = parent.getTable();
                 CodeGen.initTableVelocityContext(table);
-                CodeGen.genCode(templateName, FileUtils.getTemplatePath(), outFilePath, fileName);
-                sb.append(outFilePath + File.separator + fileName + "\n");
-                if (vo.getIsGenSubTable() && table != null && table.getOneToManyTables() != null) {// 如果生成子表
-                    CodeGen.initTableVelocityContext(table.getOneToManyTables());
-                    fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
+                if (isPreview) {
+                    String fileContent = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
+                    addPreviewTablePanel(fileName, fileContent);
+                } else {
                     CodeGen.genCode(templateName, FileUtils.getTemplatePath(), outFilePath, fileName);
                     sb.append(outFilePath + File.separator + fileName + "\n");
                 }
+                if (vo.getIsGenSubTable() && table != null && table.getOneToManyTables() != null) {// 如果生成子表
+                    CodeGen.initTableVelocityContext(table.getOneToManyTables());
+                    fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
+                    if (isPreview) {
+                        String fileContent = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
+                        addPreviewTablePanel(fileName, fileContent);
+                    } else {
+                        CodeGen.genCode(templateName, FileUtils.getTemplatePath(), outFilePath, fileName);
+                        sb.append(outFilePath + File.separator + fileName + "\n");
+                    }
+                }
             }
-            JOptionPane.showMessageDialog(this, sb.toString(), "提示", JOptionPane.INFORMATION_MESSAGE);
+            if (!isPreview){
+                JOptionPane.showMessageDialog(this, sb.toString(), "提示", JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch (CGException e) {
             handException("生成文件出错", e);
         } catch (Exception e) {
@@ -383,11 +400,13 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == genBtn) {
-            genCodeFiles();
+            genCodeFiles(false);
         } else if (e.getSource() == addLineBtn) {
             CodeTemplateVo vo = new CodeTemplateVo();
             complateModel.addRow(vo);
             table.updateUI();
+        } else if (e.getSource() == previewBtn) {
+            genCodeFiles(true);
         }
 
     }

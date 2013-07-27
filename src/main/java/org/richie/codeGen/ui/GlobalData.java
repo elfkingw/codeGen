@@ -39,15 +39,15 @@ import org.richie.codeGen.ui.util.XmlParse;
 public class GlobalData {
 
     private static Log                   log         = LogFacotry.getLogger(GlobalData.class);
-    public static List<CodeTemplateVo>   templateList;                                        // 模板
-    public static List<ConstantConfigVo> constList;                                           // 常量
-    public static OutFileRootPathVo      outFileRootPathVo;                                   // 输出路径根目录
-    public static LastOperateVo          lastOperateVo;                                       // 用户最后一次操
-    public static List<DataType>         dataTypeList;                                        // 数据类型
+    public static List<CodeTemplateVo>   templateList;                                         // 模板
+    public static List<ConstantConfigVo> constList;                                            // 常量
+    public static OutFileRootPathVo      outFileRootPathVo;                                    // 输出路径根目录
+    public static LastOperateVo          lastOperateVo;                                        // 用户最后一次操
+    public static List<DataType>         dataTypeList;                                         // 数据类型
 
     public static String[]               costantType = new String[] { "常量", "类" };
-    public static String[]               uiType      = new String[] { "TextField", "DateField", "ComboBox","ComboBoxTree","ComboBoxGrid", "Radio",
-            "Textarea", "Tree", "CheckBox", "Other" };
+    public static String[]               uiType      = new String[] { "TextField", "DateField", "ComboBox",
+            "ComboBoxTree", "ComboBoxGrid", "Radio", "Textarea", "Tree", "CheckBox", "Other" };
 
     public static List<CodeTemplateVo> getTemplateList() throws Exception {
         if (templateList == null) {
@@ -74,9 +74,9 @@ public class GlobalData {
     }
 
     public static String[] getTemplateNames() throws Exception {
-        String[] names = null;
+        String[] names = new String[] {};
         templateList = getTemplateList();
-        if (templateList != null) {
+        if (templateList != null && templateList.size()>0) {
             names = new String[templateList.size()];
             for (int i = 0; i < templateList.size(); i++) {
                 names[i] = templateList.get(i).getTemplateName();
@@ -97,15 +97,18 @@ public class GlobalData {
         if (outFileRootPathVo == null) {
             XmlParse<OutFileRootPathVo> xmlParse = new XmlParse<OutFileRootPathVo>(OutFileRootPathVo.class);
             List<OutFileRootPathVo> list = xmlParse.parseXmlFileToVo(FileUtils.getOutFileRootPath());
-            if (list != null) {
+            if (list != null && list.size() != 0) {
                 outFileRootPathVo = list.get(0);
             }
+        }
+        if(outFileRootPathVo == null){
+            outFileRootPathVo = new OutFileRootPathVo();
         }
         return outFileRootPathVo;
     }
 
     public static String[] getOutFileRootNames() throws Exception {
-        String[] names = null;
+        String[] names = new String[] {};
         OutFileRootPathVo vo = getOutFileRootPathVo();
         List<String> list = new ArrayList<String>();
         if (vo != null) {

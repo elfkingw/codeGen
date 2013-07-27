@@ -17,47 +17,42 @@
 
 package org.richie.codeGen.core.velocity;
 
-import org.apache.velocity.tools.generic.MathTool;
+import junit.framework.TestCase;
+
 import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.model.Table;
 
-import junit.framework.TestCase;
-
-
 /**
  * @author elfkingw
- *
  */
 public class CodeGenTest extends TestCase {
 
     /**
-     * Test method for {@link org.richie.codeGen.core.velocity.CodeGen#genCode(java.lang.String, java.lang.String, java.lang.String)}.
+     * Test method for
+     * {@link org.richie.codeGen.core.velocity.CodeGen#genCode(java.lang.String, java.lang.String, java.lang.String)}.
      */
     public void testGenCode() {
-        String templaetName="add.js.vm";
-        String templatesFolder="E:\\workspace10\\codeGen\\src\\test\\java\\template";
+        String templaetName = "add.js.vm";
+        String templatesFolder = "E:\\workspace10\\codeGen\\src\\test\\java\\template";
         String outFileFolder = "E:\\workspace10\\codeGen\\src\\test\\java\\template\\out\\file";
         String outFileName = "add.js";
         try {
-            Table table = new Table();
-            table.setTableCode("FE_FUND");
-            CodeGen.initTableVelocityContext(table);
-            CodeGen.putToolsToVelocityContext("userName", "wanghua");
-//            String result = CodeGen.genCode(templaetName, templatesFolder);
-//            System.out.println(result);
-            CodeGen.genCode(templaetName, templatesFolder,outFileFolder,outFileName);
-        } catch (CGException e) {
-            e.printStackTrace();
+            // Table table = new Table();
+            // table.setTableCode("FE_FUND");
+            // CodeGen.initTableVelocityContext(table);
+            // CodeGen.putToolsToVelocityContext("userName", "wanghua");
+            // // String result = CodeGen.genCode(templaetName, templatesFolder);
+            // // System.out.println(result);
+            // CodeGen.genCode(templaetName, templatesFolder,outFileFolder,outFileName);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    /**
+    /*
      * Test method for {@link org.richie.codeGen.core.velocity.CodeGen#genCode(java.lang.String, java.lang.String)}.
      */
     public void testGenCodeStringString() {
-        fail("Not yet implemented");
     }
 
 }

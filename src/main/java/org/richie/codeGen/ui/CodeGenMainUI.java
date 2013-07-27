@@ -73,7 +73,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private Log               log              = LogFacotry.getLogger(CodeGenMainUI.class);
+    private static Log               log              = LogFacotry.getLogger(CodeGenMainUI.class);
 
     private JTree             tree;
     private List<Table>       tableList;
@@ -403,7 +403,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         } catch (Exception e2) {
             log.error("获取最后一次打开文件失败", e2);
         }
-        if (lastOperateVo != null) {
+        if (lastOperateVo != null && lastOperateVo.getPdmFilePath()!= null) {
             jfc.setCurrentDirectory(new File(lastOperateVo.getPdmFilePath()));// 文件选择器的初始目录定为d盘
         } else {
             jfc.setCurrentDirectory(new File("d:\\"));// 文件选择器的初始目录定为d盘
@@ -454,12 +454,13 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            CodeGenMainUI ui = new CodeGenMainUI();
+            ui.setVisible(true);
+            ui.getTableSelectPanel().setDividerLocation();
         } catch (Exception e) {
+            log.error("初始化界面失败",e);
             e.printStackTrace();
         }
-        CodeGenMainUI ui = new CodeGenMainUI();
-        ui.setVisible(true);
-        ui.getTableSelectPanel().setDividerLocation();
         // ui.pack();
     }
 }

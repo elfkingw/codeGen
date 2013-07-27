@@ -18,8 +18,10 @@
 package org.richie.codeGen.ui.util;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -32,12 +34,15 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+import org.richie.codeGen.core.log.Log;
+import org.richie.codeGen.core.log.LogFacotry;
 
 /**
  * @author elfkingw
  */
 public class XmlParse<T> {
 
+    private Log log = LogFacotry.getLogger(XmlParse.class);
     private Class<T> entity;
 
     public XmlParse(Class<T> entity){
@@ -55,9 +60,9 @@ public class XmlParse<T> {
         try {
             doc = sr.read(f);
         } catch (DocumentException e) {
-            e.printStackTrace();
+            log.error("read xml", e);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            log.error("read xml", e);
         }
         List<T> resultList = new ArrayList<T>();
         List<Element> list = doc.getRootElement().elements();
@@ -147,12 +152,12 @@ public class XmlParse<T> {
         XMLWriter xmlWriter = null;
         try {
             // 读取文件
-            FileWriter fileWriter = new FileWriter(outFile);
+            OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(outFile),"utf-8");  
             // 设置文件编码
             OutputFormat xmlFormat = new OutputFormat();
             xmlFormat.setEncoding("UTF-8");
             // 创建写文件方法
-            xmlWriter = new XMLWriter(fileWriter, xmlFormat);
+            xmlWriter = new XMLWriter(out, xmlFormat);
             // 写入文件
             xmlWriter.write(document);
         } catch (IOException e) {
