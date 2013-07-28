@@ -28,6 +28,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -97,10 +98,12 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
             configPanel.add(getTemplatePanel(), BorderLayout.CENTER);
             JToolBar toolBar = new JToolBar();
             addLineBtn = new JButton("增加模板");
+            addLineBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/add.gif")));
             addLineBtn.addActionListener(this);
             toolBar.add(addLineBtn);
             toolBar.addSeparator();
             saveBtn = new JButton("保存");
+            saveBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/save.png")));
             saveBtn.addActionListener(this);
             toolBar.add(saveBtn);
             toolBar.setFloatable(false);

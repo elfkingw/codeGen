@@ -40,7 +40,6 @@ public class Column {
     private String  uiType;
     private String  extension1;
     private String  extension2;
-    private String  extension3;
 
     public String getExtension1() {
         return extension1;
@@ -58,13 +57,6 @@ public class Column {
         this.extension2 = extension2;
     }
 
-    public String getExtension3() {
-        return extension3;
-    }
-
-    public void setExtension3(String extension3) {
-        this.extension3 = extension3;
-    }
 
     public String getId() {
         return id;

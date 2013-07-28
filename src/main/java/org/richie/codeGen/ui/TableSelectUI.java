@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -67,6 +68,8 @@ public class TableSelectUI extends JPanel implements ActionListener {
     public JTextField         mainTableName;
     public JTextField         mainExtension1;
     public JTextField         mainExtension2;
+    private JButton           mainUpBtn;            // 上移
+    private JButton           mainDownBtn;          // 下移
 
     private JLabel            subTableCodeLabel;
     private JTextField        subTableCode;
@@ -76,6 +79,8 @@ public class TableSelectUI extends JPanel implements ActionListener {
     public JTextField         subExtension1;
     private JLabel            subExtension2Label;
     public JTextField         subExtension2;
+    private JButton           subUpBtn;             // 上移
+    private JButton           subDownBtn;           // 下移
 
     private JButton           addBtn;
     private JButton           delBtn;
@@ -134,10 +139,9 @@ public class TableSelectUI extends JPanel implements ActionListener {
         tcm.getColumn(11).setPreferredWidth(35);
         tcm.getColumn(12).setPreferredWidth(10);
         tcm.getColumn(13).setPreferredWidth(10);
-        tcm.getColumn(14).setPreferredWidth(10);
         JScrollPane tablePanel = new JScrollPane(mainTable);
         // 增加table里按钮点击事件
-         addTableListener(mainTable);
+        addTableListener(mainTable);
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(getMainToolBar(), BorderLayout.NORTH);
@@ -147,6 +151,16 @@ public class TableSelectUI extends JPanel implements ActionListener {
 
     public JToolBar getMainToolBar() {
         JToolBar mainToolBar = new JToolBar();
+        mainUpBtn = new JButton("上移");
+        mainUpBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/prev.gif")));
+        mainUpBtn.addActionListener(this);
+        mainToolBar.add(mainUpBtn);
+        mainToolBar.addSeparator();
+        mainDownBtn = new JButton("下移");
+        mainDownBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/next.gif")));
+        mainDownBtn.addActionListener(this);
+        mainToolBar.add(mainDownBtn);
+        mainToolBar.addSeparator();
         mainToolBar.add(new JLabel("主表表名："));
         mainTableCode = new JTextField(15);
         mainToolBar.add(mainTableCode);
@@ -167,10 +181,22 @@ public class TableSelectUI extends JPanel implements ActionListener {
 
     public JToolBar getSubToolBar() {
         JToolBar subToolBar = new JToolBar();
+        subUpBtn = new JButton("上移");
+        subUpBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/prev.gif")));
+        subUpBtn.addActionListener(this);
+        subToolBar.add(subUpBtn);
+        subToolBar.addSeparator();
+        subDownBtn = new JButton("下移");
+        subDownBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/next.gif")));
+        subDownBtn.addActionListener(this);
+        subToolBar.add(subDownBtn);
+        subToolBar.addSeparator();
         addBtn = new JButton("增加子表");
+        addBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/add.gif")));
         addBtn.addActionListener(this);
         subToolBar.add(addBtn);
         delBtn = new JButton("删除子表");
+        delBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/delete.gif")));
         delBtn.addActionListener(this);
         subToolBar.add(delBtn);
         subToolBar.addSeparator();
@@ -223,7 +249,6 @@ public class TableSelectUI extends JPanel implements ActionListener {
         tcm.getColumn(11).setPreferredWidth(35);
         tcm.getColumn(12).setPreferredWidth(10);
         tcm.getColumn(13).setPreferredWidth(10);
-        tcm.getColumn(14).setPreferredWidth(10);
         JScrollPane tablePanel = new JScrollPane(subTable);
         // 增加table里按钮点击事件
         // addTableListener();
@@ -303,29 +328,71 @@ public class TableSelectUI extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == delBtn){
+        if (e.getSource() == delBtn) {
             table.setOneToManyTables(null);
             showSubDescription(false);
             subTableModel.setList(new ArrayList<Column>());
             subTable.updateUI();
-        }else if(e.getSource() == addBtn){
-            if(table == null){
+        } else if (e.getSource() == addBtn) {
+            if (table == null) {
                 JOptionPane.showMessageDialog(this, "请先选择主表");
                 return;
             }
             TableTreeWin win = new TableTreeWin(parent);
-            win.setBounds(this.getX()+400, this.getY()+150, win.getWidth(), win.getHeight());
+            win.setBounds(this.getX() + 400, this.getY() + 150, win.getWidth(), win.getHeight());
             win.setModal(true);
             win.setVisible(true);
             doSelected(win.getSelectedTable(), "addBtn");
+        } else if (e.getSource() == mainUpBtn) {
+            upOrDownColumn(mainTable, mainTableModel.getList(), true);
+        } else if (e.getSource() == mainDownBtn) {
+            upOrDownColumn(mainTable, mainTableModel.getList(), false);
+        } else if (e.getSource() == subUpBtn) {
+            upOrDownColumn(subTable, subTableModel.getList(), true);
+        } else if (e.getSource() == subDownBtn) {
+            upOrDownColumn(subTable, subTableModel.getList(), false);
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.richie.codeGen.ui.configui.TreeSelectListener#doSelected(org.richie.codeGen.core.model.Table, java.lang.String)
+    /**
+     * 表选择行上移下移
+     * 
+     * @param table
+     * @param list
+     * @param isUp
+     */
+    private void upOrDownColumn(JTable table, List<Column> list, boolean isUp) {
+        int row = table.getSelectedRow();
+        if (row == -1 || list == null || list.size() == 0) {
+            JOptionPane.showMessageDialog(this, "请选择行！");
+            return;
+        } else if (row == 0 && isUp) {
+            JOptionPane.showMessageDialog(this, "已经是第一行了！");
+            return;
+        } else if (row == list.size() - 1 && !isUp) {
+            JOptionPane.showMessageDialog(this, "已经是最后一行了！");
+            return;
+        }
+        Column temp = list.get(row);
+        int nextRow = 0;
+        if (isUp) {
+            nextRow = row - 1;
+        } else {
+            nextRow = row + 1;
+        }
+        table.getSelectionModel().setSelectionInterval(nextRow, nextRow);
+        list.set(row, list.get(nextRow));
+        list.set(nextRow, temp);
+        table.updateUI();
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.richie.codeGen.ui.configui.TreeSelectListener#doSelected(org.richie.codeGen.core.model.Table,
+     * java.lang.String)
      */
     public void doSelected(Table selectTable, String targetSource) {
-        if("addBtn".equals(targetSource)){
+        if ("addBtn".equals(targetSource)) {
             table.setOneToManyTables(selectTable);
             Table sTable = selectTable;
             if (sTable != null) {
@@ -342,6 +409,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
             }
         }
     }
+
     /**
      * table cell里按钮的事件
      */
@@ -366,26 +434,27 @@ public class TableSelectUI extends JPanel implements ActionListener {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                JTable table =   (JTable) e.getSource();
+                JTable table = (JTable) e.getSource();
                 int col = table.getSelectedColumn();
                 int row = table.getSelectedRow();
                 if (col == 9) {
                     List<Column> list = mainTableModel.getList();
-                    if(table == mainTable){
+                    if (table == mainTable) {
                         list = mainTableModel.getList();
-                    }else{
+                    } else {
                         list = subTableModel.getList();
                     }
                     Column column = list.get(row);
                     TableTreeWin win = new TableTreeWin(parent);
-                    win.setBounds(getMainPanel().getX()+400, getMainPanel().getY()+150, win.getWidth(), win.getHeight());
+                    win.setBounds(getMainPanel().getX() + 400, getMainPanel().getY() + 150, win.getWidth(),
+                                  win.getHeight());
                     win.setModal(true);
                     win.setVisible(true);
                     Table selectedTable = win.getSelectedTable();
                     column.setRefTable(selectedTable);
-                    if(selectedTable !=  null){
+                    if (selectedTable != null) {
                         column.setIsForeignKey(true);
-                    }else{
+                    } else {
                         column.setIsForeignKey(false);
                     }
                     table.updateUI();

@@ -34,7 +34,7 @@ public class ColumnModel extends AbstractTableModel {
      */
     private static final long serialVersionUID = 1L;
     private String[]          titles           = {  "列代码", "列名称", "主键", "数据类型", "长度", "精度", "不能为空", "备注", "外键",
-            "外键对应表", "是否隐藏","界面控件", "扩展1", "扩展2", "扩展3" };
+            "外键对应表", "是否隐藏","界面控件", "扩展1", "扩展2"};
     private List<Column>      list;
 
     public ColumnModel(){
@@ -122,9 +122,6 @@ public class ColumnModel extends AbstractTableModel {
             case 13:
                 vo.setExtension2((String) value);
                 break;
-            case 14:
-                vo.setExtension3((String) value);
-                break;
         }
         fireTableCellUpdated(row, col);
     }
@@ -201,9 +198,6 @@ public class ColumnModel extends AbstractTableModel {
                 break;
             case 13:
                 value = vo.getExtension2();
-                break;
-            case 14:
-                value = vo.getExtension3();
                 break;
         }
         return value;

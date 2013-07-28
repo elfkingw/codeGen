@@ -111,12 +111,15 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             genPanel.add(getTemplatePanel(), BorderLayout.CENTER);
             JPanel northPanel = new JPanel();
             addLineBtn = new JButton("增加模板");
+            addLineBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/add.gif")));
             addLineBtn.addActionListener(this);
             northPanel.add(addLineBtn);
             previewBtn = new JButton("生成预览");
+            previewBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/preview1.gif")));
             previewBtn.addActionListener(this);
             northPanel.add(previewBtn);
             genBtn = new JButton("生成文件");
+            genBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/file.gif")));
             genBtn.addActionListener(this);
             northPanel.add(genBtn);
             genPanel.add(northPanel, BorderLayout.SOUTH);
@@ -239,7 +242,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         JPanel tab = new JPanel();
         tab.setOpaque(false);
         JLabel tabLabel = new JLabel(fileName);
-        ImageIcon closeXIcon = new ImageIcon(ClassLoader.getSystemResource("resources/images/remove.gif"));
+        ImageIcon closeXIcon = new ImageIcon(ClassLoader.getSystemResource("resources/images/close.gif"));
         JButton tabCloseButton = new JButton(closeXIcon);
         tabCloseButton.setToolTipText("close");
         tabCloseButton.setBorder(null);
@@ -283,7 +286,11 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 String templateName = vo.getFileName();
                 String outFilePath = GlobalData.getOutFilePathByName(vo.getOutFilePathRoot()) + File.separator
                                      + vo.getOutFilePath().replace("\u002E", File.separator);
-                String fileName = parent.getTable().getClassName() + vo.getSuffix();
+                String name = "";
+                if (parent.getTable() != null) {
+                    name = parent.getTable().getClassName();
+                }
+                String fileName = name + vo.getSuffix();
                 Table table = parent.getTable();
                 CodeGen.initTableVelocityContext(table);
                 if (isPreview) {
@@ -293,7 +300,8 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                     CodeGen.genCode(templateName, FileUtils.getTemplatePath(), outFilePath, fileName);
                     sb.append(outFilePath + File.separator + fileName + "\n");
                 }
-                if (vo.getIsGenSubTable() && table != null && table.getOneToManyTables() != null) {// 如果生成子表
+                boolean isGenSubTable = vo.getIsGenSubTable() != null ? vo.getIsGenSubTable() : false;
+                if (isGenSubTable && table != null && table.getOneToManyTables() != null) {// 如果生成子表
                     CodeGen.initTableVelocityContext(table.getOneToManyTables());
                     fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
                     if (isPreview) {
@@ -305,7 +313,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                     }
                 }
             }
-            if (!isPreview){
+            if (!isPreview) {
                 JOptionPane.showMessageDialog(this, sb.toString(), "提示", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (CGException e) {
@@ -316,14 +324,16 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     }
 
     private void setTableValue() {
-        parent.getTable().setTableName(parent.mainTableName.getText());
-        parent.getTable().setExtension1(parent.mainExtension1.getText());
-        parent.getTable().setExtension2(parent.mainExtension2.getText());
-        Table subTable = parent.getTable().getOneToManyTables();
-        if (subTable != null) {
-            subTable.setTableName(parent.subTableName.getText());
-            subTable.setExtension1(parent.subExtension1.getText());
-            subTable.setExtension2(parent.subExtension2.getText());
+        if (parent.getTable() != null) {
+            parent.getTable().setTableName(parent.mainTableName.getText());
+            parent.getTable().setExtension1(parent.mainExtension1.getText());
+            parent.getTable().setExtension2(parent.mainExtension2.getText());
+            Table subTable = parent.getTable().getOneToManyTables();
+            if (subTable != null) {
+                subTable.setTableName(parent.subTableName.getText());
+                subTable.setExtension1(parent.subExtension1.getText());
+                subTable.setExtension2(parent.subExtension2.getText());
+            }
         }
     }
 

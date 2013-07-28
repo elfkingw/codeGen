@@ -29,6 +29,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -242,9 +243,11 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
         if (buttonPanel == null) {
             buttonPanel = new JPanel();
             addLineBtn = new JButton("增加常量");
+            addLineBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/add.gif")));
             addLineBtn.addActionListener(this);
             buttonPanel.add(addLineBtn);
             saveBtn = new JButton("保存");
+            saveBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/save.png")));
             saveBtn.addActionListener(this);
             buttonPanel.add(saveBtn);
         }

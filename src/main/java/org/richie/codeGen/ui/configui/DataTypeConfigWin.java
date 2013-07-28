@@ -29,6 +29,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
@@ -140,14 +141,17 @@ public class DataTypeConfigWin extends JDialog implements ActionListener {
         if (toolBar == null) {
             toolBar = new JToolBar();
             addLineBtn = new JButton("增加类型");
+            addLineBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/add.gif")));
             addLineBtn.addActionListener(this);
             toolBar.add(addLineBtn);
             toolBar.addSeparator();
             saveBtn = new JButton("保存");
+            saveBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/save.png")));
             saveBtn.addActionListener(this);
             toolBar.add(saveBtn);
             toolBar.addSeparator();
             JButton setDefaultBtn = new JButton("设置默认类型");
+            setDefaultBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/config.gif")));
             new DropDownComponent(setDefaultBtn, getButtonPanel());
             toolBar.add(setDefaultBtn);
             toolBar.setFloatable(false);
