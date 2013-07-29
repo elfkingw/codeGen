@@ -140,13 +140,16 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
             JLabel rootNameLabel1 = new JLabel("名称:");
             panel1.add(rootNameLabel1);
             rootPathName1 = new JTextField(15);
+            rootPathName1.setEnabled(false);
             panel1.add(rootPathName1);
             JLabel rootVavlueLabel1 = new JLabel("路径:");
             panel1.add(rootVavlueLabel1);
             rootPathValue1 = new JTextField(30);
             panel1.add(rootPathValue1);
+            rootPathValue1.setEnabled(false);
             chooseBtn1 = new JButton("...");
             chooseBtn1.addActionListener(this);
+            chooseBtn1.setEnabled(false);
             panel1.add(chooseBtn1);
             northPanel.add(panel1);
 

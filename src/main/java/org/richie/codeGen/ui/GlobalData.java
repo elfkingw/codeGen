@@ -104,6 +104,8 @@ public class GlobalData {
         if(outFileRootPathVo == null){
             outFileRootPathVo = new OutFileRootPathVo();
         }
+        outFileRootPathVo.setName1("默认") ;
+        outFileRootPathVo.setPath1(FileUtils.getDefaultOutPath());
         return outFileRootPathVo;
     }
 

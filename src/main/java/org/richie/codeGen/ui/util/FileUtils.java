@@ -33,6 +33,7 @@ public class FileUtils {
 
     public static final String TEMPLATE_FOLDER               = "template";
     public static final String CONFIG_FOLDER                 = "config";
+    public static final String OUTFILE_FOLDER                = "out";
     public static final String CONFIG_TEMPLATE_FILENAME      = "CodeTemplate.xml";
     public static final String CONFIG_CONSTANT_FILENAME      = "ConstantConfig.xml";
     public static final String CONFIG_OUTFILEPATH_FILENAME   = "OutFilePath.xml";
@@ -41,17 +42,17 @@ public class FileUtils {
     public static final String CONFIG_DATA_TYPE_FILENAME     = "DataType.xml";
 
     public static String       CONFIG_ROOT_PATH              = null;
-    private static Log log = LogFacotry.getLogger(FileUtils.class);
+    private static Log         log                           = LogFacotry.getLogger(FileUtils.class);
     static {
         FileUtils utils = new FileUtils();
         String path = utils.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-        if(path.endsWith("classes/")){
+        if (path.endsWith("classes/")) {
             path = path.replace("target/classes/", "");
         }
         int lastIndex = path.lastIndexOf("/") + 1;
         CONFIG_ROOT_PATH = path.substring(0, lastIndex);
-        log.info("-----配置根路径"+path);
-        log.info("-----配置根路径1"+CONFIG_ROOT_PATH);
+        // log.info("-----配置根路径"+path);
+        // log.info("-----配置根路径1"+CONFIG_ROOT_PATH);
     }
 
     /**
@@ -133,6 +134,15 @@ public class FileUtils {
         }
         return path;
     }
+    
+    public static String getDefaultOutPath() {
+        String path = CONFIG_ROOT_PATH  + OUTFILE_FOLDER;
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return path;
+    }
 
     public static String getConfigTemplatePath() throws IOException {
         String path = getConfigPath() + File.separator + CONFIG_TEMPLATE_FILENAME;
@@ -163,12 +173,12 @@ public class FileUtils {
         String path = getConfigPath() + File.separator + CONFIG_DATA_TYPE_FILENAME;
         return path;
     }
-    
+
     public static void main(String[] args) {
         String path = "C:/Users/Administrator/Desktop/codeGen/codeGen-0.0.1-SNAPSHOT-jar-with-dependencies.jar";
         int lastIndex = path.lastIndexOf("/") + 1;
         CONFIG_ROOT_PATH = path.substring(0, lastIndex);
-        log.info("-----配置根路径"+path);
-        log.info("-----配置根路径1"+CONFIG_ROOT_PATH);
+        log.info("-----配置根路径" + path);
+        log.info("-----配置根路径1" + CONFIG_ROOT_PATH);
     }
 }
