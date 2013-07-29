@@ -105,6 +105,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, getWestPanel(), getCenterPanel());
         split.setContinuousLayout(false);
         split.setOneTouchExpandable(true);
+        split.setDividerLocation(150);
         add(split, BorderLayout.CENTER);
         openLastPdmFile();
         addCloseListener();
