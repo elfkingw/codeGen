@@ -17,14 +17,12 @@
 
 package org.richie.codeGen.database.util;
 
-import java.io.File;
 import java.util.List;
 
-import org.richie.codeGen.core.exception.CGException;
+import junit.framework.TestCase;
+
 import org.richie.codeGen.core.model.Column;
 import org.richie.codeGen.core.model.Table;
-
-import junit.framework.TestCase;
 
 /**
  * @author elfkingw

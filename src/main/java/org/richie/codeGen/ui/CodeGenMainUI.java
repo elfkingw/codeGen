@@ -39,6 +39,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JTree;
@@ -101,8 +102,10 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         setLayout(new BorderLayout(5, 5));
         // 初始化MenuBar
         initMenuBar();
-        add(getWestPanel(), BorderLayout.WEST);
-        add(getCenterPanel(), BorderLayout.CENTER);
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, getWestPanel(), getCenterPanel());
+        split.setContinuousLayout(false);
+        split.setOneTouchExpandable(true);
+        add(split, BorderLayout.CENTER);
         openLastPdmFile();
         addCloseListener();
     }
