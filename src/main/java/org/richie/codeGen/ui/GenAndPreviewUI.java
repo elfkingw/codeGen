@@ -203,6 +203,10 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         return tablePanel;
     }
 
+    /**
+     * set the text to log panel
+     * @param text
+     */
     public void setLog(String text) {
         if (!StringUtils.isEmpty(text)) {
             logTextArea.setText(logTextArea.getText() + text);
