@@ -44,7 +44,7 @@ public class TableTreeNode extends DefaultMutableTreeNode{
         this.column = column;
     }
     public TableTreeNode(Table table){
-        super(table.getTableName()+":"+table.getTableCode());
+        super(table.getName()+":"+table.getCode());
         this.table = table;
     }
     public TableTreeNode(Column column){

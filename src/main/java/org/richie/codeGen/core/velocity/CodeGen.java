@@ -52,6 +52,8 @@ public class CodeGen {
     
     static {
         initVelocity();
+        putDefaultToolsToVelocityContext();
+        initCustomerVelocityContext();
     }
 
     /**
@@ -87,8 +89,6 @@ public class CodeGen {
         File f = new File(templatesFolder, templateName);
         if (f.exists()) {
             VelocityContext context = new VelocityContext();
-            putToolsToVelocityContext();
-            initCustomerVelocityContext();
             insertInVelocityContext(map, context);
             context.put("map", map);
             FileReader reader = null;
@@ -147,7 +147,7 @@ public class CodeGen {
      * @param table
      */
     public static void initTableVelocityContext(Table table){
-        map.put("model", table);
+        map.put("table", table);
     }
     
     /**
@@ -156,7 +156,7 @@ public class CodeGen {
      * - $tools
      * - $velocityTools
      */
-    private static void putToolsToVelocityContext() {
+    private static void putDefaultToolsToVelocityContext() {
         map.put("stringUtils", new StringUtil());
         map.put("date", new Date());
         map.put("year", String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));

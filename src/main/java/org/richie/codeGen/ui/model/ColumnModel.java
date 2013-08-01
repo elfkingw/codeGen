@@ -185,7 +185,7 @@ public class ColumnModel extends AbstractTableModel {
                 value = vo.getIsForeignKey();
                 break;
             case 9:
-                if (vo.getRefTable() != null) value = vo.getRefTable().getTableCode();
+                if (vo.getRefTable() != null) value = vo.getRefTable().getCode();
                 break;
             case 10:
                 value = vo.getIsHiden();

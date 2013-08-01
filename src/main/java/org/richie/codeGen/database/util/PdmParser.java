@@ -167,8 +167,8 @@ public class PdmParser {
     private static Table parseTableElement(Element tableElement, String dataBaseCode, String dataBaseName,String dataBaseType) {
         Table table = new Table();
         table.setId(tableElement.attributeValue("Id"));
-        table.setTableName(tableElement.elementTextTrim("Name"));
-        table.setTableCode(tableElement.elementTextTrim("Code"));
+        table.setName(tableElement.elementTextTrim("Name"));
+        table.setCode(tableElement.elementTextTrim("Code"));
         table.setDataBaseCode(dataBaseCode);
         table.setDataBaseName(dataBaseName);
         table.setDataBaseType(getDataBaseByPdmFile(dataBaseType));

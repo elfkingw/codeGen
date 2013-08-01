@@ -158,8 +158,8 @@ public class TableTreeWin extends JDialog implements ActionListener {
         }
         List<Table> list = new ArrayList<Table>();
         for (Table table : tableList) {
-            if (table.getTableName().toLowerCase().contains(filterStr.toLowerCase())
-                || table.getTableCode().toLowerCase().contains(filterStr.toLowerCase())) {
+            if (table.getName().toLowerCase().contains(filterStr.toLowerCase())
+                || table.getCode().toLowerCase().contains(filterStr.toLowerCase())) {
                 list.add(table);
             }
         }

@@ -267,16 +267,16 @@ public class TableSelectUI extends JPanel implements ActionListener {
      */
     public void initTable(Table table) {
         setTable(table);
-        mainTableCode.setText(table.getTableCode());
-        mainTableName.setText(table.getTableName());
+        mainTableCode.setText(table.getCode());
+        mainTableName.setText(table.getName());
         List<Column> list = table.getFields();
         mainTableModel.setList(list);
         mainTable.updateUI();
         Table sTable = table.getOneToManyTables();
         if (sTable != null) {
             showSubDescription(true);
-            subTableCode.setText(sTable.getTableCode());
-            subTableName.setText(sTable.getTableName());
+            subTableCode.setText(sTable.getCode());
+            subTableName.setText(sTable.getName());
             List<Column> subList = sTable.getFields();
             subTableModel.setList(subList);
             subTable.updateUI();
@@ -397,8 +397,8 @@ public class TableSelectUI extends JPanel implements ActionListener {
             Table sTable = selectTable;
             if (sTable != null) {
                 showSubDescription(true);
-                subTableCode.setText(sTable.getTableCode());
-                subTableName.setText(sTable.getTableName());
+                subTableCode.setText(sTable.getCode());
+                subTableName.setText(sTable.getName());
                 List<Column> subList = sTable.getFields();
                 subTableModel.setList(subList);
                 subTable.updateUI();

@@ -29,8 +29,8 @@ import org.richie.codeGen.ui.model.OutFileRootPathVo;
 public class Table implements Cloneable {
 
     private String       id;
-    private String       tableCode;
-    private String       tableName;
+    private String       code;
+    private String       name;
     private List<Column> fields;
     private String       className;
     private List<Table>  manyToOneTables;
@@ -40,7 +40,7 @@ public class Table implements Cloneable {
     private String       dataBaseCode;
     private String       extension1;
     private String       extension2;
-    private String      dataBaseType;
+    private String       dataBaseType;
 
     public String getDataBaseName() {
         return dataBaseName;
@@ -82,20 +82,20 @@ public class Table implements Cloneable {
         this.id = id;
     }
 
-    public String getTableCode() {
-        return tableCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setTableCode(String tableCode) {
-        this.tableCode = tableCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getTableName() {
-        return tableName;
+    public String getName() {
+        return name;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Column> getFields() {
@@ -107,7 +107,7 @@ public class Table implements Cloneable {
     }
 
     public String getClassName() {
-        if (className == null && tableCode != null) {
+        if (className == null && code != null) {
             String prefix = null;
             try {
                 OutFileRootPathVo vo = GlobalData.getOutFileRootPathVo();
@@ -117,7 +117,7 @@ public class Table implements Cloneable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            String tableCode = getTableCode();
+            String tableCode = getCode();
             if (prefix != null) {
                 String[] prefixs = prefix.split(",");
                 for (String prefixStr : prefixs) {
@@ -179,7 +179,7 @@ public class Table implements Cloneable {
     }
 
     public String toString() {
-        return ("tableCode:" + getTableCode() + " tableName:" + getTableName() + " Id:" + getId() + " ManyToOne:["
+        return ("tableCode:" + getCode() + " tableName:" + getName() + " Id:" + getId() + " ManyToOne:["
                 + (getManyToOneTables() != null ? getManyToOneTables().size() + "" : null) + "] onToMany:" + getOneToManyTables());
     }
 
@@ -193,6 +193,4 @@ public class Table implements Cloneable {
         return o;
     }
 
-    
-    
 }

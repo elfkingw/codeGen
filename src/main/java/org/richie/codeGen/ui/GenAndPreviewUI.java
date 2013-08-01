@@ -25,7 +25,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -37,9 +41,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JToolBar;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
@@ -48,6 +54,7 @@ import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.core.model.Table;
+import org.richie.codeGen.core.util.DateUtil;
 import org.richie.codeGen.core.util.StringUtil;
 import org.richie.codeGen.core.velocity.CodeGen;
 import org.richie.codeGen.database.util.DataTypeUtils;
@@ -80,6 +87,9 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     private String[]          rootPathNames;
     private JComboBox         templateNameCom;
     private JComboBox         rootPathCom;
+    private JTextArea         logTextArea;
+    private JSplitPane        split;
+    private JButton           clearLogBtn;
 
     public GenAndPreviewUI(TableSelectUI parent){
         super();
@@ -108,7 +118,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         if (genPanel == null) {
             genPanel = new JPanel();
             genPanel.setLayout(new BorderLayout());
-            genPanel.add(getTemplatePanel(), BorderLayout.CENTER);
+            genPanel.add(getCenterPanel(), BorderLayout.CENTER);
             JPanel northPanel = new JPanel();
             addLineBtn = new JButton("增加模板");
             addLineBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/add.gif")));
@@ -125,6 +135,30 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             genPanel.add(northPanel, BorderLayout.SOUTH);
         }
         return genPanel;
+    }
+
+    public JSplitPane getCenterPanel() {
+        JToolBar logToolBar = new JToolBar();
+        logToolBar.setFloatable(false);
+        clearLogBtn = new JButton("清除日志");
+        clearLogBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/next.gif")));
+        clearLogBtn.addActionListener(this);
+        clearLogBtn.addActionListener(this);
+        logToolBar.add(clearLogBtn);
+        logToolBar.addSeparator();
+        JPanel logPanel = new JPanel();
+        logPanel.setLayout(new BorderLayout());
+        JScrollPane textPanel = new JScrollPane();
+        logTextArea = new JTextArea();
+        logTextArea.setMinimumSize(new Dimension(1, 1));
+        textPanel.setViewportView(logTextArea);
+        logPanel.add(logToolBar, BorderLayout.NORTH);
+        logPanel.add(textPanel, BorderLayout.CENTER);
+        split = new JSplitPane(JSplitPane.VERTICAL_SPLIT, getTemplatePanel(), logPanel);
+        split.setContinuousLayout(false);
+        split.setOneTouchExpandable(true);
+        split.setDividerLocation(400);
+        return split;
     }
 
     public JScrollPane getTemplatePanel() {
@@ -169,6 +203,20 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         return tablePanel;
     }
 
+    public void setLog(String text) {
+        if (!StringUtils.isEmpty(text)) {
+            logTextArea.setText(logTextArea.getText() + text);
+            split.setDividerLocation(250);
+            split.updateUI();
+        }
+    }
+
+    public void clearLog() {
+        logTextArea.setText("");
+        split.setDividerLocation(700);
+        split.updateUI();
+    }
+
     public void refreshComBoBox() {
         try {
             templateNames = GlobalData.getTemplateNames();
@@ -199,11 +247,13 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, "模板文件不能为空！", "提示", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
+            clearLog();
             setPackageContext(complateModel.getTemplateList());
             boolean isSuccess = initCustomerVelocityContext(vo);
             if (!isSuccess) {
                 return;
             }
+            Date startDate = new Date();
             Table table = parent.getTable();
             CodeGen.initTableVelocityContext(table);
             String codeText = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
@@ -213,18 +263,59 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             } else {
                 fileName = vo.getSuffix();
             }
+            logGenFile(startDate, fileName);
             addPreviewTablePanel(fileName, codeText);
             if (vo.getIsGenSubTable() != null && vo.getIsGenSubTable() && table != null
                 && table.getOneToManyTables() != null) {// 如果生成子表
+                startDate = new Date();
                 CodeGen.initTableVelocityContext(table.getOneToManyTables());
                 codeText = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
                 fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
+                logGenFile(startDate, fileName);
                 addPreviewTablePanel(fileName, codeText);
             }
         } catch (CGException e) {
             handException("预览出错", e);
         } catch (Exception e) {
             handException("预览出错", e);
+        }
+    }
+
+    private void logGenFile(Date startDate, String fileName) {
+        BufferedReader reader = null;
+        StringBuilder sb = new StringBuilder("");
+        try {
+            File logFile = new File(FileUtils.CONFIG_ROOT_PATH + File.separator + "velocity.log");
+            if (logFile.exists()) {
+                reader = new BufferedReader(new FileReader(logFile));
+                String line = null;
+                boolean isStart = false;
+                while ((line = reader.readLine()) != null) {
+                    if (!isStart) {
+                        String time = line.substring(0, 23);
+                        if (time.startsWith("20")) {
+                            String startDateStr = DateUtil.formatDate(startDate, "yyyy-MM-dd HH:mm:ss,SSS");
+                            if (time.compareTo(startDateStr) >= 0) {
+                                isStart = true;
+                            }
+                        }
+                    }
+                    if (isStart) {
+                        sb.append(line + "\n");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("读取velocity.log失败！", e);
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (sb.length() > 0) {
+            setLog("===================文件【" + fileName + "】的日志=======================\n" + sb.toString());
         }
     }
 
@@ -273,6 +364,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             if (!isTemplateValidate(list)) {
                 return;
             }
+            clearLog();
             StringBuilder sb = new StringBuilder();
             sb.append("成功生成如下文件：\n");
             setPackageContext(list);
@@ -290,6 +382,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 if (parent.getTable() != null) {
                     name = parent.getTable().getClassName();
                 }
+                Date startDate = new Date();
                 String fileName = name + vo.getSuffix();
                 Table table = parent.getTable();
                 CodeGen.initTableVelocityContext(table);
@@ -300,8 +393,10 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                     CodeGen.genCode(templateName, FileUtils.getTemplatePath(), outFilePath, fileName);
                     sb.append(outFilePath + File.separator + fileName + "\n");
                 }
+                logGenFile(startDate, fileName);
                 boolean isGenSubTable = vo.getIsGenSubTable() != null ? vo.getIsGenSubTable() : false;
                 if (isGenSubTable && table != null && table.getOneToManyTables() != null) {// 如果生成子表
+                    startDate = new Date();
                     CodeGen.initTableVelocityContext(table.getOneToManyTables());
                     fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
                     if (isPreview) {
@@ -311,6 +406,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                         CodeGen.genCode(templateName, FileUtils.getTemplatePath(), outFilePath, fileName);
                         sb.append(outFilePath + File.separator + fileName + "\n");
                     }
+                    logGenFile(startDate, fileName);
                 }
             }
             if (!isPreview) {
@@ -325,12 +421,12 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
 
     private void setTableValue() {
         if (parent.getTable() != null) {
-            parent.getTable().setTableName(parent.mainTableName.getText());
+            parent.getTable().setName(parent.mainTableName.getText());
             parent.getTable().setExtension1(parent.mainExtension1.getText());
             parent.getTable().setExtension2(parent.mainExtension2.getText());
             Table subTable = parent.getTable().getOneToManyTables();
             if (subTable != null) {
-                subTable.setTableName(parent.subTableName.getText());
+                subTable.setName(parent.subTableName.getText());
                 subTable.setExtension1(parent.subExtension1.getText());
                 subTable.setExtension2(parent.subExtension2.getText());
             }
@@ -417,6 +513,8 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             table.updateUI();
         } else if (e.getSource() == previewBtn) {
             genCodeFiles(true);
+        } else if (e.getSource() == clearLogBtn) {
+            clearLog();
         }
 
     }
