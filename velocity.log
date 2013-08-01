@@ -1,230 +1,45 @@
-2013-07-29 19:48:33,507 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2013-07-29 19:48:33,507 - Default ResourceManager initialization complete.
-2013-07-29 19:48:33,517 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2013-07-29 19:48:33,517 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2013-07-29 19:48:33,517 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2013-07-29 19:48:33,517 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2013-07-29 19:48:33,517 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2013-07-29 19:48:33,517 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2013-07-29 19:48:33,527 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2013-07-29 19:48:33,527 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2013-07-29 19:48:33,527 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2013-07-29 19:48:33,617 - Created '20' parsers.
-2013-07-29 19:48:33,637 - Velocimacro : initialization starting.
-2013-07-29 19:48:33,637 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2013-07-29 19:48:33,637 - Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
-2013-07-29 19:48:33,637 - Velocimacro : Default library not found.
-2013-07-29 19:48:33,637 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2013-07-29 19:48:33,637 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2013-07-29 19:48:33,637 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2013-07-29 19:48:33,637 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2013-07-29 19:48:33,637 - Velocimacro : Velocimacro : initialization complete.
-2013-07-29 19:48:33,637 - RuntimeInstance successfully initialized.
-2013-07-29 19:48:34,020 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
-2013-07-29 19:48:34,020 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
-2013-07-29 19:48:34,020 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 21, column 21] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 23, column 22] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 25, column 24] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 32, column 36] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 35, column 61] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 35, column 93] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 42, column 33] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 66, column 52] : $table.code(");
-			strSql.Append(strSql1.ToString().Remove(strSql1.Length - 1));
-			strSql.Append(") cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 78, column 36] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 81, column 47] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 102, column 61] : ${table.getKeyEqualsModeSelfString($model)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 109, column 43] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 112, column 47] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 141, column 36] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 144, column 52] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 145, column 39] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 155, column 52] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 163, column 24] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 163, column 73] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 167, column 41] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 168, column 46] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 169, column 61] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 170, column 25] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 170, column 75] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,020 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 174, column 1]
-2013-07-29 19:48:34,020 - Null reference [template '', line 237, column 47] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 238, column 46] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 257, column 41] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 258, column 46] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 276, column 29] : ${util.toUpperCase($table.ColCodes)} cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 276, column 71] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 283, column 37] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 283, column 128] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 283, column 171] : $table.code cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 288, column 42] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 19:48:34,020 - Null reference [template '', line 290, column 38] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 19:48:34,580 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
-2013-07-29 19:48:34,580 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
-2013-07-29 19:48:34,580 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 21, column 21] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 23, column 22] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 25, column 24] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 32, column 36] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 35, column 61] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 35, column 93] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 42, column 33] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 66, column 52] : $table.code(");
-			strSql.Append(strSql1.ToString().Remove(strSql1.Length - 1));
-			strSql.Append(") cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 78, column 36] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 81, column 47] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 102, column 61] : ${table.getKeyEqualsModeSelfString($model)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 109, column 43] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 112, column 47] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 141, column 36] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 144, column 52] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 145, column 39] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 155, column 52] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 163, column 24] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 163, column 73] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 167, column 41] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 168, column 46] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 169, column 61] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 170, column 25] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 170, column 75] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 19:48:34,580 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 174, column 1]
-2013-07-29 19:48:34,580 - Null reference [template '', line 237, column 47] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 238, column 46] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 257, column 41] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 258, column 46] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 276, column 29] : ${util.toUpperCase($table.ColCodes)} cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 276, column 71] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 283, column 37] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 283, column 128] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 283, column 171] : $table.code cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 288, column 42] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 19:48:34,580 - Null reference [template '', line 290, column 38] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 20:12:36,820 - Log4JLogChute initialized using file 'velocity.log'
-2013-07-29 20:12:36,821 - The version of log4j being used does not support the "trace" level.
-2013-07-29 20:12:36,821 - Initializing Velocity, Calling init()...
-2013-07-29 20:12:36,821 - *******************************************************************
-2013-07-29 20:12:36,821 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
-2013-07-29 20:12:36,821 - RuntimeInstance initializing.
-2013-07-29 20:12:36,821 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
-2013-07-29 20:12:36,821 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
-2013-07-29 20:12:36,821 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
-2013-07-29 20:12:36,821 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
-2013-07-29 20:12:36,821 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
-2013-07-29 20:12:36,824 - Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
-2013-07-29 20:12:36,826 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-2013-07-29 20:12:36,827 - ClasspathResourceLoader : initialization complete.
-2013-07-29 20:12:36,836 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
-2013-07-29 20:12:36,836 - Default ResourceManager initialization complete.
-2013-07-29 20:12:36,838 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
-2013-07-29 20:12:36,839 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
-2013-07-29 20:12:36,840 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
-2013-07-29 20:12:36,841 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
-2013-07-29 20:12:36,842 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
-2013-07-29 20:12:36,843 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
-2013-07-29 20:12:36,844 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
-2013-07-29 20:12:36,846 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
-2013-07-29 20:12:36,847 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
-2013-07-29 20:12:36,892 - Created '20' parsers.
-2013-07-29 20:12:36,899 - Velocimacro : initialization starting.
-2013-07-29 20:12:36,899 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
-2013-07-29 20:12:36,899 - Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
-2013-07-29 20:12:36,899 - Velocimacro : Default library not found.
-2013-07-29 20:12:36,899 - Velocimacro : allowInline = true : VMs can be defined inline in templates
-2013-07-29 20:12:36,899 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
-2013-07-29 20:12:36,899 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
-2013-07-29 20:12:36,899 - Velocimacro : autoload off : VM system will not automatically reload global library macros
-2013-07-29 20:12:36,900 - Velocimacro : Velocimacro : initialization complete.
-2013-07-29 20:12:36,900 - RuntimeInstance successfully initialized.
-2013-07-29 20:12:37,092 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
-2013-07-29 20:12:37,093 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
-2013-07-29 20:12:37,093 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,093 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
-2013-07-29 20:12:37,093 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
-2013-07-29 20:12:37,093 - Null reference [template '', line 21, column 21] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,093 - Null reference [template '', line 23, column 22] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,093 - Null reference [template '', line 25, column 24] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,093 - Null reference [template '', line 32, column 36] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 20:12:37,093 - Null reference [template '', line 35, column 61] : $table.code cannot be resolved.
-2013-07-29 20:12:37,093 - Null reference [template '', line 35, column 93] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 42, column 33] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 66, column 52] : $table.code(");
-			strSql.Append(strSql1.ToString().Remove(strSql1.Length - 1));
-			strSql.Append(") cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 78, column 36] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 81, column 47] : $table.code cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 102, column 61] : ${table.getKeyEqualsModeSelfString($model)} cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 109, column 43] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 112, column 47] : $table.code cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 141, column 36] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 144, column 52] : $table.code cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 145, column 39] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 155, column 52] : $table.code cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 163, column 24] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 163, column 73] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 167, column 41] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 20:12:37,094 - Null reference [template '', line 168, column 46] : $table.code cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 169, column 61] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 170, column 25] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 170, column 75] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,095 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 174, column 1]
-2013-07-29 20:12:37,095 - Null reference [template '', line 237, column 47] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 238, column 46] : $table.code cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 257, column 41] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 258, column 46] : $table.code cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 276, column 29] : ${util.toUpperCase($table.ColCodes)} cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 276, column 71] : $table.code cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 283, column 37] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 283, column 128] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 20:12:37,095 - Null reference [template '', line 283, column 171] : $table.code cannot be resolved.
-2013-07-29 20:12:37,096 - Null reference [template '', line 288, column 42] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 20:12:37,096 - Null reference [template '', line 290, column 38] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 20:12:37,635 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
-2013-07-29 20:12:37,636 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
-2013-07-29 20:12:37,636 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,636 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
-2013-07-29 20:12:37,636 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
-2013-07-29 20:12:37,636 - Null reference [template '', line 21, column 21] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,636 - Null reference [template '', line 23, column 22] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,636 - Null reference [template '', line 25, column 24] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,636 - Null reference [template '', line 32, column 36] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 20:12:37,636 - Null reference [template '', line 35, column 61] : $table.code cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 35, column 93] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 42, column 33] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 66, column 52] : $table.code(");
-			strSql.Append(strSql1.ToString().Remove(strSql1.Length - 1));
-			strSql.Append(") cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 78, column 36] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 81, column 47] : $table.code cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 102, column 61] : ${table.getKeyEqualsModeSelfString($model)} cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 109, column 43] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 112, column 47] : $table.code cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 141, column 36] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 20:12:37,637 - Null reference [template '', line 144, column 52] : $table.code cannot be resolved.
-2013-07-29 20:12:37,638 - Null reference [template '', line 145, column 39] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 20:12:37,638 - Null reference [template '', line 155, column 52] : $table.code cannot be resolved.
-2013-07-29 20:12:37,638 - Null reference [template '', line 163, column 24] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,638 - Null reference [template '', line 163, column 73] : $table.KeyColCodesParamString cannot be resolved.
-2013-07-29 20:12:37,638 - Null reference [template '', line 167, column 41] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 20:12:37,638 - Null reference [template '', line 168, column 46] : $table.code cannot be resolved.
-2013-07-29 20:12:37,638 - Null reference [template '', line 169, column 61] : $table.KeyEqualsSelfString cannot be resolved.
-2013-07-29 20:12:37,638 - Null reference [template '', line 170, column 25] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,639 - Null reference [template '', line 170, column 75] : ${util.formateStringTwo($table.code)} cannot be resolved.
-2013-07-29 20:12:37,639 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 174, column 1]
-2013-07-29 20:12:37,639 - Null reference [template '', line 237, column 47] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 20:12:37,639 - Null reference [template '', line 238, column 46] : $table.code cannot be resolved.
-2013-07-29 20:12:37,639 - Null reference [template '', line 257, column 41] : $util.toUpperCase($table.ColCodes) cannot be resolved.
-2013-07-29 20:12:37,639 - Null reference [template '', line 258, column 46] : $table.code cannot be resolved.
-2013-07-29 20:12:37,639 - Null reference [template '', line 276, column 29] : ${util.toUpperCase($table.ColCodes)} cannot be resolved.
-2013-07-29 20:12:37,639 - Null reference [template '', line 276, column 71] : $table.code cannot be resolved.
-2013-07-29 20:12:37,644 - Null reference [template '', line 283, column 37] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 20:12:37,644 - Null reference [template '', line 283, column 128] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 20:12:37,644 - Null reference [template '', line 283, column 171] : $table.code cannot be resolved.
-2013-07-29 20:12:37,644 - Null reference [template '', line 288, column 42] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
-2013-07-29 20:12:37,644 - Null reference [template '', line 290, column 38] : $util.toUpperCase($table.KeyColCodes) cannot be resolved.
+2013-08-01 23:55:25,831 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:55:25,832 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:55:25,832 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:55:25,832 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:55:25,832 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-01 23:55:25,881 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:55:25,881 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:55:25,881 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:55:25,881 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:55:25,881 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-01 23:55:25,909 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:55:25,909 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:55:25,909 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:55:25,909 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:55:25,909 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-01 23:56:18,569 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:56:18,569 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:56:18,569 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:56:18,569 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:56:18,569 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-01 23:56:18,588 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:56:18,588 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:56:18,588 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:56:18,588 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:56:18,588 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-01 23:56:18,618 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:56:18,618 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:56:18,618 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:56:18,618 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:56:18,618 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-01 23:56:41,983 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:56:41,983 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:56:41,983 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:56:41,984 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:56:41,984 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-01 23:56:42,002 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:56:42,002 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:56:42,002 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:56:42,003 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:56:42,003 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-01 23:56:42,032 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-01 23:56:42,032 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-01 23:56:42,032 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-01 23:56:42,033 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-01 23:56:42,033 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
