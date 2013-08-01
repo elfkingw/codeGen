@@ -211,6 +211,9 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * clear log
+     */
     public void clearLog() {
         logTextArea.setText("");
         split.setDividerLocation(700);
