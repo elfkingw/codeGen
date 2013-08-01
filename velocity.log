@@ -43,3 +43,53 @@
 2013-08-01 23:56:42,032 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
 2013-08-01 23:56:42,033 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
 2013-08-01 23:56:42,033 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:02:35,018 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:02:35,018 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:02:35,018 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:02:35,018 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:02:35,018 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:02:35,034 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:02:35,034 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:02:35,035 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:02:35,035 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:02:35,035 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:02:35,064 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:02:35,064 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:02:35,064 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:02:35,064 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:02:35,064 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:09:17,867 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:09:17,867 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:09:17,867 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:09:17,867 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:09:17,867 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:09:17,891 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:09:17,891 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:09:17,891 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:09:17,891 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:09:17,891 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:09:17,918 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:09:17,918 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:09:17,918 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:09:17,918 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:09:17,918 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:09:23,415 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:09:23,415 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:09:23,415 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:09:23,415 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:09:23,415 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:09:23,435 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:09:23,435 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:09:23,435 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:09:23,435 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:09:23,435 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:09:28,332 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:09:28,333 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:09:28,333 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:09:28,333 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:09:28,333 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
+2013-08-02 00:09:28,358 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 1, column 1]
+2013-08-02 00:09:28,358 - RHS of #set statement is null. Context will not be modified. <unknown template>[line 2, column 1]
+2013-08-02 00:09:28,358 - Null reference [template '', line 11, column 13] : ${util.formateStringTwo($table.code)} cannot be resolved.
+2013-08-02 00:09:28,358 - Null reference [template '', line 14, column 13] : $util.nowDate() cannot be resolved.
+2013-08-02 00:09:28,358 - Null reference [template '', line 15, column 18] : $util.formateStringTwo($table.code) cannot be resolved.
