@@ -34,6 +34,7 @@ public class FileUtils {
     public static final String TEMPLATE_FOLDER               = "template";
     public static final String CONFIG_FOLDER                 = "config";
     public static final String OUTFILE_FOLDER                = "out";
+    public static final String HELP_FOLDER                   = "help";
     public static final String CONFIG_TEMPLATE_FILENAME      = "CodeTemplate.xml";
     public static final String CONFIG_CONSTANT_FILENAME      = "ConstantConfig.xml";
     public static final String CONFIG_OUTFILEPATH_FILENAME   = "OutFilePath.xml";
@@ -134,9 +135,18 @@ public class FileUtils {
         }
         return path;
     }
-    
+
     public static String getDefaultOutPath() {
-        String path = CONFIG_ROOT_PATH  + OUTFILE_FOLDER;
+        String path = CONFIG_ROOT_PATH + OUTFILE_FOLDER;
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        return path;
+    }
+    
+    public static String getHelpPath() {
+        String path = CONFIG_ROOT_PATH + HELP_FOLDER;
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();

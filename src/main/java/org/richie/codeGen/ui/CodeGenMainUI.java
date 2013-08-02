@@ -18,6 +18,7 @@
 package org.richie.codeGen.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -27,9 +28,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -64,6 +67,7 @@ import org.richie.codeGen.ui.configui.DataTypeConfigWin;
 import org.richie.codeGen.ui.configui.TemplateConfigWin;
 import org.richie.codeGen.ui.model.LastOperateVo;
 import org.richie.codeGen.ui.model.TableTreeNode;
+import org.richie.codeGen.ui.util.FileUtils;
 
 /**
  * @author elfkingw
@@ -74,7 +78,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private static Log               log              = LogFacotry.getLogger(CodeGenMainUI.class);
+    private static Log        log              = LogFacotry.getLogger(CodeGenMainUI.class);
 
     private JTree             tree;
     private List<Table>       tableList;
@@ -86,10 +90,11 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
     private JTextField        filterField;
 
     private JMenuItem         openPdmFileItem;                                             // pdm文件菜单项
-    private JMenuItem         miAbout;                                                     // 关于菜单项
     private JMenuItem         templateConfigItem;                                          // 模板配置菜单项
     private JMenuItem         consConfigItem;                                              // 常量配置菜单项
     private JMenuItem         dataTypeConfigItem;                                          // 数据类型菜单项
+    private JMenuItem         helpDoc;                                                     // 怎么编写模板
+    private JMenuItem         miAbout;                                                     // 关于菜单项
 
     public CodeGenMainUI(){
         initlize();
@@ -116,6 +121,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         JMenu fileMenu = new JMenu("文件");
         menuBar.add(fileMenu);
         openPdmFileItem = new JMenuItem("打开dpm");
+        openPdmFileItem.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/pdm.png")));
         fileMenu.add(openPdmFileItem);
         JMenu configMenu = new JMenu("系统配置");
         menuBar.add(configMenu);
@@ -130,6 +136,10 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         configMenu.add(dataTypeConfigItem);
         JMenu mnHelp = new JMenu("帮助");
         menuBar.add(mnHelp);
+        helpDoc = new JMenuItem("帮助文档");
+        helpDoc.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/docs.gif")));
+        mnHelp.add(helpDoc);
+        helpDoc.addActionListener(this);
         miAbout = new JMenuItem("关于");
         mnHelp.add(miAbout);
         miAbout.addActionListener(this);
@@ -193,7 +203,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         TableTreeNode node = (TableTreeNode) tree.getLastSelectedPathComponent();
         if (node != null && !node.isRoot() && getCenterPanel().getSelectedIndex() == 0) {
             if (node.getTable() != null) {
-                //克隆一份
+                // 克隆一份
                 Table table = (Table) node.getTable().clone();
                 getTableSelectPanel().initTable(table);
             }
@@ -375,10 +385,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == openPdmFileItem) {
             openPdmFile();
-        } else if (e.getSource() == miAbout) {
-            JOptionPane.showMessageDialog(this, "elfkingw版权所有  elfkingw@gmail.com", "提示",
-                                          JOptionPane.INFORMATION_MESSAGE);
-        } else if (e.getSource() == templateConfigItem) {
+        }  else if (e.getSource() == templateConfigItem) {
             TemplateConfigWin win = new TemplateConfigWin(getGenAndPreviewPanel());
             win.setModal(true);
             win.setBounds(this.getX() + 100, this.getY() + 30, win.getWidth(), win.getHeight());
@@ -393,6 +400,15 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             win.setModal(true);
             win.setBounds(this.getX() + 250, this.getY() + 30, win.getWidth(), win.getHeight());
             win.setVisible(true);
+        } else if (e.getSource() == helpDoc) {
+            try {
+                Desktop.getDesktop().open(new File(FileUtils.getHelpPath()));
+            } catch (IOException e1) {
+               log.error("打开帮助文档失败", e1);
+            } 
+        } else if (e.getSource() == miAbout) {
+            JOptionPane.showMessageDialog(this, "elfkingw版权所有  elfkingw@gmail.com", "提示",
+                                          JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -407,7 +423,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         } catch (Exception e2) {
             log.error("获取最后一次打开文件失败", e2);
         }
-        if (lastOperateVo != null && lastOperateVo.getPdmFilePath()!= null) {
+        if (lastOperateVo != null && lastOperateVo.getPdmFilePath() != null) {
             jfc.setCurrentDirectory(new File(lastOperateVo.getPdmFilePath()));// 文件选择器的初始目录定为d盘
         } else {
             jfc.setCurrentDirectory(new File("d:\\"));// 文件选择器的初始目录定为d盘
@@ -445,12 +461,10 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         }
     }
 
-    
     public List<Table> getTableList() {
         return tableList;
     }
 
-    
     public void setTableList(List<Table> tableList) {
         this.tableList = tableList;
     }
@@ -462,7 +476,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             ui.setVisible(true);
             ui.getTableSelectPanel().setDividerLocation();
         } catch (Exception e) {
-            log.error("初始化界面失败",e);
+            log.error("初始化界面失败", e);
             e.printStackTrace();
         }
         // ui.pack();

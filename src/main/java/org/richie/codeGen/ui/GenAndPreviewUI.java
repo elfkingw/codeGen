@@ -19,6 +19,7 @@ package org.richie.codeGen.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -141,7 +142,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         JToolBar logToolBar = new JToolBar();
         logToolBar.setFloatable(false);
         clearLogBtn = new JButton("清除日志");
-        clearLogBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/next.gif")));
+        clearLogBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/clear.gif")));
         clearLogBtn.addActionListener(this);
         clearLogBtn.addActionListener(this);
         logToolBar.add(clearLogBtn);
@@ -205,6 +206,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
 
     /**
      * set the text to log panel
+     * 
      * @param text
      */
     public void setLog(String text) {
@@ -322,7 +324,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             }
         }
         if (sb.length() > 0) {
-            setLog("===================文件【" + fileName + "】的日志=======================\n" + sb.toString());
+            setLog("===================生成文件【" + fileName + "】的日志=======================\n" + sb.toString());
         }
     }
 
@@ -375,6 +377,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             StringBuilder sb = new StringBuilder();
             sb.append("成功生成如下文件：\n");
             setPackageContext(list);
+            String outFile = null;
             for (int i = 0; i < list.size(); i++) {
                 CodeTemplateVo vo = list.get(i);
                 if (vo.getIsSelected() == null || !vo.getIsSelected()) continue;
@@ -415,14 +418,29 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                     }
                     logGenFile(startDate, fileName);
                 }
+                outFile = outFilePath;
             }
             if (!isPreview) {
                 JOptionPane.showMessageDialog(this, sb.toString(), "提示", JOptionPane.INFORMATION_MESSAGE);
+                openFile(outFile);
             }
         } catch (CGException e) {
             handException("生成文件出错", e);
         } catch (Exception e) {
             handException("生成文件出错", e);
+        }
+    }
+
+    /**
+     * windows下打开文件夹
+     * 
+     * @param filePath
+     */
+    private void openFile(String filePath) {
+        try {
+            Desktop.getDesktop().open(new File(filePath)); 
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
