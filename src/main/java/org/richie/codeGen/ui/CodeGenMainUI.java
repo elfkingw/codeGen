@@ -114,6 +114,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         add(split, BorderLayout.CENTER);
         openLastPdmFile();
         addCloseListener();
+        this.setIconImage(new ImageIcon(ClassLoader.getSystemResource("resources/images/logo.jpg")).getImage());
     }
 
     public void initMenuBar() {

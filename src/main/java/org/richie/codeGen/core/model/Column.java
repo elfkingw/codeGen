@@ -17,6 +17,8 @@
 
 package org.richie.codeGen.core.model;
 
+import org.apache.commons.lang.StringUtils;
+
 /**
  * @author elfkingw
  */
@@ -30,6 +32,7 @@ public class Column {
     private String  defaultValue;
     private String  dataType;
     private String  codeType;
+    private String  shortCodeType;
     private int     length;
     private int     precision;
     private Boolean isNotNull;
@@ -195,10 +198,33 @@ public class Column {
         this.codeType = codeType;
     }
 
+    /**
+     * 去掉包名的类型
+     * eg: 如果codeType= java.math.BigDecimal 那么 shortCodeType=BigDecimal
+     * @return
+     */
+    public String getShortCodeType() {
+        if(!StringUtils.isEmpty(codeType)){
+            int index = codeType.lastIndexOf(".");
+            shortCodeType = codeType.substring(index+1);
+        }
+        return shortCodeType;
+    }
+
+    
+    public void setShortCodeType(String shortCodeType) {
+        this.shortCodeType = shortCodeType;
+    }
+
     public String toString() {
         return "id:" + getId() + " code:" + getCode() + " name:" + getName() + " javaName:" + getJavaName()
                + " isForeignKey:" + getIsForeignKey() + " isPrimaryKey:" + getIsPrimarykey() + " refTable:"
                + getRefTable();
     }
-
+    
+    public static void main(String[] args) {
+        Column column = new Column();
+        column.setCodeType("java.math.BigDecimal");
+        System.out.println(column.getShortCodeType());
+    }
 }

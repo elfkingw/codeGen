@@ -51,6 +51,7 @@ public class DataTypeUtils {
         informixDataTypeMap.put("INT8", "Long");
 
         db2DataTypeMap.put("INTEGER", "Integer");
+        db2DataTypeMap.put("SMALLINT", "Integer");
         oracleDataTypeMap.put("INTEGER", "Integer");
         sybaseDataTypeMap.put("INTEGER", "Integer");
         mysqlDataTypeMap.put("int", "Integer");
@@ -94,9 +95,11 @@ public class DataTypeUtils {
         informixDataTypeMap.put("CLOB", "String");
 
         db2DataTypeMap.put("DATE", "java.sql.Date");
+        db2DataTypeMap.put("TIMESTAMP", "java.sql.Timestamp");
         oracleDataTypeMap.put("DATE", "java.sql.Date");
         sybaseDataTypeMap.put("DATE", "java.sql.Date");
         mysqlDataTypeMap.put("DATE", "java.sql.Date");
+        mysqlDataTypeMap.put("TIMESTEMP", "java.sql.Date");
         mssqlDataTypeMap.put("DATE", "java.sql.Date");
         informixDataTypeMap.put("DATE", "java.sql.Date");
 

@@ -33,12 +33,10 @@ public class PdmParserTest extends TestCase {
      * Test method for {@link org.richie.codeGen.database.util.PdmParser#parsePdmFile(java.lang.String)}.
      */
     public void testParsePDM_VO() {
-        PdmParser pp = new PdmParser();
         List<Table> tabs;
         try {
             String path = ClassLoader.getSystemResource("org/richie/codeGen/database/util/mysqlPdm.xml").getPath();
-            tabs = pp.parsePdmFile(path);
-            
+            tabs = PdmParser.parsePdmFile(path);
             for (Table tab : tabs) {
                 System.out.println(tab);
                 List<Column> cList = tab.getFields();

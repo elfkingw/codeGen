@@ -175,16 +175,20 @@ public class PdmParser {
         return table;
     }
 
+    @SuppressWarnings("unchecked")
     private static String getPrimaryKeyId(Element tableElement) {
         String primaryKeyId = null;
         Element keys = tableElement.element("Keys");
         if (keys == null) {
             return null;
         }
-        String keys_key_id = tableElement.element("Keys").element("Key").attributeValue("Id");
-        String keys_column_ref = tableElement.element("Keys").element("Key").element("Key.Columns").element("Column").attributeValue("Ref");
+        List<Element> elements = keys.elements("Key");
         String keys_primarykey_ref_id = tableElement.element("PrimaryKey").element("Key").attributeValue("Ref");
-        if (keys_primarykey_ref_id.equals(keys_key_id)) primaryKeyId = keys_column_ref;
+        for (Element element : elements) {
+            String keys_key_id = element.attributeValue("Id");
+            String keys_column_ref = element.element("Key.Columns").element("Column").attributeValue("Ref");
+            if (keys_primarykey_ref_id.equals(keys_key_id)) primaryKeyId = keys_column_ref;
+        }
         return primaryKeyId;
     }
     

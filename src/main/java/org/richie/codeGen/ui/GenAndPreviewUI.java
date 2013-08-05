@@ -301,6 +301,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 boolean isStart = false;
                 while ((line = reader.readLine()) != null) {
                     if (!isStart) {
+                        if(line.length()<23) continue;
                         String time = line.substring(0, 23);
                         if (time.startsWith("20")) {
                             String startDateStr = DateUtil.formatDate(startDate, "yyyy-MM-dd HH:mm:ss,SSS");

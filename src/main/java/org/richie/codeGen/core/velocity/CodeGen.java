@@ -43,6 +43,7 @@ import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.core.model.Table;
+import org.richie.codeGen.core.util.DateUtil;
 import org.richie.codeGen.core.util.StringUtil;
 
 public class CodeGen {
@@ -158,6 +159,7 @@ public class CodeGen {
      */
     private static void putDefaultToolsToVelocityContext() {
         map.put("stringUtils", new StringUtil());
+        map.put("dateUtils", new DateUtil());
         map.put("date", new Date());
         map.put("year", String.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
 
