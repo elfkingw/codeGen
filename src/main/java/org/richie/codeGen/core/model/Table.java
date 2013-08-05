@@ -35,7 +35,7 @@ public class Table implements Cloneable {
     private String       className;
     private List<Table>  manyToOneTables;
     private Table        oneToManyTables;
-    private long         updateTime;
+    private String         updateTime;
     private String       dataBaseName;
     private String       dataBaseCode;
     private String       extension1;
@@ -139,11 +139,11 @@ public class Table implements Cloneable {
         this.className = className;
     }
 
-    public long getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(long updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

@@ -18,7 +18,6 @@
 package org.richie.codeGen.database.util;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,78 +26,117 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.richie.codeGen.core.exception.CGException;
+import org.richie.codeGen.core.log.Log;
+import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.core.model.Column;
 import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.database.Constants;
 
 /**
- * @author elfkingw
+ * @author elfkingw pdm解析类
  */
 public class PdmParser {
 
-    @SuppressWarnings("unchecked")
-    public static List<Table> parsePdmFile(String filePath) throws CGException {
-        List<Table> tables = new ArrayList<Table>();
-        Table table = null;
+    private static Log log = LogFacotry.getLogger(PdmParser.class);
+
+    /**
+     * 解析pdm文件
+     * 
+     * @param filePath pdm文件路径
+     * @return
+     * @throws CGException
+     * @throws Exception
+     */
+    public static List<Table> parsePdmFile(String filePath) throws CGException, Exception {
         File f = new File(filePath);
         if (!f.exists()) {
             throw new CGException("pdm file is not exits");
         }
         SAXReader sr = new SAXReader();
         Document doc = null;
+        List<Table> tables = null;
         try {
             doc = sr.read(f);
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Map<String, Table> tableMap = new HashMap<String, Table>();
+            Map<String, Column> columnMap = new HashMap<String, Column>();
+            tables = parseTables(doc, tableMap, columnMap);
+            parseReference(doc, tableMap, columnMap);
+        } catch (Exception e) {
+            log.error("解析pdm失败：", e);
+            throw new Exception("解析pdm失败:" + e.getMessage());
         }
-        Map<String, Table> tableMap = new HashMap<String, Table>();
-        Map<String, Column> columnMap = new HashMap<String, Column>();
+        return tables;
+    }
+
+    /**
+     * @param doc
+     * @param tableMap
+     * @param columnMap
+     */
+    @SuppressWarnings("unchecked")
+    private static List<Table> parseTables(Document doc, Map<String, Table> tableMap, Map<String, Column> columnMap) {
+        List<Table> tables = new ArrayList<Table>();
         String dataBaseCode = null;
         String dataBaseName = null;
         String dataBaseType = null;
+        String updateTime = null;
         List<Element> headerList = doc.selectNodes("//?PowerDesigner");
-        if(headerList!= null){
-            Element rootElement= doc.getRootElement();
-            dataBaseType  =  rootElement.attributeValue("Target");
+        if (headerList != null) {
+            Element rootElement = doc.getRootElement();
+            dataBaseType = rootElement.attributeValue("Target");
         }
         List<Element> dList = doc.selectNodes("//o:Model");
-        for (Element element : dList) {
+        if (dList != null && dList.size() > 0) {
+            Element element = dList.get(0);
             dataBaseName = element.elementText("Name");
             dataBaseCode = element.elementText("Code");
-
+            updateTime = element.elementText("ModificationDate");
         }
-        Iterator<Element> itr = doc.selectNodes("//c:Tables//o:Table").iterator();
-        while (itr.hasNext()) {
+        List<Element> tList = doc.selectNodes("//c:Tables//o:Table");
+        for (Element tableElement : tList) {
             List<Column> list = new ArrayList<Column>();
-            Column column = null;
-            Element tableElement = itr.next();
-            table = parseTableElement(tableElement, dataBaseCode, dataBaseName,dataBaseType);
+            Table table = parseTableElement(tableElement);
+            table.setDataBaseCode(dataBaseCode);
+            table.setDataBaseName(dataBaseName);
+            table.setUpdateTime(updateTime);
+            table.setDataBaseType(getDataBaseByPdmFile(dataBaseType));
             tableMap.put(table.getId(), table);
             String primaryKeyId = getPrimaryKeyId(tableElement);
-            Iterator<Element> colItr = tableElement.element("Columns").elements("Column").iterator();
-            while (colItr.hasNext()) {
-                try {
-                    Element colElement = colItr.next();
-                    column = parseColumn(primaryKeyId, colElement);
-                    columnMap.put(column.getId(), column);
-                    list.add(column);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+            if(tableElement.element("Columns") == null) continue;
+            List<Element> colList = tableElement.element("Columns").elements("Column");
+            for (Element colElement : colList) {
+                Column column = parseColumn(primaryKeyId, colElement);
+                columnMap.put(column.getId(), column);
+                list.add(column);
             }
             table.setFields(list);
             tables.add(table);
         }
-        parseReference(doc, tableMap, columnMap);
         return tables;
     }
 
+    /**
+     * @param vo
+     * @param tableElement
+     */
+    private static Table parseTableElement(Element tableElement) {
+        Table table = new Table();
+        table.setId(tableElement.attributeValue("Id"));
+        table.setName(tableElement.elementTextTrim("Name"));
+        table.setCode(tableElement.elementTextTrim("Code"));
+        return table;
+    }
+
+    /**
+     * 解析表之间的关系
+     * 
+     * @param doc
+     * @param tableMap
+     * @param columnMap
+     */
     @SuppressWarnings("unchecked")
     private static void parseReference(Document doc, Map<String, Table> tableMap, Map<String, Column> columnMap) {
         Iterator<Element> itr = doc.selectNodes("//c:References//o:Reference").iterator();
@@ -119,6 +157,8 @@ public class PdmParser {
     }
 
     /**
+     * 解析表字段
+     * 
      * @param col
      * @param primaryKeyId
      * @param colElement
@@ -160,21 +200,6 @@ public class PdmParser {
         return col;
     }
 
-    /**
-     * @param vo
-     * @param tableElement
-     */
-    private static Table parseTableElement(Element tableElement, String dataBaseCode, String dataBaseName,String dataBaseType) {
-        Table table = new Table();
-        table.setId(tableElement.attributeValue("Id"));
-        table.setName(tableElement.elementTextTrim("Name"));
-        table.setCode(tableElement.elementTextTrim("Code"));
-        table.setDataBaseCode(dataBaseCode);
-        table.setDataBaseName(dataBaseName);
-        table.setDataBaseType(getDataBaseByPdmFile(dataBaseType));
-        return table;
-    }
-
     @SuppressWarnings("unchecked")
     private static String getPrimaryKeyId(Element tableElement) {
         String primaryKeyId = null;
@@ -191,20 +216,20 @@ public class PdmParser {
         }
         return primaryKeyId;
     }
-    
-    private static String getDataBaseByPdmFile(String fileDataBaseType){
-        if(StringUtils.isEmpty(fileDataBaseType)){
+
+    private static String getDataBaseByPdmFile(String fileDataBaseType) {
+        if (StringUtils.isEmpty(fileDataBaseType)) {
             return null;
         }
-        if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_MYSQL)){
+        if (fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_MYSQL)) {
             return Constants.DATABASE_TYPE_MYSQL;
-        }else if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_MSSQL)){
+        } else if (fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_MSSQL)) {
             return Constants.DATABASE_TYPE_MSSQL;
-        }else if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_ORACLE)){
+        } else if (fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_ORACLE)) {
             return Constants.DATABASE_TYPE_ORACLE;
-        }else if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_DB2)){
+        } else if (fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_DB2)) {
             return Constants.DATABASE_TYPE_DB2;
-        }else if(fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_INFORMIX)){
+        } else if (fileDataBaseType.toLowerCase().contains(Constants.DATABASE_TYPE_INFORMIX)) {
             return Constants.DATABASE_TYPE_INFORMIX;
         }
         return null;
