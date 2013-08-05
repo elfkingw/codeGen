@@ -33,6 +33,21 @@ public class PdmParserTest extends TestCase {
      * Test method for {@link org.richie.codeGen.database.util.PdmParser#parsePdmFile(java.lang.String)}.
      */
     public void testParsePDM_VO() {
+        String mysqlPdm = "org/richie/codeGen/database/util/mysqlPdm.xml";
+        testParsePdm(mysqlPdm);
+        String db2Pdm = "org/richie/codeGen/database/util/db2Pdm.xml";
+        testParsePdm(db2Pdm);
+        String informixPdm = "org/richie/codeGen/database/util/informixPdm.xml";
+        testParsePdm(informixPdm);
+        String myssqlPdm = "org/richie/codeGen/database/util/mssqlPdm.xml";
+        testParsePdm(myssqlPdm);
+        String oraclePdm = "org/richie/codeGen/database/util/oraclePdm.xml";
+        testParsePdm(oraclePdm);
+        String sybasePdm = "org/richie/codeGen/database/util/sybasePdm.xml";
+        testParsePdm(sybasePdm);
+    }
+
+    public void testParsePdm(String filePath) {
         List<Table> tabs;
         try {
             String path = ClassLoader.getSystemResource("org/richie/codeGen/database/util/mysqlPdm.xml").getPath();
@@ -45,6 +60,7 @@ public class PdmParserTest extends TestCase {
                 }
             }
         } catch (Exception e) {
+            System.out.println(filePath + "解析出错");
             e.printStackTrace();
         }
     }
