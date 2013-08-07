@@ -15,13 +15,14 @@
  */
 // Created on 2013-7-7
 
-package org.richie.codeGen.database;
+package org.richie.codeGen.database.db;
 
 import java.sql.Connection;
 import java.util.List;
 
 import org.richie.codeGen.core.model.Table;
-import org.richie.codeGen.database.db.JdbcConnection;
+import org.richie.codeGen.database.BaseReader;
+import org.richie.codeGen.database.DatabaseReader;
 
 /**
  * @author elfkingw
@@ -52,7 +53,7 @@ public abstract class DbReaderImpl extends BaseReader implements DatabaseReader 
      * @see org.richie.codeGen.database.DatabaseReader#getDettailByTableName(java.lang.String)
      */
     @Override
-    public Table getDettailByTableName(String name) {
+    public Table getDettailByTableCode(String code) {
         // TODO Auto-generated method stub
         return null;
     }

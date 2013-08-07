@@ -170,7 +170,7 @@ public class PdmParser {
         col.setDefaultValue(colElement.elementTextTrim("DefaultValue"));
         col.setName(colElement.elementTextTrim("Name"));
         col.setIsForeignKey(false);
-        col.setIsPrimarykey(false);
+        col.setIsPrimaryKey(false);
         col.setIsHiden(false);
         if (colElement.elementTextTrim("DataType") == null) {
             col.setDataType(null);
@@ -193,7 +193,7 @@ public class PdmParser {
             col.setIsNotNull(false);
         }
         if (columnId.equals(primaryKeyId)) {
-            col.setIsPrimarykey(true);
+            col.setIsPrimaryKey(true);
             col.setIsNotNull(true);
             col.setIsHiden(true);
         }

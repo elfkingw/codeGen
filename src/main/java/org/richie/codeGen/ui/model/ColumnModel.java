@@ -88,7 +88,7 @@ public class ColumnModel extends AbstractTableModel {
                 vo.setName((String) value);
                 break;
             case 2:
-                vo.setIsPrimarykey((Boolean) value);
+                vo.setIsPrimaryKey((Boolean) value);
                 break;
             case 3:
                 vo.setDataType((String) value);
@@ -164,7 +164,7 @@ public class ColumnModel extends AbstractTableModel {
                 value = vo.getName();
                 break;
             case 2:
-                value = vo.getIsPrimarykey();
+                value = vo.getIsPrimaryKey();
                 break;
             case 3:
                 value = vo.getDataType();

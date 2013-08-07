@@ -31,6 +31,6 @@ public interface DatabaseReader {
 
     public List<Table> getTables() throws Exception;
     
-    public Table getDettailByTableName(String name)throws Exception;
+    public Table getDettailByTableCode(String code)throws Exception;
     
 }

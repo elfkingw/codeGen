@@ -38,28 +38,11 @@ public class Column {
     private Boolean isNotNull;
     private String  note;
     private Boolean isForeignKey;
-    private Boolean isPrimarykey;
+    private Boolean isPrimaryKey;
     private Table   refTable;
     private String  uiType;
     private String  extension1;
     private String  extension2;
-
-    public String getExtension1() {
-        return extension1;
-    }
-
-    public void setExtension1(String extension1) {
-        this.extension1 = extension1;
-    }
-
-    public String getExtension2() {
-        return extension2;
-    }
-
-    public void setExtension2(String extension2) {
-        this.extension2 = extension2;
-    }
-
 
     public String getId() {
         return id;
@@ -165,12 +148,12 @@ public class Column {
         this.isForeignKey = isForeignKey;
     }
 
-    public Boolean getIsPrimarykey() {
-        return isPrimarykey;
+    public Boolean getIsPrimaryKey() {
+        return isPrimaryKey;
     }
 
-    public void setIsPrimarykey(Boolean isPrimarykey) {
-        this.isPrimarykey = isPrimarykey;
+    public void setIsPrimaryKey(Boolean isPrimaryKey) {
+        this.isPrimaryKey = isPrimaryKey;
     }
 
     public String getUiType() {
@@ -199,29 +182,44 @@ public class Column {
     }
 
     /**
-     * 去掉包名的类型
-     * eg: 如果codeType= java.math.BigDecimal 那么 shortCodeType=BigDecimal
+     * 去掉包名的类型 eg: 如果codeType= java.math.BigDecimal 那么 shortCodeType=BigDecimal
+     * 
      * @return
      */
     public String getShortCodeType() {
-        if(!StringUtils.isEmpty(codeType)){
+        if (!StringUtils.isEmpty(codeType)) {
             int index = codeType.lastIndexOf(".");
-            shortCodeType = codeType.substring(index+1);
+            shortCodeType = codeType.substring(index + 1);
         }
         return shortCodeType;
     }
 
-    
     public void setShortCodeType(String shortCodeType) {
         this.shortCodeType = shortCodeType;
     }
 
+    public String getExtension1() {
+        return extension1;
+    }
+
+    public void setExtension1(String extension1) {
+        this.extension1 = extension1;
+    }
+
+    public String getExtension2() {
+        return extension2;
+    }
+
+    public void setExtension2(String extension2) {
+        this.extension2 = extension2;
+    }
+
     public String toString() {
         return "id:" + getId() + " code:" + getCode() + " name:" + getName() + " javaName:" + getJavaName()
-               + " isForeignKey:" + getIsForeignKey() + " isPrimaryKey:" + getIsPrimarykey() + " refTable:"
+               + " isForeignKey:" + getIsForeignKey() + " isPrimaryKey:" + getIsPrimaryKey() + " refTable:"
                + getRefTable();
     }
-    
+
     public static void main(String[] args) {
         Column column = new Column();
         column.setCodeType("java.math.BigDecimal");

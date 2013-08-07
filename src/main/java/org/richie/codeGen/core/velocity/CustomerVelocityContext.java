@@ -28,59 +28,63 @@ import java.util.Properties;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
 
-
 /**
  * 获取客户自定义 velocity context
+ * 
  * @author Administrator
- *
  */
 public class CustomerVelocityContext {
-   public static  Log log  = LogFacotry.getLogger(CustomerVelocityContext.class);
-    public static Map<String , Object> getCustomerVelociTyContext(){
-        Map<String,Object> map = new HashMap<String,Object>();
+
+    public static Log log = LogFacotry.getLogger(CustomerVelocityContext.class);
+
+    public static Map<String, Object> getCustomerVelociTyContext() {
+        Map<String, Object> map = new HashMap<String, Object>();
         InputStream in = null;
         try {
             log.debug("loading codeGen.properties");
             in = ClassLoader.getSystemResourceAsStream("codeGen.properties");
-            if(in == null){
+            if (in == null) {
                 log.info("don't fund codeGen.properties ");
                 return null;
             }
             Properties p = new Properties();
             p.load(in);
             Iterator<Object> it = p.keySet().iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 String key = (String) it.next();
                 String className = p.getProperty(key);
                 Object obj = getClassInstance(className, key);
-                if(obj != null){
+                if (obj != null) {
                     map.put(key, obj);
-                    log.info("codeGen.properties key="+key+" class:["+className+"]success load into velocity context");
+                    log.info("codeGen.properties key=" + key + " class:[" + className
+                             + "]success load into velocity context");
                 }
             }
         } catch (IOException e) {
-            log.error("read codeGen.properties failed , cause :"+e.getMessage(),e);
-        }finally{
+            log.error("read codeGen.properties failed , cause :" + e.getMessage(), e);
+        } finally {
             try {
-                if(in != null)
-                    in.close();
+                if (in != null) in.close();
             } catch (IOException e) {
             }
         }
         return map;
     }
-    
-    private static Object getClassInstance(String className,String key){
+
+    private static Object getClassInstance(String className, String key) {
         Object obj = null;
         try {
             Class<?> clazz = Class.forName(className);
             obj = clazz.newInstance();
         } catch (ClassNotFoundException e) {
-            log.error("codeGen.properties key="+key+" class:["+className+"] class not fund,this key load failed" );
+            log.error("codeGen.properties key=" + key + " class:[" + className
+                      + "] class not fund,this key load failed");
         } catch (InstantiationException e) {
-            log.error("codeGen.properties key="+key+" class:["+className+"] instainationException,this key load failed" ,e);
+            log.error("codeGen.properties key=" + key + " class:[" + className
+                      + "] instainationException,this key load failed", e);
         } catch (IllegalAccessException e) {
-            log.error("codeGen.properties key="+key+" class:["+className+"] IllegalAccessException,this key load failed" ,e);
+            log.error("codeGen.properties key=" + key + " class:[" + className
+                      + "] IllegalAccessException,this key load failed", e);
         }
         return obj;
     }

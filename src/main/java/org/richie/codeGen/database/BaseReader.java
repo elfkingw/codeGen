@@ -17,12 +17,18 @@
 
 package org.richie.codeGen.database;
 
+import java.util.List;
+
+import org.richie.codeGen.core.model.Table;
+
 /**
  * @author elfkingw
  */
 public class BaseReader {
 
-    protected String databaseType;
+    protected String      databaseType;
+
+    protected List<Table> list;
 
     public BaseReader(String databaseType){
         this.databaseType = databaseType;
@@ -35,4 +41,13 @@ public class BaseReader {
     public void setDatabaseType(String databaseType) {
         this.databaseType = databaseType;
     }
+
+    public List<Table> getList() {
+        return list;
+    }
+
+    public void setList(List<Table> list) {
+        this.list = list;
+    }
+
 }
