@@ -189,15 +189,18 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         tcm.getColumn(7).setCellEditor(new ButtonEditor());
         tcm.getColumn(9).setCellRenderer(new ButtonRenderer());
         tcm.getColumn(9).setCellEditor(new ButtonEditor());
-        tcm.getColumn(0).setPreferredWidth(5);
+        tcm.getColumn(0).setMaxWidth(40);
         tcm.getColumn(1).setPreferredWidth(50);
         tcm.getColumn(2).setPreferredWidth(30);
         tcm.getColumn(3).setPreferredWidth(40);
-        tcm.getColumn(4).setPreferredWidth(150);
-        tcm.getColumn(5).setPreferredWidth(30);
+        tcm.getColumn(4).setPreferredWidth(120);
+        tcm.getColumn(5).setMinWidth(90);
+        tcm.getColumn(5).setMaxWidth(90);
         tcm.getColumn(6).setPreferredWidth(10);
-        tcm.getColumn(7).setPreferredWidth(6);
-        tcm.getColumn(9).setPreferredWidth(6);
+        tcm.getColumn(7).setMaxWidth(60);
+        tcm.getColumn(7).setMinWidth(60);
+        tcm.getColumn(9).setMaxWidth(60);
+        tcm.getColumn(9).setMinWidth(60);
         JScrollPane tablePanel = new JScrollPane(table);
         // 增加table里按钮点击事件
         addTableListener();
