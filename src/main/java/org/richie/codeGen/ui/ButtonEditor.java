@@ -36,6 +36,7 @@ import javax.swing.JTextField;
 public class ButtonEditor extends DefaultCellEditor {
 
     /**
+     * 
      */
     private static final long serialVersionUID = 1L;
     protected JButton         button;
