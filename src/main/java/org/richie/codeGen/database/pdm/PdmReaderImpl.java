@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.database.FileReaderImpl;
-import org.richie.codeGen.database.util.PdmParser;
 
 
 /**

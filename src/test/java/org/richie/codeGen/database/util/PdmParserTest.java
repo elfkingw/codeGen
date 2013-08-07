@@ -23,6 +23,7 @@ import junit.framework.TestCase;
 
 import org.richie.codeGen.core.model.Column;
 import org.richie.codeGen.core.model.Table;
+import org.richie.codeGen.database.pdm.PdmParser;
 
 /**
  * @author elfkingw
@@ -30,7 +31,7 @@ import org.richie.codeGen.core.model.Table;
 public class PdmParserTest extends TestCase {
 
     /**
-     * Test method for {@link org.richie.codeGen.database.util.PdmParser#parsePdmFile(java.lang.String)}.
+     * Test method for {@link org.richie.codeGen.database.pdm.PdmParser#parsePdmFile(java.lang.String)}.
      */
     public void testParsePDM_VO() {
         String mysqlPdm = "org/richie/codeGen/database/util/mysqlPdm.xml";

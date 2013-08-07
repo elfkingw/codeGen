@@ -15,7 +15,7 @@
  */
 // Created on 2013-7-7
 
-package org.richie.codeGen.database.util;
+package org.richie.codeGen.database.pdm;
 
 import java.io.File;
 import java.util.ArrayList;
