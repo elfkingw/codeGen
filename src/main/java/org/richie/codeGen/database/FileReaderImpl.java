@@ -35,12 +35,11 @@ public abstract class FileReaderImpl extends BaseReader implements DatabaseReade
     public FileReaderImpl(String databaseType){
         super(databaseType);
     }
-    public FileReaderImpl(String databaseType,String filePath){
+
+    public FileReaderImpl(String databaseType, String filePath){
         super(databaseType);
         setFilePath(filePath);
     }
-    
-    
 
     /*
      * (non-Javadoc)
@@ -49,31 +48,37 @@ public abstract class FileReaderImpl extends BaseReader implements DatabaseReade
     @Override
     public List<Table> getTables() throws Exception {
         List<Table> list = parseFile(filePath);
+        setList(list);
         return list;
     }
 
-    public abstract List<Table> parseFile(String filePath)throws Exception;
+    public abstract List<Table> parseFile(String filePath) throws Exception;
+
     /*
      * (non-Javadoc)
      * @see org.richie.codeGen.database.DatabaseReader#getDettailByTableName(java.lang.String)
      */
     @Override
-    public Table getDettailByTableName(String name) {
+    public Table getDettailByTableCode(String code) {
+        List<Table> list = getList();
+        for (Table table : list) {
+            if (table.getCode().equals(code)) {
+                return table;
+            }
+        }
         return null;
     }
 
-    protected File getFile(){
+    protected File getFile() {
         return null;
     }
-    
+
     public String getFilePath() {
         return filePath;
     }
 
-    
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
-    
 
 }
