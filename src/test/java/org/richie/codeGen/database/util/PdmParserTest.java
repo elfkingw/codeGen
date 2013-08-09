@@ -32,26 +32,27 @@ public class PdmParserTest extends TestCase {
 
     /**
      * Test method for {@link org.richie.codeGen.database.pdm.PdmParser#parsePdmFile(java.lang.String)}.
+     * @throws Exception 
      */
-    public void testParsePDM_VO() {
-        String mysqlPdm = "org/richie/codeGen/database/util/mysqlPdm.xml";
+    public void testParsePDM_VO() throws Exception {
+        String mysqlPdm = "mysqlPdm.xml";
         testParsePdm(mysqlPdm);
-        String db2Pdm = "org/richie/codeGen/database/util/db2Pdm.xml";
+        String db2Pdm = "db2Pdm.xml";
         testParsePdm(db2Pdm);
-        String informixPdm = "org/richie/codeGen/database/util/informixPdm.xml";
+        String informixPdm = "informixPdm.xml";
         testParsePdm(informixPdm);
-        String myssqlPdm = "org/richie/codeGen/database/util/mssqlPdm.xml";
+        String myssqlPdm = "mssqlPdm.xml";
         testParsePdm(myssqlPdm);
-        String oraclePdm = "org/richie/codeGen/database/util/oraclePdm.xml";
+        String oraclePdm = "oraclePdm.xml";
         testParsePdm(oraclePdm);
-        String sybasePdm = "org/richie/codeGen/database/util/sybasePdm.xml";
+        String sybasePdm = "sybasePdm.xml";
         testParsePdm(sybasePdm);
     }
 
-    public void testParsePdm(String filePath) {
+    public void testParsePdm(String filePath) throws Exception {
         List<Table> tabs;
         try {
-            String path = ClassLoader.getSystemResource("org/richie/codeGen/database/util/mysqlPdm.xml").getPath();
+            String path = ClassLoader.getSystemResource(filePath).getPath();
             tabs = PdmParser.parsePdmFile(path);
             for (Table tab : tabs) {
                 System.out.println(tab);
@@ -61,8 +62,8 @@ public class PdmParserTest extends TestCase {
                 }
             }
         } catch (Exception e) {
-            System.out.println(filePath + "解析出错");
             e.printStackTrace();
+            throw new Exception(filePath + "解析出错",e); 
         }
     }
 

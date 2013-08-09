@@ -98,7 +98,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
     }
 
     public void initLize() {
-        setTitle("常量设置");
+        setTitle("变量设置");
         setSize(560, 500);
         add(getConfigPanel());
         initData();
@@ -245,7 +245,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
     private JPanel getButtonPanel() {
         if (buttonPanel == null) {
             buttonPanel = new JPanel();
-            addLineBtn = new JButton("增加常量");
+            addLineBtn = new JButton("增加变量");
             addLineBtn.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/add.gif")));
             addLineBtn.addActionListener(this);
             buttonPanel.add(addLineBtn);

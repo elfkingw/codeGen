@@ -32,7 +32,7 @@ public class ConstantConfigModel extends AbstractTableModel {
      */
     private static final long      serialVersionUID = 1L;
     private List<ConstantConfigVo> constantConfigList;
-    private String[]               titles           = { "常量名称","类型", "常量值", "备注", "删除" };
+    private String[]               titles           = { "变量名称","类型", "变量值", "备注", "删除" };
 
     public ConstantConfigModel(){
         constantConfigList = new ArrayList<ConstantConfigVo>();

@@ -82,7 +82,6 @@ public class PdmParser {
         String dataBaseCode = null;
         String dataBaseName = null;
         String dataBaseType = null;
-        String updateTime = null;
         List<Element> headerList = doc.selectNodes("//?PowerDesigner");
         if (headerList != null) {
             Element rootElement = doc.getRootElement();
@@ -93,7 +92,6 @@ public class PdmParser {
             Element element = dList.get(0);
             dataBaseName = element.elementText("Name");
             dataBaseCode = element.elementText("Code");
-            updateTime = element.elementText("ModificationDate");
         }
         List<Element> tList = doc.selectNodes("//c:Tables//o:Table");
         for (Element tableElement : tList) {
@@ -101,7 +99,6 @@ public class PdmParser {
             Table table = parseTableElement(tableElement);
             table.setDataBaseCode(dataBaseCode);
             table.setDataBaseName(dataBaseName);
-            table.setUpdateTime(updateTime);
             table.setDataBaseType(getDataBaseByPdmFile(dataBaseType));
             tableMap.put(table.getId(), table);
             String primaryKeyId = getPrimaryKeyId(tableElement);
@@ -127,6 +124,7 @@ public class PdmParser {
         table.setId(tableElement.attributeValue("Id"));
         table.setName(tableElement.elementTextTrim("Name"));
         table.setCode(tableElement.elementTextTrim("Code"));
+        table.setUpdateTime(tableElement.elementTextTrim("ModificationDate"));
         return table;
     }
 

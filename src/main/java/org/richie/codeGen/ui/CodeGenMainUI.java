@@ -299,7 +299,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         if (list == null || list.size() == 0) {
             root = new TableTreeNode("请导入文件");
         } else {
-            root = new TableTreeNode(list.get(0).getDataBaseName() + ":" + list.get(0).getDataBaseCode());
+            root = new TableTreeNode(list.get(0).getDataBaseCode() + ":" + list.get(0).getDataBaseName());
             for (Table table : list) {
                 list.get(0).getDataBaseName();
                 TableTreeNode node = new TableTreeNode(table);

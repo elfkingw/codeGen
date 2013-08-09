@@ -17,6 +17,7 @@
 
 package org.richie.codeGen.database.pdm;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.richie.codeGen.core.model.Table;
@@ -47,6 +48,9 @@ public class PdmReaderImpl extends FileReaderImpl {
     @Override
     public List<Table> parseFile(String filePath) throws Exception{
         List<Table> list = PdmParser.parsePdmFile(filePath);
+        if(list != null){
+            Collections.sort(list,new TableSortComparator());
+        }
         return list;
     }
 
