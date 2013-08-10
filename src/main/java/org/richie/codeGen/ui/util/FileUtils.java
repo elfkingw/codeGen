@@ -61,21 +61,26 @@ public class FileUtils {
     /**
      * upload the file to given filePath
      * 
-     * @param upLoadPath
+     * @param targetPath 上传文件目标文件夹
+     * @param targetFileName 上传文件目标文件名
      * @param file
      * @throws IOException
      */
-    public static void uploadFile(String upLoadPath, String outFileName, File file) throws IOException {
+    public static void uploadFile(String targetPath, String targetFileName, File file) throws IOException {
         FileOutputStream fos = null;
         FileInputStream fis = null;
         try {
-            File outFilePath = new File(upLoadPath);
-            if (!outFilePath.exists()) {
-                outFilePath.mkdirs();
+            File targetFolder = new File(targetPath);
+            if (!targetFolder.exists()) {
+                targetFolder.mkdirs();
             }
-            File outFile = new File(outFilePath + File.separator + outFileName);
+            File outFile = new File(targetFolder + File.separator + targetFileName);
             if (!outFile.exists()) {
                 outFile.createNewFile();
+            }
+            //如果目标文件和上传文件是一个文件直接返回
+            if(outFile.getPath().endsWith(file.getPath())){
+                return;
             }
             fos = new FileOutputStream(outFile);
             fis = new FileInputStream(file);
