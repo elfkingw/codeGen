@@ -22,6 +22,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * 日期工具类<br>
+ * 该工具以 dateUtils 对应改工具类<br>
+ * 模板中调用例如：$dateUtils.getNow()
+ * 
  * @author elfkingw
  */
 public class DateUtil {
@@ -96,9 +100,8 @@ public class DateUtil {
     }
 
     /**
-     * 两个日期比较
-     * 如果date1在date2之后 返回 true
-     * 否则返回false
+     * 两个日期比较 如果date1在date2之后 返回 true 否则返回false
+     * 
      * @param date1
      * @param date2
      * @return
@@ -108,7 +111,7 @@ public class DateUtil {
         long l2 = date2.getTime();
         if ((l1 - l2) > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

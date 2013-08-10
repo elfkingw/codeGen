@@ -144,7 +144,7 @@ public class PdmParser {
             // System.out.println("parentTable:"+parentTable);
             Table childTable = tableMap.get(refElement.element("ChildTable").element("Table").attributeValue("Ref"));
             // System.out.println("childTable:"+childTable);
-            parentTable.setOneToManyTables(childTable);
+            parentTable.setChildTable(childTable);
             childTable.addManyToOneTable(parentTable);
             Column pkColumn = columnMap.get(refElement.element("Joins").element("ReferenceJoin").element("Object2").element("Column").attributeValue("Ref"));
             if (pkColumn != null) {

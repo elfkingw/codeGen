@@ -278,11 +278,11 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             logGenFile(startDate, fileName);
             addPreviewTablePanel(fileName, codeText);
             if (vo.getIsGenSubTable() != null && vo.getIsGenSubTable() && table != null
-                && table.getOneToManyTables() != null) {// 如果生成子表
+                && table.getChildTable() != null) {// 如果生成子表
                 startDate = new Date();
-                CodeGen.initTableVelocityContext(table.getOneToManyTables());
+                CodeGen.initTableVelocityContext(table.getChildTable());
                 codeText = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
-                fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
+                fileName = table.getChildTable().getClassName() + vo.getSuffix();
                 logGenFile(startDate, fileName);
                 addPreviewTablePanel(fileName, codeText);
             }
@@ -409,10 +409,10 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 }
                 logGenFile(startDate, fileName);
                 boolean isGenSubTable = vo.getIsGenSubTable() != null ? vo.getIsGenSubTable() : false;
-                if (isGenSubTable && table != null && table.getOneToManyTables() != null) {// 如果生成子表
+                if (isGenSubTable && table != null && table.getChildTable() != null) {// 如果生成子表
                     startDate = new Date();
-                    CodeGen.initTableVelocityContext(table.getOneToManyTables());
-                    fileName = table.getOneToManyTables().getClassName() + vo.getSuffix();
+                    CodeGen.initTableVelocityContext(table.getChildTable());
+                    fileName = table.getChildTable().getClassName() + vo.getSuffix();
                     if (isPreview) {
                         String fileContent = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
                         addPreviewTablePanel(fileName, fileContent);
@@ -453,7 +453,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             parent.getTable().setName(parent.mainTableName.getText());
             parent.getTable().setExtension1(parent.mainExtension1.getText());
             parent.getTable().setExtension2(parent.mainExtension2.getText());
-            Table subTable = parent.getTable().getOneToManyTables();
+            Table subTable = parent.getTable().getChildTable();
             if (subTable != null) {
                 subTable.setName(parent.subTableName.getText());
                 subTable.setExtension1(parent.subExtension1.getText());
@@ -483,8 +483,8 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         setTableValue();
         // 根据数据类型的配置来设置表字段的代码类型
         DataTypeUtils.setDataType(selectedTable);
-        if (selectedTable != null && selectedTable.getOneToManyTables() != null) {
-            DataTypeUtils.setDataType(selectedTable.getOneToManyTables());
+        if (selectedTable != null && selectedTable.getChildTable() != null) {
+            DataTypeUtils.setDataType(selectedTable.getChildTable());
         }
         Map<String, Object> map = GlobalData.getConstentMap();
         CodeGen.initCustomerVelocityContext(map);

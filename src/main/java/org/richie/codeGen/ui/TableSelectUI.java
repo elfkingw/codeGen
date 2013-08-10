@@ -272,7 +272,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
         List<Column> list = table.getFields();
         mainTableModel.setList(list);
         mainTable.updateUI();
-        Table sTable = table.getOneToManyTables();
+        Table sTable = table.getChildTable();
         if (sTable != null) {
             showSubDescription(true);
             subTableCode.setText(sTable.getCode());
@@ -329,7 +329,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == delBtn) {
-            table.setOneToManyTables(null);
+            table.setChildTable(null);
             showSubDescription(false);
             subTableModel.setList(new ArrayList<Column>());
             subTable.updateUI();
@@ -393,7 +393,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
      */
     public void doSelected(Table selectTable, String targetSource) {
         if ("addBtn".equals(targetSource)) {
-            table.setOneToManyTables(selectTable);
+            table.setChildTable(selectTable);
             Table sTable = selectTable;
             if (sTable != null) {
                 showSubDescription(true);
