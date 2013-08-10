@@ -54,6 +54,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.richie.codeGen.Version;
 import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
@@ -112,6 +113,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         split.setOneTouchExpandable(true);
         split.setDividerLocation(150);
         add(split, BorderLayout.CENTER);
+        //打开最后一次打开的pdm文件
         openLastPdmFile();
         addCloseListener();
         this.setIconImage(new ImageIcon(ClassLoader.getSystemResource("resources/images/logo.jpg")).getImage());
@@ -323,16 +325,21 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         return newTree;
     }
 
+    /**
+     * 打开最后一次打开过的pdm
+     */
     private void openLastPdmFile() {
         LastOperateVo lastOperateVo = null;
         try {
             lastOperateVo = GlobalData.getLastOperateVo();
+            //如果第一次打开该工具自动载入自带pdm例子文件
+            String pdmFilePath = FileUtils.getExamplePdmFile();
             if (lastOperateVo != null && lastOperateVo.getPdmFilePath() != null) {
-                File f = new File(lastOperateVo.getPdmFilePath());
-                if (f.exists()) {
-                    initTree(f.getAbsolutePath());
-                    return;
-                }
+                pdmFilePath =  lastOperateVo.getPdmFilePath();
+            }
+            File f = new File(pdmFilePath);
+            if (f.exists()) {
+                initTree(f.getAbsolutePath());
             }
         } catch (Exception e1) {
             log.error("获取最后操作文xml件失败", e1);
@@ -408,7 +415,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
                log.error("打开帮助文档失败", e1);
             } 
         } else if (e.getSource() == miAbout) {
-            JOptionPane.showMessageDialog(this, "elfkingw版权所有  elfkingw@gmail.com", "提示",
+            JOptionPane.showMessageDialog(this, "版本：codeGen-"+Version.getVersionNumber()+"\nelfkingw版权所有  elfkingw@gmail.com", "关于",
                                           JOptionPane.INFORMATION_MESSAGE);
         }
     }
