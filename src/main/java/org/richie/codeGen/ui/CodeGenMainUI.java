@@ -54,6 +54,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.apache.commons.lang.StringUtils;
 import org.richie.codeGen.Version;
 import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.log.Log;
@@ -334,7 +335,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             lastOperateVo = GlobalData.getLastOperateVo();
             //如果第一次打开该工具自动载入自带pdm例子文件
             String pdmFilePath = FileUtils.getExamplePdmFile();
-            if (lastOperateVo != null && lastOperateVo.getPdmFilePath() != null) {
+            if (lastOperateVo != null && !StringUtils.isEmpty(lastOperateVo.getPdmFilePath())) {
                 pdmFilePath =  lastOperateVo.getPdmFilePath();
             }
             File f = new File(pdmFilePath);
