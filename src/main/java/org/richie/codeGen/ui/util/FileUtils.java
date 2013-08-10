@@ -17,11 +17,14 @@
 
 package org.richie.codeGen.ui.util;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
@@ -43,6 +46,7 @@ public class FileUtils {
     public static final String CONFIG_LASTOPERATE_FILENAME   = "LastOperate.xml";
     public static final String CONFIG_LASTTTEMPLATE_FILENAME = "LastTemplate.xml";
     public static final String CONFIG_DATA_TYPE_FILENAME     = "DataType.xml";
+    public static final String ENCODING                      = "UTF-8";
 
     public static String       CONFIG_ROOT_PATH              = null;
     private static Log         log                           = LogFacotry.getLogger(FileUtils.class);
@@ -78,8 +82,8 @@ public class FileUtils {
             if (!outFile.exists()) {
                 outFile.createNewFile();
             }
-            //如果目标文件和上传文件是一个文件直接返回
-            if(outFile.getPath().endsWith(file.getPath())){
+            // 如果目标文件和上传文件是一个文件直接返回
+            if (outFile.getPath().endsWith(file.getPath())) {
                 return;
             }
             fos = new FileOutputStream(outFile);
@@ -106,7 +110,7 @@ public class FileUtils {
      * @throws IOException
      */
     public static void witerFile(String filePath, String fileName, String content) throws IOException {
-        FileWriter fos = null;
+        BufferedWriter fos = null;
         try {
             File outFilePath = new File(filePath);
             if (!outFilePath.exists()) {
@@ -116,13 +120,35 @@ public class FileUtils {
             if (!outFile.exists()) {
                 outFile.createNewFile();
             }
-            fos = new FileWriter(outFile);
+            fos = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), ENCODING));
             fos.write(content);
         } finally {
             if (fos != null) {
                 fos.close();
             }
         }
+    }
+
+    /**
+     * 读取文件内容
+     * 
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    public static String readFile(File file) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), ENCODING));
+            String lineStr = null;
+            while ((lineStr = reader.readLine()) != null) {
+                sb.append(lineStr + "\n");
+            }
+        } finally {
+            reader.close();
+        }
+        return sb.toString();
     }
 
     public static String getConfigPath() {

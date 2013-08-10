@@ -17,9 +17,9 @@
 package org.richie.codeGen.core.velocity;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,6 +40,7 @@ import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.core.util.DateUtil;
 import org.richie.codeGen.core.util.StringUtil;
+import org.richie.codeGen.ui.util.FileUtils;
 
 public class CodeGen {
 
@@ -70,33 +71,19 @@ public class CodeGen {
         if (!folder.exists()) {
             folder.mkdirs();
         }
-        File file = new File(outFileFolder, outFileName);
-        FileWriter writer = null;
-        try {
-            if (!file.exists()) file.createNewFile();
-            writer = new FileWriter(file);
-            writer.write(fileContent);
-            writer.flush();
-        } finally {
-            try {
-                writer.close();
-            } catch (Exception e) {
-                // egnore the exception
-                log.error("close witer failed cause:" + e.getMessage(), e);
-            }
-        }
+        FileUtils.witerFile(outFileFolder, outFileName, fileContent);
     }
 
     public static String genCode(String templateName, String templatesFolder) throws CGException, Exception {
         File f = new File(templatesFolder, templateName);
         if (!f.exists()) throw new CGException("Template " + templateName + " not found!");
-        FileReader reader = null;
+        InputStreamReader reader = null;
         StringWriter writer = null;
         try {
             VelocityContext context = new VelocityContext();
             insertInVelocityContext(map, context);
             context.put("map", map);
-            reader = new FileReader(f);
+            reader =new InputStreamReader(new FileInputStream(f),FileUtils.ENCODING);
             writer = new StringWriter();
             Velocity.evaluate(context, writer, "", reader);
         } catch (Exception e) {

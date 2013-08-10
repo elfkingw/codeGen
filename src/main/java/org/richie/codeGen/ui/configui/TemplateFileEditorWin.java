@@ -20,11 +20,7 @@ package org.richie.codeGen.ui.configui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -106,18 +102,7 @@ public class TemplateFileEditorWin extends JDialog implements ActionListener {
         if (!file.exists()) {
             throw new Exception("模板文件【" + fileName + "】不存在！");
         }
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            StringBuilder sb = new StringBuilder();
-            String lineStr = null;
-            while ((lineStr = reader.readLine()) != null) {
-                sb.append(lineStr+"\n");
-            }
-            viewTextArea.setText(sb.toString());
-        } finally {
-            reader.close();
-        }
+        viewTextArea.setText(FileUtils.readFile(file));
 
     }
 
@@ -126,14 +111,7 @@ public class TemplateFileEditorWin extends JDialog implements ActionListener {
         if (!file.exists()) {
             throw new Exception("模板文件【" + fileName + "】不存在！");
         }
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter(new FileWriter(file));
-            String str = viewTextArea.getText();
-            writer.write(str);
-        } finally {
-            writer.close();
-        }
+        FileUtils.witerFile(FileUtils.getTemplatePath(), fileName, viewTextArea.getText());
         this.setVisible(false);
     }
 
