@@ -19,6 +19,8 @@
 交流  QQ：272942514   邮件：elfkingw@gmail.com
 
 注意：本工具支持PowerDesigner15以上
+ 
+下载地址：http://elfkingw.iteye.com/blog/1923098
 
 
 
