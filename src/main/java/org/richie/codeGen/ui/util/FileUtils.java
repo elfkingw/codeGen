@@ -25,6 +25,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
@@ -53,13 +55,20 @@ public class FileUtils {
     static {
         FileUtils utils = new FileUtils();
         String path = utils.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+        try {
+            // 解决jar放在带有中文的目录下问题
+            path = URLDecoder.decode(path, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        // 测试环境的路径放在项目根目录下
         if (path.endsWith("classes/")) {
             path = path.replace("target/classes/", "");
         }
         int lastIndex = path.lastIndexOf("/") + 1;
-        CONFIG_ROOT_PATH = path.substring(0, lastIndex);
-        // log.info("-----配置根路径"+path);
-        // log.info("-----配置根路径1"+CONFIG_ROOT_PATH);
+        File f = new File(path.substring(0, lastIndex));
+        CONFIG_ROOT_PATH = f.getAbsolutePath();
+        log.info("-----配置根路径：" + CONFIG_ROOT_PATH);
     }
 
     /**
@@ -170,7 +179,7 @@ public class FileUtils {
     }
 
     public static String getDefaultOutPath() {
-        String path = CONFIG_ROOT_PATH + OUTFILE_FOLDER;
+        String path = CONFIG_ROOT_PATH + File.separator + OUTFILE_FOLDER;
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -179,7 +188,7 @@ public class FileUtils {
     }
 
     public static String getHelpPath() {
-        String path = CONFIG_ROOT_PATH + HELP_FOLDER;
+        String path = CONFIG_ROOT_PATH + File.separator + HELP_FOLDER;
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
@@ -188,7 +197,7 @@ public class FileUtils {
     }
 
     public static String getExamplePdmFile() {
-        String path = CONFIG_ROOT_PATH + EXAMPLE_FOLDER + File.separator + EXAMPLE_PDM_FILE;
+        String path = CONFIG_ROOT_PATH + File.separator + EXAMPLE_FOLDER + File.separator + EXAMPLE_PDM_FILE;
         return path;
     }
 
