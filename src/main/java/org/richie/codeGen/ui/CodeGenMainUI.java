@@ -65,7 +65,7 @@ import org.richie.codeGen.database.Constants;
 import org.richie.codeGen.database.DatabaseReader;
 import org.richie.codeGen.database.ReaderFactory;
 import org.richie.codeGen.ui.configui.ConstantConfigWin;
-import org.richie.codeGen.ui.configui.DataTypeConfigWin;
+import org.richie.codeGen.ui.configui.BaseDataConfigWin;
 import org.richie.codeGen.ui.configui.TemplateConfigWin;
 import org.richie.codeGen.ui.model.LastOperateVo;
 import org.richie.codeGen.ui.model.TableTreeNode;
@@ -405,7 +405,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             win.setBounds(this.getX() + 250, this.getY() + 30, win.getWidth(), win.getHeight());
             win.setVisible(true);
         } else if (e.getSource() == dataTypeConfigItem) {
-            DataTypeConfigWin win = new DataTypeConfigWin();
+            BaseDataConfigWin win = new BaseDataConfigWin();
             win.setModal(true);
             win.setBounds(this.getX() + 250, this.getY() + 30, win.getWidth(), win.getHeight());
             win.setVisible(true);

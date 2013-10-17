@@ -86,8 +86,8 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     private JTable            table;
     private String[]          templateNames;
     private String[]          rootPathNames;
-    private JComboBox         templateNameCom;
-    private JComboBox         rootPathCom;
+    private JComboBox<String> templateNameCom;
+    private JComboBox<String> rootPathCom;
     private JTextArea         logTextArea;
     private JSplitPane        split;
     private JButton           clearLogBtn;
@@ -178,8 +178,8 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         } catch (Exception e) {
             log.error("界面初始", e);
         }
-        templateNameCom = new JComboBox(templateNames);
-        rootPathCom = new JComboBox(rootPathNames);
+        templateNameCom = new JComboBox<String>(templateNames);
+        rootPathCom = new JComboBox<String>(rootPathNames);
         // 隐藏编辑列
         TemplateConfigWin.hideColumn(table, 8);
         TableColumnModel tcm = table.getColumnModel();
@@ -236,12 +236,12 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        templateNameCom = new JComboBox(templateNames);
+        templateNameCom = new JComboBox<String>(templateNames);
         TableColumnModel tcm = table.getColumnModel();
         tcm.getColumn(1).setCellEditor(new DefaultCellEditor(templateNameCom));
         templateNameCom.updateUI();
 
-        rootPathCom = new JComboBox(rootPathNames);
+        rootPathCom = new JComboBox<String>(rootPathNames);
         TableColumnModel tcm1 = table.getColumnModel();
         tcm1.getColumn(3).setCellEditor(new DefaultCellEditor(rootPathCom));
         rootPathCom.updateUI();
@@ -304,7 +304,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 boolean isStart = false;
                 while ((line = reader.readLine()) != null) {
                     if (!isStart) {
-                        if(line.length()<23) continue;
+                        if (line.length() < 23) continue;
                         String time = line.substring(0, 23);
                         if (time.startsWith("20")) {
                             String startDateStr = DateUtil.formatDate(startDate, "yyyy-MM-dd HH:mm:ss,SSS");
@@ -442,7 +442,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
      */
     private void openFile(String filePath) {
         try {
-            Desktop.getDesktop().open(new File(filePath)); 
+            Desktop.getDesktop().open(new File(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }

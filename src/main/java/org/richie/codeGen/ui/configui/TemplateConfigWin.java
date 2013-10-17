@@ -72,13 +72,14 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
     private JButton           saveBtn;
     private JPanel            configPanel;
     private JScrollPane       templatePanel;
-    private GenAndPreviewUI  parent;
+    private GenAndPreviewUI   parent;
     private String[]          rootPathNames;
-    private JComboBox         rootPathCom;
+    private JComboBox<String> rootPathCom;
 
     public TemplateConfigWin(){
         initLize();
     }
+
     public TemplateConfigWin(GenAndPreviewUI parent){
         this.parent = parent;
         initLize();
@@ -86,7 +87,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
 
     public void initLize() {
         setTitle("模板配置");
-        setSize( 800, 500);
+        setSize(800, 500);
         add(getConifgPanel());
         initTableData();
     }
@@ -129,7 +130,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            rootPathCom = new JComboBox(rootPathNames);
+            rootPathCom = new JComboBox<String>(rootPathNames);
             hideColumn(table, 0);
             hideColumn(table, 5);
             hideColumn(table, 7);
@@ -151,19 +152,19 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
         }
         return templatePanel;
     }
-    
 
-    public void initTableData(){
+    public void initTableData() {
         try {
             List<CodeTemplateVo> templateList = GlobalData.getTemplateList();
             templateModel.setTemplateList(templateList);
             table.updateUI();
         } catch (Exception e) {
-           String msg ="initlize Data fauld";
-           handException(msg, e);
+            String msg = "initlize Data fauld";
+            handException(msg, e);
         }
-        
+
     }
+
     /*
      * table cell里按钮的事件
      */
@@ -196,13 +197,14 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
                 int row = table.getSelectedRow();
                 if (col == 8) {
                     CodeTemplateVo vo = templateModel.getTemplateList().get(row);
-                    if(StringUtil.isEmpty(vo.getFileName())){
-                        JOptionPane.showMessageDialog(getTemplatePanel(), "该行没有选选择模板文件，请选择！", "提示", JOptionPane.INFORMATION_MESSAGE);
+                    if (StringUtil.isEmpty(vo.getFileName())) {
+                        JOptionPane.showMessageDialog(getTemplatePanel(), "该行没有选选择模板文件，请选择！", "提示",
+                                                      JOptionPane.INFORMATION_MESSAGE);
                         return;
                     }
                     TemplateFileEditorWin win = new TemplateFileEditorWin(vo.getFileName());
                     win.setModal(true);
-                    win.setBounds(getX()-100,getY()-50, win.getWidth(),win.getHeight());
+                    win.setBounds(getX() - 100, getY() - 50, win.getWidth(), win.getHeight());
                     win.setVisible(true);
                 } else if (col == 2) {
                     JFileChooser jfc = new JFileChooser();// 文件选择器
@@ -234,7 +236,8 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
                             File outFile = new File(FileUtils.getTemplatePath() + File.separator + file.getName());
                             boolean isUpLoad = true;
                             if (outFile.exists()) {
-                                int status = JOptionPane.showConfirmDialog(getTemplatePanel(), "模板["+file.getName()+"]文件已存在是否覆盖?", "",
+                                int status = JOptionPane.showConfirmDialog(getTemplatePanel(), "模板[" + file.getName()
+                                                                                               + "]文件已存在是否覆盖?", "",
                                                                            JOptionPane.YES_NO_OPTION);
                                 if (status == JOptionPane.NO_OPTION) {
                                     isUpLoad = false;
@@ -271,10 +274,10 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
             List<CodeTemplateVo> list = templateModel.getTemplateList();
             try {
                 xmlParse.genVoToXmlFile(list, FileUtils.getConfigTemplatePath());
-                if(parent != null){
+                if (parent != null) {
                     parent.refreshComBoBox();
                 }
-                JOptionPane.showMessageDialog(getTemplatePanel(),"保存模板成功!", "提示", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(getTemplatePanel(), "保存模板成功!", "提示", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
                 String msg = "保存模板出错";
                 handException(msg, ex);
@@ -307,8 +310,8 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
         win.setVisible(true);
     }
 
-    private void handException(String msg, Exception e){
-        JOptionPane.showMessageDialog(getTemplatePanel(), msg+":"+e.getMessage(), "提示", JOptionPane.ERROR_MESSAGE);
+    private void handException(String msg, Exception e) {
+        JOptionPane.showMessageDialog(getTemplatePanel(), msg + ":" + e.getMessage(), "提示", JOptionPane.ERROR_MESSAGE);
         log.error(msg, e);
     }
 }
