@@ -102,7 +102,7 @@ public class PdmParser {
             table.setDataBaseType(getDataBaseByPdmFile(dataBaseType));
             tableMap.put(table.getId(), table);
             String primaryKeyId = getPrimaryKeyId(tableElement);
-            if(tableElement.element("Columns") == null) continue;
+            if (tableElement.element("Columns") == null) continue;
             List<Element> colList = tableElement.element("Columns").elements("Column");
             for (Element colElement : colList) {
                 Column column = parseColumn(primaryKeyId, colElement);
@@ -206,11 +206,17 @@ public class PdmParser {
             return null;
         }
         List<Element> elements = keys.elements("Key");
-        String keys_primarykey_ref_id = tableElement.element("PrimaryKey").element("Key").attributeValue("Ref");
+        Element pk = tableElement.element("PrimarKey");
+        if(pk == null){
+            return null;
+        }
+        String keys_primarykey_ref_id = pk.element("Key").attributeValue("Ref");
         for (Element element : elements) {
             String keys_key_id = element.attributeValue("Id");
             String keys_column_ref = element.element("Key.Columns").element("Column").attributeValue("Ref");
-            if (keys_primarykey_ref_id.equals(keys_key_id)) primaryKeyId = keys_column_ref;
+            if (keys_primarykey_ref_id.equals(keys_key_id)) {
+                primaryKeyId = keys_column_ref;
+            }
         }
         return primaryKeyId;
     }
