@@ -4,11 +4,11 @@
 
 	<groupId>org.richie</groupId>
 	<artifactId>codeGen</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>codeGen</name>
-	<url></url>
+	<url>https://github.com/elfkingw/codeGen</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -112,24 +112,11 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>changelog-maven-plugin</artifactId>
 			</plugin>
-			<!-- 代码Review报表 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<targetjdk>1.5</targetjdk>
-					<rulesets>
-						<ruleset>/rulesets/basic.xml</ruleset>
-						<ruleset>/rulesets/controversial.xml</ruleset>
-					</rulesets>
-					<format>xml</format>
-					<linkXref>true</linkXref>
-					<sourceEncoding>utf-8</sourceEncoding>
-					<minimumTokens>100</minimumTokens>
-				</configuration>
-			</plugin>
-			-->
+			<!-- 代码Review报表 <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-pmd-plugin</artifactId> 
+				<version>3.0</version> <configuration> <targetjdk>1.5</targetjdk> <rulesets> 
+				<ruleset>/rulesets/basic.xml</ruleset> <ruleset>/rulesets/controversial.xml</ruleset> 
+				</rulesets> <format>xml</format> <linkXref>true</linkXref> <sourceEncoding>utf-8</sourceEncoding> 
+				<minimumTokens>100</minimumTokens> </configuration> </plugin> -->
 			<!-- fundBugs报表 -->
 			<!-- <plugin> <groupId>maven-plugins</groupId> <artifactId>maven-findbugs-plugin</artifactId> 
 				<version>1.4</version> </plugin> -->
