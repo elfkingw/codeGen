@@ -13,56 +13,61 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Created on 2013-7-19
+// Created on 2013年10月17日
 
 package org.richie.codeGen.core.model;
 
 /**
+ * 界面控件
  * @author elfkingw
  */
-public class DataType {
+public class UIComponent {
 
-    private String dataType;
-    private String javaType;
-    private String uiType;//数据类型对应的界面组件
+    private String code;
+    private String name;
     private String note;
 
-    public String getDataType() {
-        return dataType;
-    }
-
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
-    }
-
-    public String getJavaType() {
-        return javaType;
-    }
-
-    public void setJavaType(String javaType) {
-        this.javaType = javaType;
+    
+    
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
     }
 
     
     /**
-     * @return the uiType
+     * @param code the code to set
      */
-    public String getUiType() {
-        return uiType;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    
     /**
-     * @param uiType the uiType to set
+     * @return the name
      */
-    public void setUiType(String uiType) {
-        this.uiType = uiType;
+    public String getName() {
+        return name;
     }
 
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the note
+     */
     public String getNote() {
         return note;
     }
 
+    /**
+     * @param note the note to set
+     */
     public void setNote(String note) {
         this.note = note;
     }

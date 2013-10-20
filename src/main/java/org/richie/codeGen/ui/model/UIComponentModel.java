@@ -22,36 +22,36 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import org.richie.codeGen.core.model.DataType;
+import org.richie.codeGen.core.model.UIComponent;
 
 /**
  * @author elfkingw
  */
-public class DataTypeModel extends AbstractTableModel {
+public class UIComponentModel extends AbstractTableModel {
 
     /**
      * 
      */
     private static final long      serialVersionUID = 1L;
-    private List<DataType> dataTypeList;
-    private String[]               titles           = { "数据类型","编程语言程序类型","默认对应界面控件",  "备注", "删除" };
+    private List<UIComponent> UIComponentList;
+    private String[]               titles           = { "控件代码","控件名称", "备注", "删除" };
 
-    public DataTypeModel(){
-        dataTypeList = new ArrayList<DataType>();
+    public UIComponentModel(){
+        UIComponentList = new ArrayList<UIComponent>();
     }
 
-    public void addRow(DataType vo) {
-        dataTypeList.add(vo);
+    public void addRow(UIComponent vo) {
+        UIComponentList.add(vo);
     }
 
     public void removeRow(int row) {
-        dataTypeList.remove(row);
+        UIComponentList.remove(row);
     }
 
     public void removeRows(int row, int count) {
         for (int i = 0; i < count; i++) {
-            if (dataTypeList.size() > row) {
-                dataTypeList.remove(row);
+            if (UIComponentList.size() > row) {
+                UIComponentList.remove(row);
             }
         }
     }
@@ -69,7 +69,7 @@ public class DataTypeModel extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        return dataTypeList.size();
+        return UIComponentList.size();
     }
 
     /*
@@ -89,18 +89,15 @@ public class DataTypeModel extends AbstractTableModel {
      * 使修改的内容生效
      */
     public void setValueAt(Object value, int row, int col) {
-        DataType vo = dataTypeList.get(row);
+        UIComponent vo = UIComponentList.get(row);
         switch (col) {
             case 0:
-                vo.setDataType((String)value);
+                vo.setCode((String)value);
                 break;
             case 1:
-                vo.setJavaType((String) value);
+                vo.setName((String) value);
                 break;
             case 2:
-                vo.setUiType((String) value);
-                break;
-            case 3:
                 vo.setNote((String) value);
                 break;
         }
@@ -113,37 +110,44 @@ public class DataTypeModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        if (dataTypeList == null || dataTypeList.size() == 0) {
+        if (UIComponentList == null || UIComponentList.size() == 0) {
             return null;
         }
-        DataType vo = dataTypeList.get(rowIndex);
+        UIComponent vo = UIComponentList.get(rowIndex);
         Object value = null;
         switch (columnIndex) {
             case 0:
-                value = vo.getDataType();
+                value = vo.getCode();
                 break;
             case 1:
-                value = vo.getJavaType();
+                value = vo.getName();
                 break;
             case 2:
-                value = vo.getUiType();
-                break;
-            case 3:
                 value = vo.getNote();
                 break;
-            case 4:
+            case 3:
                 value = "删除";
                 break;
         }
         return value;
     }
 
-    public List<DataType> getConstantConfigList() {
-        return dataTypeList;
+    
+    /**
+     * @return the uIComponentList
+     */
+    public List<UIComponent> getUIComponentList() {
+        return UIComponentList;
     }
 
-    public void setConstantConfigList(List<DataType> dataTypeList) {
-        this.dataTypeList = dataTypeList;
+    
+    /**
+     * @param uIComponentList the uIComponentList to set
+     */
+    public void setUIComponentList(List<UIComponent> uIComponentList) {
+        UIComponentList = uIComponentList;
     }
+
+   
 
 }

@@ -43,12 +43,16 @@ import javax.swing.JToolBar;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
+import org.richie.codeGen.core.log.Log;
+import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.core.model.Column;
 import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.ui.configui.TableTreeWin;
 import org.richie.codeGen.ui.model.ColumnModel;
 
 /**
+ * 数据表选择界面
+ * 
  * @author elfkingw
  */
 public class TableSelectUI extends JPanel implements ActionListener {
@@ -68,8 +72,8 @@ public class TableSelectUI extends JPanel implements ActionListener {
     public JTextField         mainTableName;
     public JTextField         mainExtension1;
     public JTextField         mainExtension2;
-    private JButton           mainUpBtn;            // 上移
-    private JButton           mainDownBtn;          // 下移
+    private JButton           mainUpBtn;                                                   // 上移
+    private JButton           mainDownBtn;                                                 // 下移
 
     private JLabel            subTableCodeLabel;
     private JTextField        subTableCode;
@@ -79,12 +83,16 @@ public class TableSelectUI extends JPanel implements ActionListener {
     public JTextField         subExtension1;
     private JLabel            subExtension2Label;
     public JTextField         subExtension2;
-    private JButton           subUpBtn;             // 上移
-    private JButton           subDownBtn;           // 下移
+    private JButton           subUpBtn;                                                    // 上移
+    private JButton           subDownBtn;                                                  // 下移
 
     private JButton           addBtn;
     private JButton           delBtn;
+    private JComboBox<String> uiTypeComboBox;
+    private String[]          uiTypes;
     private CodeGenMainUI     parent;
+
+    private Log               log              = LogFacotry.getLogger(TableSelectUI.class);
 
     public TableSelectUI(JFrame parent){
         super();
@@ -93,26 +101,43 @@ public class TableSelectUI extends JPanel implements ActionListener {
     }
 
     public void initLize() {
-        setSize(400, 400);
-        setLayout(new BorderLayout());
-        add(getMainPanel(), BorderLayout.CENTER);
+        try {
+            setSize(400, 400);
+            setLayout(new BorderLayout());
+            add(getMainPanel(), BorderLayout.CENTER);
+        } catch (Exception e) {
+            handException("初始化界面失败！", e);
+        }
+    }
+
+    private void handException(String msg, Exception e) {
+        JOptionPane.showMessageDialog(this, msg + ":" + e.getMessage(), "提示", JOptionPane.ERROR_MESSAGE);
+        log.error(msg, e);
     }
 
     public JSplitPane getMainPanel() {
         if (centerPanel == null) {
-            centerPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-            centerPanel.add(getMainTablePanel(), JSplitPane.LEFT);
-            centerPanel.add(getSubTablePanel(), JSplitPane.RIGHT);
-            centerPanel.setDividerLocation(0.6);
+            try {
+                centerPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+                centerPanel.add(getMainTablePanel(), JSplitPane.LEFT);
+                centerPanel.add(getSubTablePanel(), JSplitPane.RIGHT);
+                centerPanel.setDividerLocation(0.6);
+            } catch (Exception e) {
+                handException("初始化界面失败！", e);
+            }
         }
         return centerPanel;
     }
 
     public void setDividerLocation() {
-        getMainPanel().setDividerLocation(0.5);
+        try {
+            getMainPanel().setDividerLocation(0.5);
+        } catch (Exception e) {
+            handException("初始化界面失败！", e);
+        }
     }
 
-    public JPanel getMainTablePanel() {
+    public JPanel getMainTablePanel() throws Exception {
         mainTableModel = new ColumnModel();
         mainTable = new JTable(mainTableModel);
         mainTable.setBackground(Color.white);
@@ -123,7 +148,8 @@ public class TableSelectUI extends JPanel implements ActionListener {
         mainTable.setFont(new Font("Dialog", 0, 12));
         mainTable.setRowHeight(23);
         TableColumnModel tcm = mainTable.getColumnModel();
-        JComboBox<String> uiTypeComboBox = new JComboBox<String>(GlobalData.uiType);
+
+        JComboBox<String> uiTypeComboBox = new JComboBox<String>(GlobalData.getUITypeStrs());
         tcm.getColumn(11).setCellEditor(new DefaultCellEditor(uiTypeComboBox));
         tcm.getColumn(0).setPreferredWidth(70);
         tcm.getColumn(1).setPreferredWidth(60);
@@ -147,6 +173,20 @@ public class TableSelectUI extends JPanel implements ActionListener {
         panel.add(getMainToolBar(), BorderLayout.NORTH);
         panel.add(tablePanel, BorderLayout.CENTER);
         return panel;
+    }
+
+    public void refreshComBoBox() {
+        try {
+            uiTypes = GlobalData.getUITypeStrs();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        uiTypeComboBox = new JComboBox<String>(uiTypes);
+        TableColumnModel tcm = mainTable.getColumnModel();
+        tcm.getColumn(11).setCellEditor(new DefaultCellEditor(uiTypeComboBox));
+        tcm = subTable.getColumnModel();
+        tcm.getColumn(11).setCellEditor(new DefaultCellEditor(uiTypeComboBox));
+        uiTypeComboBox.updateUI();
     }
 
     public JToolBar getMainToolBar() {
@@ -222,7 +262,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
         return subToolBar;
     }
 
-    public JPanel getSubTablePanel() {
+    public JPanel getSubTablePanel() throws Exception {
         subTableModel = new ColumnModel();
         subTable = new JTable(subTableModel);
         subTable.setBackground(Color.white);
@@ -233,20 +273,20 @@ public class TableSelectUI extends JPanel implements ActionListener {
         subTable.setFont(new Font("Dialog", 0, 12));
         subTable.setRowHeight(23);
         TableColumnModel tcm = subTable.getColumnModel();
-        JComboBox<String> uiTypeComboBox = new JComboBox<String>(GlobalData.uiType);
+        uiTypeComboBox = new JComboBox<String>(GlobalData.getUITypeStrs());
         tcm.getColumn(11).setCellEditor(new DefaultCellEditor(uiTypeComboBox));
         tcm.getColumn(0).setPreferredWidth(70);
         tcm.getColumn(1).setPreferredWidth(60);
-        tcm.getColumn(2).setMaxWidth(35);
+        tcm.getColumn(2).setMaxWidth(40);
         tcm.getColumn(3).setMaxWidth(80);
-        tcm.getColumn(4).setMaxWidth(35);
-        tcm.getColumn(5).setMaxWidth(35);
+        tcm.getColumn(4).setMaxWidth(40);
+        tcm.getColumn(5).setMaxWidth(40);
         tcm.getColumn(6).setMaxWidth(65);
         tcm.getColumn(7).setPreferredWidth(4);
-        tcm.getColumn(8).setMaxWidth(35);
+        tcm.getColumn(8).setMaxWidth(40);
         tcm.getColumn(9).setPreferredWidth(40);
         tcm.getColumn(10).setMaxWidth(65);
-        tcm.getColumn(11).setPreferredWidth(35);
+        tcm.getColumn(11).setPreferredWidth(40);
         tcm.getColumn(12).setPreferredWidth(10);
         tcm.getColumn(13).setPreferredWidth(10);
         JScrollPane tablePanel = new JScrollPane(subTable);
@@ -266,6 +306,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
      * @param table
      */
     public void initTable(Table table) {
+        refreshComBoBox();
         setTable(table);
         mainTableCode.setText(table.getCode());
         mainTableName.setText(table.getName());

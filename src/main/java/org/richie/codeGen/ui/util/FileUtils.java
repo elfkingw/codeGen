@@ -48,6 +48,7 @@ public class FileUtils {
     public static final String CONFIG_LASTOPERATE_FILENAME   = "LastOperate.xml";
     public static final String CONFIG_LASTTTEMPLATE_FILENAME = "LastTemplate.xml";
     public static final String CONFIG_DATA_TYPE_FILENAME     = "DataType.xml";
+    public static final String CONFIG_UI_TYPE_FILENAME       = "UIType.xml";
     public static final String ENCODING                      = "UTF-8";
 
     public static String       CONFIG_ROOT_PATH              = null;
@@ -228,6 +229,11 @@ public class FileUtils {
 
     public static String getDataTypePath() throws IOException {
         String path = getConfigPath() + File.separator + CONFIG_DATA_TYPE_FILENAME;
+        return path;
+    }
+
+    public static String getUITypePath() throws IOException {
+        String path = getConfigPath() + File.separator + CONFIG_UI_TYPE_FILENAME;
         return path;
     }
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Created on 2013-7-14
+// Created on 2013年10月17日
 
 package org.richie.codeGen.ui.configui;
 
@@ -29,10 +29,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -60,7 +61,7 @@ import org.richie.codeGen.ui.util.XmlParse;
 /**
  * @author elfkingw
  */
-public class DataTypeConfigWin extends JDialog implements ActionListener {
+public class DataTypeConfigPanel extends JPanel implements ActionListener {
 
     /**
      * 
@@ -72,20 +73,17 @@ public class DataTypeConfigWin extends JDialog implements ActionListener {
     private JToolBar          toolBar;
     private JButton           addLineBtn;
     private JButton           saveBtn;
+    private JComboBox<String> uiTypesCom;
+    private String[]          uiTypes;
 
-    private Log               log              = LogFacotry.getLogger(DataTypeConfigWin.class);
+    private Log               log              = LogFacotry.getLogger(BaseDataConfigWin.class);
     private DataTypeModel     dataTypeModel;
 
-    public DataTypeConfigWin(){
-
+    public DataTypeConfigPanel(){
         super();
-        initLize();
-    }
-
-    public void initLize() {
-        setTitle("数据类型设置");
-        setSize(560, 400);
-        add(getConfigPanel());
+        this.setLayout(new BorderLayout());
+        this.add(getCenterPanel(), BorderLayout.CENTER);
+        this.add(getButtonPanel(), BorderLayout.NORTH);
         initData();
     }
 
@@ -123,18 +121,38 @@ public class DataTypeConfigWin extends JDialog implements ActionListener {
             tableHeader.setReorderingAllowed(false);// 表格列不可移动
             table.setFont(new Font("Dialog", 0, 13));
             table.setRowHeight(23);
+            try {
+                uiTypes = GlobalData.getUITypeStrs();
+            } catch (Exception e) {
+                log.error("界面初始", e);
+            }
+            uiTypesCom = new JComboBox<String>(uiTypes);
             TableColumnModel tcm = table.getColumnModel();
-            tcm.getColumn(3).setCellRenderer(new ButtonRenderer());
-            tcm.getColumn(3).setCellEditor(new ButtonEditor());
+            tcm.getColumn(2).setCellEditor(new DefaultCellEditor(uiTypesCom));
+            tcm.getColumn(4).setCellRenderer(new ButtonRenderer());
+            tcm.getColumn(4).setCellEditor(new ButtonEditor());
             tcm.getColumn(0).setPreferredWidth(50);
             tcm.getColumn(1).setPreferredWidth(120);
-            tcm.getColumn(2).setPreferredWidth(140);
-            tcm.getColumn(3).setPreferredWidth(20);
+            tcm.getColumn(2).setPreferredWidth(100);
+            tcm.getColumn(3).setPreferredWidth(100);
+            tcm.getColumn(4).setPreferredWidth(50);
             centerPanel = new JScrollPane(table);
             // 增加table里按钮点击事件
             addTableListener();
         }
         return centerPanel;
+    }
+
+    public void refreshComBoBox() {
+        try {
+            uiTypes = GlobalData.getUITypeStrs();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        TableColumnModel tcm = table.getColumnModel();
+        uiTypesCom = new JComboBox<String>(uiTypes);
+        tcm.getColumn(3).setCellEditor(new DefaultCellEditor(uiTypesCom));
+        uiTypesCom.updateUI();
     }
 
     private JToolBar getButtonPanel() {
@@ -219,7 +237,7 @@ public class DataTypeConfigWin extends JDialog implements ActionListener {
             public void mouseClicked(MouseEvent e) {
                 int col = table.getSelectedColumn();
                 int row = table.getSelectedRow();
-                if (col == 3) {
+                if (col == 4) {
                     dataTypeModel.removeRow(row);
                     table.updateUI();
                 }

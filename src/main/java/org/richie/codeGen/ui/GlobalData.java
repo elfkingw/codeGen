@@ -25,6 +25,7 @@ import java.util.Map;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.core.model.DataType;
+import org.richie.codeGen.core.model.UIComponent;
 import org.richie.codeGen.core.util.StringUtil;
 import org.richie.codeGen.ui.model.CodeTemplateVo;
 import org.richie.codeGen.ui.model.ConstantConfigVo;
@@ -44,6 +45,7 @@ public class GlobalData {
     public static OutFileRootPathVo      outFileRootPathVo;                                    // 输出路径根目录
     public static LastOperateVo          lastOperateVo;                                        // 用户最后一次操
     public static List<DataType>         dataTypeList;                                         // 数据类型
+    public static List<UIComponent>      uiTypeList;                                           // 界面控件
 
     public static String[]               costantType = new String[] { "常量", "类" };
     public static String[]               uiType      = new String[] { "TextField", "DateField", "ComboBox",
@@ -76,7 +78,7 @@ public class GlobalData {
     public static String[] getTemplateNames() throws Exception {
         String[] names = new String[] {};
         templateList = getTemplateList();
-        if (templateList != null && templateList.size()>0) {
+        if (templateList != null && templateList.size() > 0) {
             names = new String[templateList.size()];
             for (int i = 0; i < templateList.size(); i++) {
                 names[i] = templateList.get(i).getTemplateName();
@@ -101,10 +103,10 @@ public class GlobalData {
                 outFileRootPathVo = list.get(0);
             }
         }
-        if(outFileRootPathVo == null){
+        if (outFileRootPathVo == null) {
             outFileRootPathVo = new OutFileRootPathVo();
         }
-        outFileRootPathVo.setName1("默认") ;
+        outFileRootPathVo.setName1("默认");
         outFileRootPathVo.setPath1(FileUtils.getDefaultOutPath());
         return outFileRootPathVo;
     }
@@ -171,6 +173,24 @@ public class GlobalData {
         XmlParse<DataType> xmlParse = new XmlParse<DataType>(DataType.class);
         dataTypeList = xmlParse.parseXmlFileToVo(FileUtils.getDataTypePath());
         return dataTypeList;
+    }
+
+    public static List<UIComponent> getUIType() throws Exception {
+        XmlParse<UIComponent> xmlParse = new XmlParse<UIComponent>(UIComponent.class);
+        uiTypeList = xmlParse.parseXmlFileToVo(FileUtils.getUITypePath());
+        return uiTypeList;
+    }
+
+    public static String[] getUITypeStrs() throws Exception {
+        String[] codes = new String[] {};
+        uiTypeList = getUIType();
+        if (uiTypeList != null && uiTypeList.size() > 0) {
+            codes = new String[uiTypeList.size()];
+            for (int i = 0; i < uiTypeList.size(); i++) {
+                codes[i] = uiTypeList.get(i).getCode();
+            }
+        }
+        return codes;
     }
 
     public static Map<String, String> getDataTypeMap() throws Exception {

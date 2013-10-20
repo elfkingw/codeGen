@@ -17,7 +17,10 @@
 
 package org.richie.codeGen.core.model;
 
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
+import org.richie.codeGen.ui.GlobalData;
 
 /**
  * 数据库表字段信息，界面上 表选择区中列表中的信息
@@ -342,13 +345,21 @@ public class Column {
      */
     public String getUiType() {
         if (uiType == null) {
-            if ("date".equalsIgnoreCase(dataType)) {
-                uiType = "DateField";
-            } else if (isForeignKey) {
-                uiType = "ComboBox";
-            } else {
-                uiType = "TextField";
+            //根据数据类型的默认配置控件来设置
+            try {
+                List<DataType> list = GlobalData.getDataType();
+                for (DataType type : list) {
+                    if (type.getDataType().equals(dataType)) {
+                        uiType = type.getUiType();
+                    }
+                }
+                if(uiType == null){
+                    uiType = "TextField";
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
         }
         return uiType;
     }
