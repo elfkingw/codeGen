@@ -206,8 +206,9 @@ public class PdmParser {
             return null;
         }
         List<Element> elements = keys.elements("Key");
-        Element pk = tableElement.element("PrimarKey");
-        if(pk == null){
+        Element pk = tableElement.element("PrimaryKey");
+        //读取pdm主键判空，有的表没有主键设置
+        if (pk == null) {
             return null;
         }
         String keys_primarykey_ref_id = pk.element("Key").attributeValue("Ref");
