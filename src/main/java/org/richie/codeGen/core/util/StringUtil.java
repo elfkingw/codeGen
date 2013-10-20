@@ -16,7 +16,9 @@
 // Created on 2013-6-29
 package org.richie.codeGen.core.util;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.richie.codeGen.core.model.Column;
@@ -96,17 +98,21 @@ public class StringUtil extends StringUtils {
     }
 
     /**
-     * 如果字段对应的代码类不在java.lang包下则 生成import该资源 eg：返回如下字符串 import java.math.BigDecimal; import java.sql.Date;
+     * 如果字段对应的代码类不在java.lang包下则 生成import该资源<br>
+     * eg：返回如下字符串 import java.math.BigDecimal; import java.sql.Date;
      * 
      * @param columns 表字段
      * @return
      */
     public String getImportClass(List<Column> columns) {
         StringBuilder sb = new StringBuilder();
+        //类型相同的类型只导入一次
+        Map<String, String> map = new HashMap<String, String>();
         for (Column column : columns) {
             String codeType = column.getCodeType();
-            if (codeType.indexOf(".") > 0 && !codeType.contains("java.lang")) {
+            if (codeType.indexOf(".") > 0 && !codeType.contains("java.lang") && !map.containsKey(codeType)) {
                 sb.append("import " + codeType + ";\n");
+                map.put(codeType, null);
             }
         }
         return sb.toString();
