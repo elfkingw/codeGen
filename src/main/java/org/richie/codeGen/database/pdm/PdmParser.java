@@ -214,7 +214,15 @@ public class PdmParser {
         String keys_primarykey_ref_id = pk.element("Key").attributeValue("Ref");
         for (Element element : elements) {
             String keys_key_id = element.attributeValue("Id");
-            String keys_column_ref = element.element("Key.Columns").element("Column").attributeValue("Ref");
+            Element columns = element.element("Key.Columns");
+            if(columns == null){
+                continue;
+            }
+            Element col = columns.element("Column");
+            if(col == null){
+                continue;
+            }
+            String keys_column_ref = col.attributeValue("Ref");
             if (keys_primarykey_ref_id.equals(keys_key_id)) {
                 primaryKeyId = keys_column_ref;
             }
