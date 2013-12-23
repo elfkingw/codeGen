@@ -73,7 +73,7 @@ public class DataTypeConfigPanel extends JPanel implements ActionListener {
     private JToolBar          toolBar;
     private JButton           addLineBtn;
     private JButton           saveBtn;
-    private JComboBox<String> uiTypesCom;
+    private JComboBox uiTypesCom;
     private String[]          uiTypes;
 
     private Log               log              = LogFacotry.getLogger(BaseDataConfigWin.class);
@@ -126,7 +126,7 @@ public class DataTypeConfigPanel extends JPanel implements ActionListener {
             } catch (Exception e) {
                 log.error("界面初始", e);
             }
-            uiTypesCom = new JComboBox<String>(uiTypes);
+            uiTypesCom = new JComboBox(uiTypes);
             TableColumnModel tcm = table.getColumnModel();
             tcm.getColumn(2).setCellEditor(new DefaultCellEditor(uiTypesCom));
             tcm.getColumn(4).setCellRenderer(new ButtonRenderer());
@@ -150,7 +150,7 @@ public class DataTypeConfigPanel extends JPanel implements ActionListener {
             ex.printStackTrace();
         }
         TableColumnModel tcm = table.getColumnModel();
-        uiTypesCom = new JComboBox<String>(uiTypes);
+        uiTypesCom = new JComboBox(uiTypes);
         tcm.getColumn(3).setCellEditor(new DefaultCellEditor(uiTypesCom));
         uiTypesCom.updateUI();
     }

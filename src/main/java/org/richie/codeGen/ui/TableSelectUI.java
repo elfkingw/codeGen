@@ -88,7 +88,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
 
     private JButton           addBtn;
     private JButton           delBtn;
-    private JComboBox<String> uiTypeComboBox;
+    private JComboBox uiTypeComboBox;
     private String[]          uiTypes;
     private CodeGenMainUI     parent;
 
@@ -149,7 +149,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
         mainTable.setRowHeight(23);
         TableColumnModel tcm = mainTable.getColumnModel();
 
-        JComboBox<String> uiTypeComboBox = new JComboBox<String>(GlobalData.getUITypeStrs());
+        JComboBox uiTypeComboBox = new JComboBox(GlobalData.getUITypeStrs());
         tcm.getColumn(11).setCellEditor(new DefaultCellEditor(uiTypeComboBox));
         tcm.getColumn(0).setPreferredWidth(70);
         tcm.getColumn(1).setPreferredWidth(60);
@@ -181,7 +181,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        uiTypeComboBox = new JComboBox<String>(uiTypes);
+        uiTypeComboBox = new JComboBox(uiTypes);
         TableColumnModel tcm = mainTable.getColumnModel();
         tcm.getColumn(11).setCellEditor(new DefaultCellEditor(uiTypeComboBox));
         tcm = subTable.getColumnModel();
@@ -273,7 +273,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
         subTable.setFont(new Font("Dialog", 0, 12));
         subTable.setRowHeight(23);
         TableColumnModel tcm = subTable.getColumnModel();
-        uiTypeComboBox = new JComboBox<String>(GlobalData.getUITypeStrs());
+        uiTypeComboBox = new JComboBox(GlobalData.getUITypeStrs());
         tcm.getColumn(11).setCellEditor(new DefaultCellEditor(uiTypeComboBox));
         tcm.getColumn(0).setPreferredWidth(70);
         tcm.getColumn(1).setPreferredWidth(60);

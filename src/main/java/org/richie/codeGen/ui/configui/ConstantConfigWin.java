@@ -226,7 +226,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
             table.setFont(new Font("Dialog", 0, 13));
             table.setRowHeight(23);
             TemplateConfigWin.hideColumn(table, 3);
-            JComboBox<String> cm = new JComboBox<String>(GlobalData.costantType);
+            JComboBox cm = new JComboBox(GlobalData.costantType);
             TableColumnModel tcm = table.getColumnModel();
             tcm.getColumn(4).setCellRenderer(new ButtonRenderer());
             tcm.getColumn(4).setCellEditor(new ButtonEditor());

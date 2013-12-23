@@ -86,8 +86,8 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     private JTable            table;
     private String[]          templateNames;
     private String[]          rootPathNames;
-    private JComboBox<String> templateNameCom;
-    private JComboBox<String> rootPathCom;
+    private JComboBox templateNameCom;
+    private JComboBox rootPathCom;
     private JTextArea         logTextArea;
     private JSplitPane        split;
     private JButton           clearLogBtn;
@@ -178,8 +178,8 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         } catch (Exception e) {
             log.error("界面初始", e);
         }
-        templateNameCom = new JComboBox<String>(templateNames);
-        rootPathCom = new JComboBox<String>(rootPathNames);
+        templateNameCom = new JComboBox(templateNames);
+        rootPathCom = new JComboBox(rootPathNames);
         // 隐藏编辑列
         TemplateConfigWin.hideColumn(table, 8);
         TableColumnModel tcm = table.getColumnModel();
@@ -236,12 +236,12 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        templateNameCom = new JComboBox<String>(templateNames);
+        templateNameCom = new JComboBox(templateNames);
         TableColumnModel tcm = table.getColumnModel();
         tcm.getColumn(1).setCellEditor(new DefaultCellEditor(templateNameCom));
         templateNameCom.updateUI();
 
-        rootPathCom = new JComboBox<String>(rootPathNames);
+        rootPathCom = new JComboBox(rootPathNames);
         TableColumnModel tcm1 = table.getColumnModel();
         tcm1.getColumn(3).setCellEditor(new DefaultCellEditor(rootPathCom));
         rootPathCom.updateUI();

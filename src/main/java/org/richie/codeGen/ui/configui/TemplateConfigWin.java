@@ -74,7 +74,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
     private JScrollPane       templatePanel;
     private GenAndPreviewUI   parent;
     private String[]          rootPathNames;
-    private JComboBox<String> rootPathCom;
+    private JComboBox rootPathCom;
 
     public TemplateConfigWin(){
         initLize();
@@ -130,7 +130,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            rootPathCom = new JComboBox<String>(rootPathNames);
+            rootPathCom = new JComboBox(rootPathNames);
             hideColumn(table, 0);
             hideColumn(table, 5);
             hideColumn(table, 7);
