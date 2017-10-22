@@ -262,6 +262,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
         return subToolBar;
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public JPanel getSubTablePanel() throws Exception {
         subTableModel = new ColumnModel();
         subTable = new JTable(subTableModel);
