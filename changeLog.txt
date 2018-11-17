@@ -7,7 +7,8 @@
 	3.增加模板备份还原功能
 bug修改：
 	1.修正读取pdm文件中不表字段设置主键，报null异常的情况
-    2.StringUtil中共用方法getImportClass（） ，解决重复导入同一类型问题·	
+    2.StringUtil中共用方法getImportClass（） ，解决重复导入同一类型问题·
+
 
 0.1.0版本--初始版本 2013-08-11
  
