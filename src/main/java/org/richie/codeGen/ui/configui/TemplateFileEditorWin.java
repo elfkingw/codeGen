@@ -21,6 +21,8 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -29,9 +31,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import org.richie.codeGen.core.exception.CGException;
 import org.richie.codeGen.core.log.Log;
 import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.ui.util.FileUtils;
+import org.richie.codeGen.ui.util.JarFileUtils;
 
 /**
  * @author elfkingw
@@ -98,20 +102,28 @@ public class TemplateFileEditorWin extends JDialog implements ActionListener {
     }
 
     private void initFileContent() throws Exception {
-        File file = new File(FileUtils.getTemplatePath() + File.separator + fileName);
-        if (!file.exists()) {
+        File file = new File(JarFileUtils.TEMP_TEMPLATE_FILE_PATH+ File.separator + fileName);
+        InputStream inputStream =null;
+        //先从临时文件夹读取
+        if (file.exists()) {
+            inputStream = new FileInputStream(file);
+        } else {
+            //再从jar包中文件夹读取
+            inputStream = JarFileUtils.class.getResourceAsStream("/resources/template/"+fileName);
+        }
+        if (inputStream == null) {
             throw new Exception("模板文件【" + fileName + "】不存在！");
         }
-        viewTextArea.setText(FileUtils.readFile(file));
+        viewTextArea.setText(FileUtils.readFile(inputStream));
 
     }
 
     private void saveFile() throws Exception {
-        File file = new File(FileUtils.getTemplatePath() + File.separator + fileName);
-        if (!file.exists()) {
-            throw new Exception("模板文件【" + fileName + "】不存在！");
-        }
-        FileUtils.witerFile(FileUtils.getTemplatePath(), fileName, viewTextArea.getText());
+//        File file = new File(JarFileUtils.TEMP_TEMPLATE_FILE_PATH+ File.separator + fileName);
+//        if (!file.exists()) {
+//            throw new Exception("模板文件【" + fileName + "】不存在！");
+//        }
+        FileUtils.witerFile(JarFileUtils.TEMP_TEMPLATE_FILE_PATH, fileName, viewTextArea.getText());
         this.setVisible(false);
     }
 

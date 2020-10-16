@@ -45,7 +45,7 @@ public class CodeTemplateModel extends AbstractTableModel {
         templateList = list;
     }
 
-    private String[] titles = { "选择", "模板名称", "模板文件", "输出文件根目录", "输出包", "是否生成子表","后缀", "生成预览", "编辑模板", "删除" };
+    private String[] titles = { "选择", "模板名称", "模板文件", "输出文件根目录", "输出包", "是否生成子表","文件名", "生成预览", "编辑模板", "删除" };
 
     public void addRow(CodeTemplateVo vo) {
         templateList.add(vo);

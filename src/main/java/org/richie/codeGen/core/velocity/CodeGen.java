@@ -16,11 +16,7 @@
 // Created on 2013-7-6
 package org.richie.codeGen.core.velocity;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -41,10 +37,11 @@ import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.core.util.DateUtil;
 import org.richie.codeGen.core.util.StringUtil;
 import org.richie.codeGen.ui.util.FileUtils;
+import org.richie.codeGen.ui.util.JarFileUtils;
 
 public class CodeGen {
 
-    private static Log                 log = LogFacotry.getLogger(CodeGen.class);
+    private static Log log = LogFacotry.getLogger(CodeGen.class);
     private static Map<String, Object> map = new HashMap<String, Object>();
 
     static {
@@ -55,7 +52,7 @@ public class CodeGen {
 
     /**
      * generate code File from template file with velocity tool
-     * 
+     *
      * @param templateName
      * @param templatesFolder
      * @param outFileFolder
@@ -64,8 +61,8 @@ public class CodeGen {
      * @throws Exception
      */
     public static void genCode(String templateName, String templatesFolder, String outFileFolder, String outFileName)
-                                                                                                                     throws CGException,
-                                                                                                                     Exception {
+            throws CGException,
+            Exception {
         String fileContent = genCode(templateName, templatesFolder);
         File folder = new File(outFileFolder);
         if (!folder.exists()) {
@@ -74,21 +71,19 @@ public class CodeGen {
         FileUtils.witerFile(outFileFolder, outFileName, fileContent);
     }
 
-    public static String genCode(String templateName, String templatesFolder) throws CGException, Exception {
-        File f = new File(templatesFolder, templateName);
-        if (!f.exists()) throw new CGException("Template " + templateName + " not found!");
+    public static String genCode(InputStream inputStream) throws Exception {
         InputStreamReader reader = null;
         StringWriter writer = null;
         try {
             VelocityContext context = new VelocityContext();
             insertInVelocityContext(map, context);
             context.put("map", map);
-            reader =new InputStreamReader(new FileInputStream(f),FileUtils.ENCODING);
+            reader = new InputStreamReader(inputStream, FileUtils.ENCODING);
             writer = new StringWriter();
             Velocity.evaluate(context, writer, "", reader);
         } catch (Exception e) {
             String msg = "Error at Velocity.evaluate (please, make sure the Velocity template is Ok. ex.getMessage() >> ["
-                         + e.getMessage() + "]";
+                    + e.getMessage() + "]";
             log.error(msg, e);
             throw new Exception(msg, e);
         } finally {
@@ -100,7 +95,25 @@ public class CodeGen {
                 log.error("", e);
             }
         }
-        return writer != null ? writer.toString() : null;
+        return writer.toString();
+    }
+
+    public static String genCode(String templateName, String templatesFolder) throws CGException, Exception {
+        log.info("开始生成代码");
+        File f = new File(JarFileUtils.TEMP_TEMPLATE_FILE_PATH, templateName);
+        InputStream inputStream = null;
+        //先从临时文件夹读取
+        if (f.exists()) {
+            inputStream = new FileInputStream(f);
+        } else {
+            //再从jar包中文件夹读取
+            inputStream = JarFileUtils.class.getResourceAsStream("/resources/template/"+templateName);
+        }
+        if (inputStream == null) {
+            throw new CGException("Template " + templateName + " not found!");
+
+        }
+        return genCode(inputStream);
     }
 
     private static void insertInVelocityContext(Map<String, Object> variablesMap, VelocityContext context) {
@@ -115,21 +128,23 @@ public class CodeGen {
 
     /**
      * 设置用户自定义velocity Context
-     * 
-     * @param map
      */
     public static void initCustomerVelocityContext() {
         Map<String, Object> customerMap = CustomerVelocityContext.getCustomerVelociTyContext();
-        if (customerMap != null) map.putAll(customerMap);
+        if (customerMap != null) {
+            map.putAll(customerMap);
+        }
     }
 
     public static void initCustomerVelocityContext(Map<String, Object> customerMap) {
-        if (customerMap != null) map.putAll(customerMap);
+        if (customerMap != null) {
+            map.putAll(customerMap);
+        }
     }
 
     /**
      * 将数据库表模型加入到velocityContext
-     * 
+     *
      * @param table
      */
     public static void initTableVelocityContext(Table table) {
@@ -137,12 +152,12 @@ public class CodeGen {
     }
 
     /**
-     * - $stringUtils - $dateUtils 
+     * - $stringUtils - $dateUtils
      */
     private static void putDefaultToolsToVelocityContext() {
         map.put("stringUtils", new StringUtil());
         map.put("dateUtils", new DateUtil());
-        
+
         map.put("numberTool", new NumberTool());
         map.put("renderTool", new RenderTool());
         map.put("escapeTool", new EscapeTool());

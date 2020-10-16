@@ -18,6 +18,8 @@
 package org.richie.codeGen.database.pdm;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -34,6 +36,8 @@ import org.richie.codeGen.core.log.LogFacotry;
 import org.richie.codeGen.core.model.Column;
 import org.richie.codeGen.core.model.Table;
 import org.richie.codeGen.database.Constants;
+import org.richie.codeGen.ui.util.JarFileUtils;
+import org.richie.codeGen.ui.util.XmlParse;
 
 /**
  * @author elfkingw pdm解析类
@@ -42,24 +46,33 @@ public class PdmParser {
 
     private static Log log = LogFacotry.getLogger(PdmParser.class);
 
+    private static String EXAMPLE_PDM_FILE_NAME = "example.pdm";
+
     /**
      * 解析pdm文件
-     * 
+     *
      * @param filePath pdm文件路径
      * @return
      * @throws CGException
      * @throws Exception
      */
     public static List<Table> parsePdmFile(String filePath) throws CGException, Exception {
-        File f = new File(filePath);
-        if (!f.exists()) {
-            throw new CGException("pdm file is not exits");
+        InputStream inputStream = null;
+        //如果文件名是样例文件名，直接读取样例的文件
+        if (EXAMPLE_PDM_FILE_NAME.equals(filePath)) {
+            inputStream = PdmParser.class.getResourceAsStream("/resources/help/" + filePath);
+        }else {
+            File f = new File(filePath);
+            if (!f.exists()) {
+                throw new CGException("pdm file is not exits");
+            }
+            inputStream = new FileInputStream(f);
         }
         SAXReader sr = new SAXReader();
         Document doc = null;
         List<Table> tables = null;
         try {
-            doc = sr.read(f);
+            doc = sr.read(inputStream);
             Map<String, Table> tableMap = new HashMap<String, Table>();
             Map<String, Column> columnMap = new HashMap<String, Column>();
             tables = parseTables(doc, tableMap, columnMap);
@@ -130,7 +143,7 @@ public class PdmParser {
 
     /**
      * 解析表之间的关系
-     * 
+     *
      * @param doc
      * @param tableMap
      * @param columnMap
@@ -156,7 +169,7 @@ public class PdmParser {
 
     /**
      * 解析表字段
-     * 
+     *
      * @param col
      * @param primaryKeyId
      * @param colElement
@@ -174,7 +187,7 @@ public class PdmParser {
             col.setDataType(null);
         } else if (colElement.elementTextTrim("DataType").indexOf("(") > 0) {
             col.setDataType(colElement.elementTextTrim("DataType").substring(0,
-                                                                             colElement.elementTextTrim("DataType").indexOf("(")));
+                    colElement.elementTextTrim("DataType").indexOf("(")));
         } else {
             col.setDataType(colElement.elementTextTrim("DataType"));
         }
@@ -215,11 +228,11 @@ public class PdmParser {
         for (Element element : elements) {
             String keys_key_id = element.attributeValue("Id");
             Element columns = element.element("Key.Columns");
-            if(columns == null){
+            if (columns == null) {
                 continue;
             }
             Element col = columns.element("Column");
-            if(col == null){
+            if (col == null) {
                 continue;
             }
             String keys_column_ref = col.attributeValue("Ref");

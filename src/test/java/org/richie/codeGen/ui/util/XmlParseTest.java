@@ -48,7 +48,7 @@ public class XmlParseTest extends TestCase {
         list.add(vo1);
         try {
             XmlParse<CodeTemplateVo> xml = new XmlParse<CodeTemplateVo>(CodeTemplateVo.class);
-//            xml.genVoToXmlFile(list,"E:\\workspace10\\codeGen\\src\\main\\java\\template\\test.xml");
+//            xml.genVoToXmlFile(list,FileUtils.CONFIG_TEMPLATE_FILENAME);
 //            List list1 = xml.parseXmlFileToVo("E:\\workspace10\\codeGen\\src\\main\\java\\template\\test.xml");
 //            System.out.println(list1.size());
         } catch (Exception e) {

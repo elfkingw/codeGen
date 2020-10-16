@@ -17,15 +17,7 @@
 
 package org.richie.codeGen.ui.util;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URLDecoder;
 
 import org.richie.codeGen.core.log.Log;
@@ -36,23 +28,24 @@ import org.richie.codeGen.core.log.LogFacotry;
  */
 public class FileUtils {
 
-    public static final String TEMPLATE_FOLDER               = "template";
-    public static final String CONFIG_FOLDER                 = "config";
-    public static final String OUTFILE_FOLDER                = "out";
-    public static final String HELP_FOLDER                   = "help";
-    public static final String EXAMPLE_FOLDER                = "example";
-    public static final String EXAMPLE_PDM_FILE              = "example.pdm";
-    public static final String CONFIG_TEMPLATE_FILENAME      = "CodeTemplate.xml";
-    public static final String CONFIG_CONSTANT_FILENAME      = "ConstantConfig.xml";
-    public static final String CONFIG_OUTFILEPATH_FILENAME   = "OutFilePath.xml";
-    public static final String CONFIG_LASTOPERATE_FILENAME   = "LastOperate.xml";
+    public static final String TEMPLATE_FOLDER = "template";
+    public static final String CONFIG_FOLDER = "config";
+    public static final String OUTFILE_FOLDER = "out";
+    public static final String HELP_FOLDER = "help";
+    public static final String EXAMPLE_FOLDER = "example";
+    public static final String EXAMPLE_PDM_FILE = "example.pdm";
+    public static final String CONFIG_TEMPLATE_FILENAME = "CodeTemplate.xml";
+    public static final String CONFIG_CONSTANT_FILENAME = "ConstantConfig.xml";
+    public static final String CONFIG_OUTFILEPATH_FILENAME = "OutFilePath.xml";
+    public static final String CONFIG_LASTOPERATE_FILENAME = "LastOperate.xml";
     public static final String CONFIG_LASTTTEMPLATE_FILENAME = "LastTemplate.xml";
-    public static final String CONFIG_DATA_TYPE_FILENAME     = "DataType.xml";
-    public static final String CONFIG_UI_TYPE_FILENAME       = "UIType.xml";
-    public static final String ENCODING                      = "UTF-8";
+    public static final String CONFIG_DATA_TYPE_FILENAME = "DataTypeConfig.xml";
+    public static final String CONFIG_UI_TYPE_FILENAME = "UIType.xml";
+    public static final String ENCODING = "UTF-8";
 
-    public static String       CONFIG_ROOT_PATH              = null;
-    private static Log         log                           = LogFacotry.getLogger(FileUtils.class);
+    public static String CONFIG_ROOT_PATH = null;
+    private static Log log = LogFacotry.getLogger(FileUtils.class);
+
     static {
         FileUtils utils = new FileUtils();
         String path = utils.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
@@ -74,8 +67,8 @@ public class FileUtils {
 
     /**
      * upload the file to given filePath
-     * 
-     * @param targetPath 上传文件目标文件夹
+     *
+     * @param targetPath     上传文件目标文件夹
      * @param targetFileName 上传文件目标文件名
      * @param file
      * @throws IOException
@@ -141,42 +134,39 @@ public class FileUtils {
 
     /**
      * 读取文件内容
-     * 
+     *
      * @param file
      * @return
      * @throws IOException
      */
     public static String readFile(File file) throws IOException {
+        InputStream inputStream = new FileInputStream(file);
+        return readFile(inputStream);
+    }
+
+    public static String readFile(InputStream inputStream) throws IOException {
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), ENCODING));
+            reader = new BufferedReader(new InputStreamReader(inputStream, ENCODING));
             String lineStr = null;
             while ((lineStr = reader.readLine()) != null) {
                 sb.append(lineStr + "\n");
             }
         } finally {
-            reader.close();
+            if (null != reader) {
+                reader.close();
+            }
         }
         return sb.toString();
     }
 
     public static String getConfigPath() {
-        String path = CONFIG_ROOT_PATH + File.separator + CONFIG_FOLDER;
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
+        return "";
     }
 
     public static String getTemplatePath() {
-        String path = CONFIG_ROOT_PATH + File.separator + TEMPLATE_FOLDER;
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        return path;
+        return "";
     }
 
     public static String getDefaultOutPath() {
@@ -188,52 +178,79 @@ public class FileUtils {
         return path;
     }
 
-    public static String getHelpPath() {
-        String path = CONFIG_ROOT_PATH + File.separator + HELP_FOLDER;
+    public static String getHelpPath() throws Exception{
+        String path = JarFileUtils.TEMP_FILE_PATH + File.separator + HELP_FOLDER;
         File file = new File(path);
         if (!file.exists()) {
             file.mkdirs();
         }
+        String[] files = file.list();
+        if (files == null || files.length == 0) {
+            copyHelpFile();
+        }
         return path;
     }
 
-    public static String getExamplePdmFile() {
-        String path = CONFIG_ROOT_PATH + File.separator + EXAMPLE_FOLDER + File.separator + EXAMPLE_PDM_FILE;
-        return path;
+    private static void copyHelpFile() throws Exception {
+        String[] helpFileNames = new String[]{"Velocity模板使用指南中文版.pdf", "帮助文档.docx"};
+        for (String fileName : helpFileNames) {
+            FileOutputStream fos = null;
+            InputStream fis = JarFileUtils.class.getResourceAsStream("/resources/help/" + fileName);
+            try {
+                File outFile = new File(JarFileUtils.TEMP_FILE_PATH +File.separator+"help"+ File.separator + fileName);
+                if (!outFile.exists()) {
+                    outFile.createNewFile();
+                }
+                fos = new FileOutputStream(outFile);
+                byte[] buffer = new byte[1024];
+                int len = 0;
+                while ((len = fis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+                fos.flush();
+            } finally {
+                if (fos != null) {
+                    fos.close();
+                }
+                if (fis != null) {
+                    fis.close();
+                }
+            }
+        }
     }
 
     public static String getConfigTemplatePath() throws IOException {
-        String path = getConfigPath() + File.separator + CONFIG_TEMPLATE_FILENAME;
+        String path = CONFIG_TEMPLATE_FILENAME;
         return path;
     }
 
     public static String getConstantConfigPath() throws IOException {
-        String path = getConfigPath() + File.separator + CONFIG_CONSTANT_FILENAME;
+        String path = CONFIG_CONSTANT_FILENAME;
         return path;
     }
 
     public static String getOutFileRootPath() throws IOException {
-        String path = getConfigPath() + File.separator + CONFIG_OUTFILEPATH_FILENAME;
+        String path = CONFIG_OUTFILEPATH_FILENAME;
         return path;
     }
 
     public static String getLastOperatePath() throws IOException {
-        String path = getConfigPath() + File.separator + CONFIG_LASTOPERATE_FILENAME;
+        String path = CONFIG_LASTOPERATE_FILENAME;
         return path;
     }
 
     public static String getLastTemplatePath() throws IOException {
-        String path = getConfigPath() + File.separator + CONFIG_LASTTTEMPLATE_FILENAME;
+        String path = CONFIG_LASTTTEMPLATE_FILENAME;
         return path;
     }
 
     public static String getDataTypePath() throws IOException {
-        String path = getConfigPath() + File.separator + CONFIG_DATA_TYPE_FILENAME;
+        String path = CONFIG_DATA_TYPE_FILENAME;
         return path;
     }
 
     public static String getUITypePath() throws IOException {
-        String path = getConfigPath() + File.separator + CONFIG_UI_TYPE_FILENAME;
+        String path = CONFIG_UI_TYPE_FILENAME;
         return path;
     }
 

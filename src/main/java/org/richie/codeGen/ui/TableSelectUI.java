@@ -52,49 +52,61 @@ import org.richie.codeGen.ui.model.ColumnModel;
 
 /**
  * 数据表选择界面
- * 
+ *
  * @author elfkingw
  */
 public class TableSelectUI extends JPanel implements ActionListener {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 1L;
-    private JSplitPane        centerPanel;
-    private ColumnModel       mainTableModel;
-    private JTable            mainTable;
-    private ColumnModel       subTableModel;
-    private JTable            subTable;
-    private Table             table;
+    private JSplitPane centerPanel;
+    private ColumnModel mainTableModel;
+    private JTable mainTable;
+    private ColumnModel subTableModel;
+    private JTable subTable;
+    private Table table;
 
-    private JTextField        mainTableCode;
-    public JTextField         mainTableName;
-    public JTextField         mainExtension1;
-    public JTextField         mainExtension2;
-    private JButton           mainUpBtn;                                                   // 上移
-    private JButton           mainDownBtn;                                                 // 下移
+    private JTextField mainTableCode;
+    public JTextField mainTableName;
+    public JTextField mainExtension1;
+    public JTextField mainExtension2;
+    /**
+     * 上移
+     */
+    private JButton mainUpBtn;
+    /**
+     * 下移
+     */
+    private JButton mainDownBtn;
 
-    private JLabel            subTableCodeLabel;
-    private JTextField        subTableCode;
-    private JLabel            subTableNameLabel;
-    public JTextField         subTableName;
-    private JLabel            subExtension1Label;
-    public JTextField         subExtension1;
-    private JLabel            subExtension2Label;
-    public JTextField         subExtension2;
-    private JButton           subUpBtn;                                                    // 上移
-    private JButton           subDownBtn;                                                  // 下移
+    private JLabel subTableCodeLabel;
+    private JTextField subTableCode;
+    private JLabel subTableNameLabel;
+    public JTextField subTableName;
+    private JLabel subExtension1Label;
+    public JTextField subExtension1;
+    private JLabel subExtension2Label;
+    public JTextField subExtension2;
+    /**
+     * 上移
+     */
+    private JButton subUpBtn;
+    /**
+     * 下移
+     */
+    private JButton subDownBtn;
 
-    private JButton           addBtn;
-    private JButton           delBtn;
+    private JButton addBtn;
+    private JButton delBtn;
     private JComboBox uiTypeComboBox;
-    private String[]          uiTypes;
-    private CodeGenMainUI     parent;
+    private String[] uiTypes;
+    private CodeGenMainUI parent;
 
-    private Log               log              = LogFacotry.getLogger(TableSelectUI.class);
+    private Log log = LogFacotry.getLogger(TableSelectUI.class);
 
-    public TableSelectUI(JFrame parent){
+    public TableSelectUI(JFrame parent) {
         super();
         this.parent = (CodeGenMainUI) parent;
         initLize();
@@ -262,7 +274,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
         return subToolBar;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public JPanel getSubTablePanel() throws Exception {
         subTableModel = new ColumnModel();
         subTable = new JTable(subTableModel);
@@ -303,7 +315,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
 
     /**
      * 主界面菜单选择数据库表，界面联动显示表明细
-     * 
+     *
      * @param table
      */
     public void initTable(Table table) {
@@ -398,7 +410,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
 
     /**
      * 表选择行上移下移
-     * 
+     *
      * @param table
      * @param list
      * @param isUp
@@ -489,7 +501,7 @@ public class TableSelectUI extends JPanel implements ActionListener {
                     Column column = list.get(row);
                     TableTreeWin win = new TableTreeWin(parent);
                     win.setBounds(getMainPanel().getX() + 400, getMainPanel().getY() + 150, win.getWidth(),
-                                  win.getHeight());
+                            win.getHeight());
                     win.setModal(true);
                     win.setVisible(true);
                     Table selectedTable = win.getSelectedTable();

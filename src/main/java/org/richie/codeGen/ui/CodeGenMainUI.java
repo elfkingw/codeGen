@@ -70,6 +70,7 @@ import org.richie.codeGen.ui.configui.TemplateConfigWin;
 import org.richie.codeGen.ui.model.LastOperateVo;
 import org.richie.codeGen.ui.model.TableTreeNode;
 import org.richie.codeGen.ui.util.FileUtils;
+import org.richie.codeGen.ui.util.JarFileUtils;
 
 /**
  * @author elfkingw
@@ -77,34 +78,55 @@ import org.richie.codeGen.ui.util.FileUtils;
 public class CodeGenMainUI extends JFrame implements ActionListener {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 1L;
-    private static Log        log              = LogFacotry.getLogger(CodeGenMainUI.class);
+    private static Log log = LogFacotry.getLogger(CodeGenMainUI.class);
 
-    private JTree             tree;
-    private List<Table>       tableList;
-    private JPanel            westPanel;                                                   // 左边面板
-    private JTabbedPane       centerPanel;                                                 // 中间面板
-    private JScrollPane       treePanel;                                                   // 树面板
-    private GenAndPreviewUI   genAndPreviewPanel;                                          // 生成代码面板
-    private TableSelectUI     tableSelectPanel;                                            // 生成代码面板
-    private JTextField        filterField;
+    private JTree tree;
+    private List<Table> tableList;
+    /**
+     * 左边面板
+     */
 
-    private JMenuItem         openPdmFileItem;                                             // pdm文件菜单项
-    private JMenuItem         templateConfigItem;                                          // 模板配置菜单项
-    private JMenuItem         consConfigItem;                                              // 常量配置菜单项
-    private JMenuItem         dataTypeConfigItem;                                          // 数据类型菜单项
-    private JMenuItem         helpDoc;                                                     // 怎么编写模板
-    private JMenuItem         miAbout;                                                     // 关于菜单项
+    private JPanel westPanel;
+    // 中间面板
+    private JTabbedPane centerPanel;
+    // 树面板
+    private JScrollPane treePanel;
+    // 生成代码面板
+    private GenAndPreviewUI genAndPreviewPanel;
+    // 生成代码面板
+    private TableSelectUI tableSelectPanel;
+    private JTextField filterField;
 
-    public CodeGenMainUI(){
+    /**
+     * pdm文件菜单项
+     */
+    private JMenuItem openPdmFileItem;
+    private JMenuItem openExamplePdmFileItem;
+    // 模板配置菜单项
+    private JMenuItem templateConfigItem;
+    /**
+     * 常量配置菜单项
+     */
+    private JMenuItem consConfigItem;
+    /**
+     * 数据类型菜单项
+     */
+    private JMenuItem dataTypeConfigItem;
+    // 怎么编写模板
+    private JMenuItem helpDoc;
+    // 关于菜单项
+    private JMenuItem miAbout;
+
+    public CodeGenMainUI() {
         initlize();
     }
 
     private void initlize() {
         setTitle("代码生成器");
-        setBounds(120, 80, 1024, 550);
+        setBounds(120, 80, 1200, 550);
         setDefaultCloseOperation(3);
         setLayout(new BorderLayout(5, 5));
         // 初始化MenuBar
@@ -112,7 +134,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, getWestPanel(), getCenterPanel());
         split.setContinuousLayout(false);
         split.setOneTouchExpandable(true);
-        split.setDividerLocation(150);
+        split.setDividerLocation(170);
         add(split, BorderLayout.CENTER);
         //打开最后一次打开的pdm文件
         openLastPdmFile();
@@ -127,6 +149,9 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         openPdmFileItem = new JMenuItem("打开dpm");
         openPdmFileItem.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/pdm.png")));
         fileMenu.add(openPdmFileItem);
+        openExamplePdmFileItem = new JMenuItem("打开样例dpm");
+        openExamplePdmFileItem.setIcon(new ImageIcon(ClassLoader.getSystemResource("resources/images/pdm.png")));
+        fileMenu.add(openExamplePdmFileItem);
         JMenu configMenu = new JMenu("系统配置");
         menuBar.add(configMenu);
         templateConfigItem = new JMenuItem("模板配置");
@@ -148,6 +173,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         mnHelp.add(miAbout);
         miAbout.addActionListener(this);
         openPdmFileItem.addActionListener(this);
+        openExamplePdmFileItem.addActionListener(this);
         this.setJMenuBar(menuBar);
     }
 
@@ -158,12 +184,12 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
             JLabel filterLable = new JLabel("过滤");
             JPanel filterPanel = new JPanel();
             filterPanel.add(filterLable);
-            filterField = new JTextField(15);
+            filterField = new JTextField(10);
             Document doc = filterField.getDocument();
             doc.addDocumentListener(new TextDocumentListener());
             filterPanel.add(filterField);
             filterPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-            westPanel.setPreferredSize(new Dimension(200, 650));// 关键代码,设置JPanel的大
+            westPanel.setPreferredSize(new Dimension(250, 650));// 关键代码,设置JPanel的大
             westPanel.add(filterPanel, BorderLayout.NORTH);
             westPanel.add(getTreepanel(), BorderLayout.CENTER);
         }
@@ -259,7 +285,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
     private void initTree(String filePath) {
         try {
             DatabaseReader reader = ReaderFactory.getReaderInstance(Constants.DATABASE_READER_TYPE_PDM,
-                                                                    Constants.DATABASE_TYPE_MYSQL, filePath);
+                    Constants.DATABASE_TYPE_MYSQL, filePath);
             tableList = reader.getTables();
             tree = initTreeData(tableList);
             treePanel.setViewportView(tree);
@@ -283,7 +309,7 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         List<Table> list = new ArrayList<Table>();
         for (Table table : tableList) {
             if (table.getName().toLowerCase().contains(filterStr.toLowerCase())
-                || table.getCode().toLowerCase().contains(filterStr.toLowerCase())) {
+                    || table.getCode().toLowerCase().contains(filterStr.toLowerCase())) {
                 list.add(table);
             }
         }
@@ -334,13 +360,16 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         try {
             lastOperateVo = GlobalData.getLastOperateVo();
             //如果第一次打开该工具自动载入自带pdm例子文件
-            String pdmFilePath = FileUtils.getExamplePdmFile();
-            if (lastOperateVo != null && !StringUtils.isEmpty(lastOperateVo.getPdmFilePath())) {
-                pdmFilePath =  lastOperateVo.getPdmFilePath();
-            }
-            File f = new File(pdmFilePath);
-            if (f.exists()) {
-                initTree(f.getAbsolutePath());
+            if (lastOperateVo == null || StringUtils.isEmpty(lastOperateVo.getPdmFilePath())) {
+                initTree("example.pdm");
+            } else {
+                String pdmFilePath = lastOperateVo.getPdmFilePath();
+                File f = new File(pdmFilePath);
+                if (f.exists()) {
+                    initTree(f.getAbsolutePath());
+                } else {
+                    initTree("example.pdm");
+                }
             }
         } catch (Exception e1) {
             log.error("获取最后操作文xml件失败", e1);
@@ -371,12 +400,18 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                getGenAndPreviewPanel().saveLastTemplate();
+                try {
+                    GlobalData.saveLastConfig();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                    log.error("保存最后打开pdm文件失败！", e1);
+                }
+
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
-
+                log.info("window is closed");
             }
 
             @Override
@@ -394,7 +429,9 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == openPdmFileItem) {
             openPdmFile();
-        }  else if (e.getSource() == templateConfigItem) {
+        } else if (e.getSource() == openExamplePdmFileItem) {
+            initTree("example.pdm");
+        } else if (e.getSource() == templateConfigItem) {
             TemplateConfigWin win = new TemplateConfigWin(getGenAndPreviewPanel());
             win.setModal(true);
             win.setBounds(this.getX() + 100, this.getY() + 30, win.getWidth(), win.getHeight());
@@ -412,17 +449,17 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
         } else if (e.getSource() == helpDoc) {
             try {
                 Desktop.getDesktop().open(new File(FileUtils.getHelpPath()));
-            } catch (IOException e1) {
-               log.error("打开帮助文档失败", e1);
-            } 
+            } catch (Exception e1) {
+                log.error("打开帮助文档失败", e1);
+            }
         } else if (e.getSource() == miAbout) {
-            JOptionPane.showMessageDialog(this, "版本：codeGen-"+Version.getVersionNumber()+"\nelfkingw版权所有  elfkingw@gmail.com", "关于",
-                                          JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "版本：codeGen-" + Version.getVersionNumber() + "\nelfkingw版权所有  elfkingw@gmail.com", "关于",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     /**
-     * 
+     *
      */
     private void openPdmFile() {
         JFileChooser jfc = new JFileChooser();// 文件选择器
@@ -463,7 +500,8 @@ public class CodeGenMainUI extends JFrame implements ActionListener {
                     lastOperateVo = new LastOperateVo();
                 }
                 lastOperateVo.setPdmFilePath(f.getAbsolutePath());
-                GlobalData.saveLastOperateVo();
+                GlobalData.setLastOperateVo(lastOperateVo);
+//                GlobalData.saveLastOperateVo();
             } catch (Exception e1) {
                 log.error("保存最后一次代码pdm路径出错", e1);
             }

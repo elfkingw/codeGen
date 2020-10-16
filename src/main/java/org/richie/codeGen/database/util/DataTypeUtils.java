@@ -99,7 +99,7 @@ public class DataTypeUtils {
         oracleDataTypeMap.put("DATE", "java.sql.Date");
         sybaseDataTypeMap.put("DATE", "java.sql.Date");
         mysqlDataTypeMap.put("DATE", "java.sql.Date");
-        mysqlDataTypeMap.put("TIMESTEMP", "java.sql.Date");
+        mysqlDataTypeMap.put("TIMESTAMP", "java.sql.Date");
         mssqlDataTypeMap.put("DATE", "java.sql.Date");
         informixDataTypeMap.put("DATE", "java.sql.Date");
 

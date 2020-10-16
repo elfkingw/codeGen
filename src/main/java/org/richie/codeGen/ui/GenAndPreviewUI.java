@@ -34,19 +34,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.DefaultCellEditor;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JToolBar;
+import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumnModel;
 
@@ -71,28 +59,35 @@ import org.richie.codeGen.ui.util.XmlParse;
 public class GenAndPreviewUI extends JPanel implements ActionListener {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 1L;
-    private Log               log              = LogFacotry.getLogger(GenAndPreviewUI.class);
+    private Log log = LogFacotry.getLogger(GenAndPreviewUI.class);
 
-    private TableSelectUI     parent;
-    private JTabbedPane       mainPanel;
-    private JPanel            genPanel;
-    private JButton           genBtn;
-    private JButton           previewBtn;
-    private JButton           addLineBtn;
+    private TableSelectUI parent;
+    private JTabbedPane mainPanel;
+    private JPanel genPanel;
+    private JButton genBtn;
+    private JButton previewBtn;
+    private JButton addLineBtn;
     private CodeTemplateModel complateModel;
-    private JTable            table;
-    private String[]          templateNames;
-    private String[]          rootPathNames;
+    private JTable table;
+    private String[] templateNames;
+    private String[] rootPathNames;
     private JComboBox templateNameCom;
     private JComboBox rootPathCom;
-    private JTextArea         logTextArea;
-    private JSplitPane        split;
-    private JButton           clearLogBtn;
+    private JTextArea logTextArea;
+    private JSplitPane split;
+    private JButton clearLogBtn;
 
-    public GenAndPreviewUI(TableSelectUI parent){
+    private JTextField mainModule;
+    private JTextField subModule;
+
+    private final static String MAIN_MODULE_PATH ="${main}";
+    private final static String SUB_MODULE_PATH ="${sub}";
+
+
+    public GenAndPreviewUI(TableSelectUI parent) {
         super();
         this.parent = parent;
         initLize();
@@ -134,8 +129,27 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             genBtn.addActionListener(this);
             northPanel.add(genBtn);
             genPanel.add(northPanel, BorderLayout.SOUTH);
+            genPanel.add(getSubToolBar(),BorderLayout.NORTH);
         }
         return genPanel;
+    }
+
+
+    public JToolBar getSubToolBar() {
+        JToolBar subToolBar = new JToolBar();
+        JLabel mainModuleLabel = new JLabel("主模块(${main})：");
+        subToolBar.add(mainModuleLabel);
+        mainModule = new JTextField(15);
+        subToolBar.add(mainModule);
+        JLabel subModuleLabel = new JLabel("子模块(${sub})：");
+        subToolBar.add(subModuleLabel);
+        subModule = new JTextField(15);
+        subToolBar.add(subModule);
+        JLabel tablePrefixNoteLabel = new JLabel("主模块替换输出包中的${main},子模块会替换输出包中的${sub}");
+        subToolBar.add(tablePrefixNoteLabel);
+        subToolBar.setFloatable(false);
+
+        return subToolBar;
     }
 
     public JSplitPane getCenterPanel() {
@@ -209,7 +223,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
 
     /**
      * set the text to log panel
-     * 
+     *
      * @param text
      */
     public void setLog(String text) {
@@ -249,7 +263,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
 
     /**
      * 根据模板预览生成代码
-     * 
+     *
      * @param vo
      */
     public void previewCode(CodeTemplateVo vo) {
@@ -271,14 +285,14 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             String codeText = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
             String fileName = null;
             if (table != null) {
-                fileName = parent.getTable().getClassName() + vo.getSuffix();
+                fileName = getFileName(parent.getTable().getClassName(), vo.getSuffix());
             } else {
                 fileName = vo.getSuffix();
             }
             logGenFile(startDate, fileName);
             addPreviewTablePanel(fileName, codeText);
             if (vo.getIsGenSubTable() != null && vo.getIsGenSubTable() && table != null
-                && table.getChildTable() != null) {// 如果生成子表
+                    && table.getChildTable() != null) {// 如果生成子表
                 startDate = new Date();
                 CodeGen.initTableVelocityContext(table.getChildTable());
                 codeText = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
@@ -304,7 +318,9 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 boolean isStart = false;
                 while ((line = reader.readLine()) != null) {
                     if (!isStart) {
-                        if (line.length() < 23) continue;
+                        if (line.length() < 23) {
+                            continue;
+                        }
                         String time = line.substring(0, 23);
                         if (time.startsWith("20")) {
                             String startDateStr = DateUtil.formatDate(startDate, "yyyy-MM-dd HH:mm:ss,SSS");
@@ -322,7 +338,9 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             log.error("读取velocity.log失败！", e);
         } finally {
             try {
-                reader.close();
+                if (reader != null) {
+                    reader.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -334,7 +352,7 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
 
     /**
      * 增加文件预览卡片页面
-     * 
+     *
      * @param fileName
      * @param fileContent
      */
@@ -377,28 +395,34 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             if (!isTemplateValidate(list)) {
                 return;
             }
+
             clearLog();
             StringBuilder sb = new StringBuilder();
             sb.append("成功生成如下文件：\n");
             setPackageContext(list);
             String outFile = null;
+
             for (int i = 0; i < list.size(); i++) {
+
                 CodeTemplateVo vo = list.get(i);
-                if (vo.getIsSelected() == null || !vo.getIsSelected()) continue;
+                if (vo.getIsSelected() == null || !vo.getIsSelected()) {
+                    continue;
+                }
                 boolean isSuccess = initCustomerVelocityContext(vo);
                 if (!isSuccess) {
                     return;
                 }
                 String templateName = vo.getFileName();
                 String outFilePath = GlobalData.getOutFilePathByName(vo.getOutFilePathRoot()) + File.separator
-                                     + vo.getOutFilePath().replace("\u002E", File.separator);
+                        + replaceModulePackage(vo.getOutFilePath()).replace("\u002E", File.separator);
                 String name = "";
                 if (parent.getTable() != null) {
                     name = parent.getTable().getClassName();
                 }
                 Date startDate = new Date();
-                String fileName = name + vo.getSuffix();
+                String fileName = getFileName(name , vo.getSuffix());
                 Table table = parent.getTable();
+                log.info("Velocity初始化参数信息");
                 CodeGen.initTableVelocityContext(table);
                 if (isPreview) {
                     String fileContent = CodeGen.genCode(templateName, FileUtils.getTemplatePath());
@@ -436,8 +460,21 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
     }
 
     /**
+     * 根据文件名来替换 *Mapper 把*替换成class的名字
+     * @param className class名字
+     * @param suffix 文件名规则
+     * @return
+     */
+    private String getFileName(String className,String suffix){
+        if(suffix.contains("*")){
+            suffix = suffix.replace("*",className);
+        }
+        return suffix;
+    }
+
+    /**
      * windows下打开文件夹
-     * 
+     *
      * @param filePath
      */
     private void openFile(String filePath) {
@@ -467,9 +504,27 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             String fileName = vo.getFileName();
             if (!StringUtils.isEmpty(fileName)) {
                 String packageKey = fileName.substring(0, fileName.length() - 3) + "_package";
-                CodeGen.putToolsToVelocityContext(packageKey, vo.getOutFilePath().replace("\\", "."));
+                String path = replaceModulePackage(vo.getOutFilePath());
+                CodeGen.putToolsToVelocityContext(packageKey, path.replace("\\", "."));
             }
         }
+    }
+
+    /**
+     * 替换掉包名中设置的模块包名
+     * @param path
+     * @return
+     */
+    private String replaceModulePackage(String path){
+        String mainModuleStr= mainModule.getText();
+        if(!StringUtil.isEmpty(mainModuleStr)){
+            path= path.replace(MAIN_MODULE_PATH,mainModuleStr);
+        }
+        String subModuleStr = subModule.getText();
+        if(!StringUtil.isEmpty(subModuleStr)){
+            path=path.replace(SUB_MODULE_PATH,subModuleStr);
+        }
+        return path;
     }
 
     private boolean initCustomerVelocityContext(CodeTemplateVo vo) throws Exception {
@@ -510,13 +565,21 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
                 sb.append(",【输出包】");
             }
             if (StringUtil.isEmpty(vo.getSuffix())) {
-                sb.append(",【文件后缀】");
+                sb.append(",【文件名】");
             }
             if (!StringUtil.isEmpty(sb.toString())) {
                 msg.append("第" + (i + 1) + "行" + sb.toString().substring(1) + "不能为空\n");
             }
+            String outFilePath = vo.getOutFilePath();
+            if(outFilePath.contains(MAIN_MODULE_PATH) && StringUtil.isEmpty(mainModule.getText())){
+                msg.append("第" + (i + 1) + "行" + "[输出包]中包含"+MAIN_MODULE_PATH+"表格上【主模块】不能为空\n");
+            }
+            if(outFilePath.contains(SUB_MODULE_PATH) && StringUtil.isEmpty(subModule.getText())){
+                msg.append("第" + (i + 1) + "行" + "[输出包]中包含"+SUB_MODULE_PATH+"表格上【子模块】不能为空\n");
+            }
             selectedCount++;
         }
+
         if (!StringUtil.isEmpty(msg.toString())) {
             JOptionPane.showMessageDialog(this, msg.toString(), "提示", JOptionPane.INFORMATION_MESSAGE);
             return false;
@@ -585,26 +648,17 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
 
     public void initLastTemplate() {
         try {
-            XmlParse<CodeTemplateVo> xmlParse = new XmlParse<CodeTemplateVo>(CodeTemplateVo.class);
-            List<CodeTemplateVo> list = xmlParse.parseXmlFileToVo(FileUtils.getLastTemplatePath());
+            List<CodeTemplateVo> list = GlobalData.getLastTemplateList();
             complateModel.setTemplateList(list);
             table.updateUI();
         } catch (Exception ex) {
-            String msg = "保存模板出错";
-            log.error(msg, ex);
+            log.error("初始化模板出错", ex);
         }
     }
 
     public void saveLastTemplate() {
         List<CodeTemplateVo> list = complateModel.getTemplateList();
-        if (list == null) return;
-        XmlParse<CodeTemplateVo> xmlParse = new XmlParse<CodeTemplateVo>(CodeTemplateVo.class);
-        try {
-            xmlParse.genVoToXmlFile(list, FileUtils.getLastTemplatePath());
-        } catch (Exception ex) {
-            String msg = "保存模板出错";
-            log.error(msg, ex);
-        }
+        GlobalData.setLastTemplateList(list);
     }
 
     private void handException(String msg, Exception e) {
@@ -660,5 +714,11 @@ public class GenAndPreviewUI extends JPanel implements ActionListener {
             }
         });
     }
+
+    public static void main(String[] args){
+        GenAndPreviewUI ui = new GenAndPreviewUI(null);
+        System.out.println(ui.getFileName("Menu","*Magger.xml"));
+    }
+
 
 }

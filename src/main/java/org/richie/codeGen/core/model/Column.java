@@ -20,6 +20,7 @@ package org.richie.codeGen.core.model;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.richie.codeGen.core.util.StringUtil;
 import org.richie.codeGen.ui.GlobalData;
 
 /**
@@ -147,7 +148,7 @@ public class Column {
     /**
      * 设置数据表字段数据库类型
      * 
-     * @param defaultValue 数据表字段数据库类型
+     * @param dataType 数据表字段数据库类型
      */
     public void setDataType(String dataType) {
         this.dataType = dataType;
@@ -170,7 +171,7 @@ public class Column {
     /**
      * 设置数据表字段数据库长度
      * 
-     * @param 数据表字段数据库长度
+     * @param length
      */
     public void setLength(int length) {
         this.length = length;
@@ -353,7 +354,7 @@ public class Column {
                         uiType = type.getUiType();
                     }
                 }
-                if(uiType == null){
+                if(StringUtil.isEmpty(uiType)){
                     uiType = "TextField";
                 }
             } catch (Exception e) {

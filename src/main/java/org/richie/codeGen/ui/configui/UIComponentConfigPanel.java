@@ -153,8 +153,7 @@ public class UIComponentConfigPanel extends JPanel implements ActionListener {
     private void onSave() {
         try {
             List<UIComponent> UIComponentList = uiComponontModel.getUIComponentList();
-            XmlParse<UIComponent> consXmlParse = new XmlParse<UIComponent>(UIComponent.class);
-            consXmlParse.genVoToXmlFile(UIComponentList, FileUtils.getUITypePath());
+            GlobalData.setUiTypeList(UIComponentList);
             parent.getDataTypeConfigPanel().refreshComBoBox();
             JOptionPane.showMessageDialog(this, "保存成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {

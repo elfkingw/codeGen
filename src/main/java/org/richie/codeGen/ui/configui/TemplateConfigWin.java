@@ -54,6 +54,7 @@ import org.richie.codeGen.ui.GlobalData;
 import org.richie.codeGen.ui.model.CodeTemplateModel;
 import org.richie.codeGen.ui.model.CodeTemplateVo;
 import org.richie.codeGen.ui.util.FileUtils;
+import org.richie.codeGen.ui.util.JarFileUtils;
 import org.richie.codeGen.ui.util.XmlParse;
 
 /**
@@ -61,26 +62,22 @@ import org.richie.codeGen.ui.util.XmlParse;
  */
 public class TemplateConfigWin extends JDialog implements ActionListener {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-    private Log               log              = LogFacotry.getLogger(TemplateConfigWin.class);
+    private Log log = LogFacotry.getLogger(TemplateConfigWin.class);
     private CodeTemplateModel templateModel;
-    private JTable            table;
-    private JButton           addLineBtn;
-    private JButton           saveBtn;
-    private JPanel            configPanel;
-    private JScrollPane       templatePanel;
-    private GenAndPreviewUI   parent;
-    private String[]          rootPathNames;
+    private JTable table;
+    private JButton addLineBtn;
+    private JButton saveBtn;
+    private JPanel configPanel;
+    private JScrollPane templatePanel;
+    private GenAndPreviewUI parent;
+    private String[] rootPathNames;
     private JComboBox rootPathCom;
 
-    public TemplateConfigWin(){
+    public TemplateConfigWin() {
         initLize();
     }
 
-    public TemplateConfigWin(GenAndPreviewUI parent){
+    public TemplateConfigWin(GenAndPreviewUI parent) {
         this.parent = parent;
         initLize();
     }
@@ -199,7 +196,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
                     CodeTemplateVo vo = templateModel.getTemplateList().get(row);
                     if (StringUtil.isEmpty(vo.getFileName())) {
                         JOptionPane.showMessageDialog(getTemplatePanel(), "该行没有选选择模板文件，请选择！", "提示",
-                                                      JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.INFORMATION_MESSAGE);
                         return;
                     }
                     TemplateFileEditorWin win = new TemplateFileEditorWin(vo.getFileName());
@@ -229,16 +226,17 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
                     } else {
                         try {
                             File file = jfc.getSelectedFile();
-                            File templateFolder = new File(FileUtils.getTemplatePath());
+                            File templateFolder = new File(JarFileUtils.TEMP_TEMPLATE_FILE_PATH);
                             if (!templateFolder.exists()) {
                                 templateFolder.mkdirs();
                             }
-                            File outFile = new File(FileUtils.getTemplatePath() + File.separator + file.getName());
+
+                            File outFile = new File(JarFileUtils.TEMP_TEMPLATE_FILE_PATH + File.separator + file.getName());
                             boolean isUpLoad = true;
-                            if (outFile.exists()) {
+                            if (outFile.exists() || isTemplateInJarFile(file.getName())) {
                                 int status = JOptionPane.showConfirmDialog(getTemplatePanel(), "模板[" + file.getName()
-                                                                                               + "]文件已存在是否覆盖?", "",
-                                                                           JOptionPane.YES_NO_OPTION);
+                                                + "]文件已存在是否覆盖?", "",
+                                        JOptionPane.YES_NO_OPTION);
                                 if (status == JOptionPane.NO_OPTION) {
                                     isUpLoad = false;
                                 }
@@ -246,6 +244,7 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
                             if (isUpLoad) {
                                 FileUtils.uploadFile(templateFolder.getPath(), file.getName(), file);
                                 templateModel.setValueAt(file.getName(), row, col);
+                                templateModel.setValueAt(file.getName(), row, col - 1);
                             }
                             table.updateUI();
                         } catch (Exception ex) {
@@ -255,12 +254,38 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
                     }
 
                 } else if (col == 9) {
-                    templateModel.removeRow(row);
+                    CodeTemplateVo vo = templateModel.getTemplateList().get(row);
+                    if (!StringUtil.isEmpty(vo.getFileName())) {
+                        int status = JOptionPane.showConfirmDialog(getTemplatePanel(), "是否要删除该模板[" + vo.getFileName()
+                                        + "]?", "确定",
+                                JOptionPane.YES_NO_OPTION);
+                        if (status == JOptionPane.YES_OPTION) {
+                            try {
+                                GlobalData.deleteTemplateFile(vo.getFileName());
+                            } catch (Exception e1) {
+                                log.error("删除模板失败", e1);
+                            }
+                            templateModel.removeRow(row);
+                        }
+                    }
                     table.updateUI();
                 }
 
             }
         });
+    }
+
+    private boolean isTemplateInJarFile(String templateFileName) throws Exception {
+        List<String> templateNames = JarFileUtils.getJarFileNames("resources/template", "vm");
+        if (templateNames == null) {
+            return false;
+        }
+        for (String templateName : templateNames) {
+            if (templateName.equals(templateFileName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
@@ -270,10 +295,9 @@ public class TemplateConfigWin extends JDialog implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == saveBtn) {
-            XmlParse<CodeTemplateVo> xmlParse = new XmlParse<CodeTemplateVo>(CodeTemplateVo.class);
             List<CodeTemplateVo> list = templateModel.getTemplateList();
             try {
-                xmlParse.genVoToXmlFile(list, FileUtils.getConfigTemplatePath());
+                GlobalData.setTemplateList(list);
                 if (parent != null) {
                     parent.refreshComBoBox();
                 }

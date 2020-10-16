@@ -64,22 +64,22 @@ import org.richie.codeGen.ui.util.XmlParse;
 public class DataTypeConfigPanel extends JPanel implements ActionListener {
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 1L;
-    private JPanel            configPanel;
-    private JScrollPane       centerPanel;
-    private JTable            table;
-    private JToolBar          toolBar;
-    private JButton           addLineBtn;
-    private JButton           saveBtn;
+    private JPanel configPanel;
+    private JScrollPane centerPanel;
+    private JTable table;
+    private JToolBar toolBar;
+    private JButton addLineBtn;
+    private JButton saveBtn;
     private JComboBox uiTypesCom;
-    private String[]          uiTypes;
+    private String[] uiTypes;
 
-    private Log               log              = LogFacotry.getLogger(BaseDataConfigWin.class);
-    private DataTypeModel     dataTypeModel;
+    private Log log = LogFacotry.getLogger(BaseDataConfigWin.class);
+    private DataTypeModel dataTypeModel;
 
-    public DataTypeConfigPanel(){
+    public DataTypeConfigPanel() {
         super();
         this.setLayout(new BorderLayout());
         this.add(getCenterPanel(), BorderLayout.CENTER);
@@ -194,13 +194,12 @@ public class DataTypeConfigPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * 
+     *
      */
     private void onSave() {
         try {
             List<DataType> dataTypeList = dataTypeModel.getConstantConfigList();
-            XmlParse<DataType> consXmlParse = new XmlParse<DataType>(DataType.class);
-            consXmlParse.genVoToXmlFile(dataTypeList, FileUtils.getDataTypePath());
+            GlobalData.setDataType(dataTypeList);
             JOptionPane.showMessageDialog(this, "保存成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             handException("保存失败", ex);
@@ -248,29 +247,29 @@ public class DataTypeConfigPanel extends JPanel implements ActionListener {
     class DropDownComponent extends JComponent implements ActionListener {
 
         /**
-         * 
+         *
          */
         private static final long serialVersionUID = 1L;
 
-        protected JComponent      drop_down_comp;
+        protected JComponent drop_down_comp;
 
-        protected JComponent      visible_comp;
+        protected JComponent visible_comp;
 
-        protected JMenuBar        mb;
+        protected JMenuBar mb;
 
-        protected JWindow         popup;
+        protected JWindow popup;
 
-        protected JPopupMenu      pop              = new JPopupMenu();
+        protected JPopupMenu pop = new JPopupMenu();
 
-        private JMenuItem[]       items            = { new JMenuItem(Constants.DATABASE_TYPE_DB2),
-                                                           new JMenuItem(Constants.DATABASE_TYPE_ORACLE),
-                                                           new JMenuItem(Constants.DATABASE_TYPE_MYSQL),
-                                                           new JMenuItem(Constants.DATABASE_TYPE_MSSQL),
-                                                           new JMenuItem(Constants.DATABASE_TYPE_INFORMIX) };
+        private JMenuItem[] items = {new JMenuItem(Constants.DATABASE_TYPE_DB2),
+                new JMenuItem(Constants.DATABASE_TYPE_ORACLE),
+                new JMenuItem(Constants.DATABASE_TYPE_MYSQL),
+                new JMenuItem(Constants.DATABASE_TYPE_MSSQL),
+                new JMenuItem(Constants.DATABASE_TYPE_INFORMIX)};
 
-        protected JButton         arrow;
+        protected JButton arrow;
 
-        public DropDownComponent(JComponent vcomp, JComponent ddcomp){
+        public DropDownComponent(JComponent vcomp, JComponent ddcomp) {
 
             drop_down_comp = ddcomp;
             visible_comp = vcomp;

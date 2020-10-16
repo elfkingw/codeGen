@@ -53,8 +53,6 @@ import org.richie.codeGen.ui.GlobalData;
 import org.richie.codeGen.ui.model.ConstantConfigModel;
 import org.richie.codeGen.ui.model.ConstantConfigVo;
 import org.richie.codeGen.ui.model.OutFileRootPathVo;
-import org.richie.codeGen.ui.util.FileUtils;
-import org.richie.codeGen.ui.util.XmlParse;
 
 /**
  * @author elfkingw
@@ -62,44 +60,44 @@ import org.richie.codeGen.ui.util.XmlParse;
 public class ConstantConfigWin extends JDialog implements ActionListener {
 
     /**
-     * 
+     *
      */
-    private static final long   serialVersionUID = 1L;
-    private JPanel              configPanel;
-    private JPanel              northPanel;
-    private JScrollPane         centerPanel;
-    private JTable              table;
-    private JPanel              buttonPanel;
-    private JButton             addLineBtn;
-    private JButton             saveBtn;
-    private JTextField          rootPathName1;
-    private JTextField          rootPathValue1;
-    private JTextField          rootPathName2;
-    private JTextField          rootPathValue2;
-    private JTextField          rootPathName3;
-    private JTextField          rootPathValue3;
-    private JTextField          rootPathName4;
-    private JTextField          rootPathValue4;
-    private JTextField          tablePrefix;
-    private JButton             chooseBtn1;
-    private JButton             chooseBtn2;
-    private JButton             chooseBtn3;
-    private JButton             chooseBtn4;
-    private GenAndPreviewUI     previewUI;
+    private static final long serialVersionUID = 1L;
+    private JPanel configPanel;
+    private JPanel northPanel;
+    private JScrollPane centerPanel;
+    private JTable table;
+    private JPanel buttonPanel;
+    private JButton addLineBtn;
+    private JButton saveBtn;
+    private JTextField rootPathName1;
+    private JTextField rootPathValue1;
+    private JTextField rootPathName2;
+    private JTextField rootPathValue2;
+    private JTextField rootPathName3;
+    private JTextField rootPathValue3;
+    private JTextField rootPathName4;
+    private JTextField rootPathValue4;
+    private JTextField tablePrefix;
+    private JButton chooseBtn1;
+    private JButton chooseBtn2;
+    private JButton chooseBtn3;
+    private JButton chooseBtn4;
+    private GenAndPreviewUI previewUI;
 
-    private Log                 log              = LogFacotry.getLogger(ConstantConfigWin.class);
+    private Log log = LogFacotry.getLogger(ConstantConfigWin.class);
     private ConstantConfigModel constantConfigModel;
 
-    public ConstantConfigWin(GenAndPreviewUI previewUI){
+    public ConstantConfigWin(GenAndPreviewUI previewUI) {
 
         super();
         this.previewUI = previewUI;
-        initLize();
+        initialization();
     }
 
-    public void initLize() {
+    public void initialization() {
         setTitle("变量设置");
-        setSize(560, 500);
+        setSize(850, 500);
         add(getConfigPanel());
         initData();
     }
@@ -123,7 +121,9 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
                 table.updateUI();
             }
             OutFileRootPathVo rootVo = GlobalData.getOutFileRootPathVo();
-            if (rootVo != null) setOutFileRootPathVo(rootVo);
+            if (rootVo != null) {
+                setOutFileRootPathVo(rootVo);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -200,13 +200,13 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
             chooseBtn4.addActionListener(this);
             panel4.add(chooseBtn4);
             northPanel.add(panel4);
-            
+
             JPanel panel5 = new JPanel();
             JLabel tablePrefixLabel = new JLabel("表名前缀(用逗号隔开): ");
             panel5.add(tablePrefixLabel);
             tablePrefix = new JTextField(23);
             panel5.add(tablePrefix);
-            JLabel tablePrefixNoteLabel = new JLabel("例如 (SM,GL)，生成代码时会去掉表名前缀");
+            JLabel tablePrefixNoteLabel = new JLabel("例如 (SM_,GL_)，生成代码时会去掉表名前缀");
             panel5.add(tablePrefixNoteLabel);
             northPanel.add(panel5);
         }
@@ -233,8 +233,8 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
             tcm.getColumn(1).setCellEditor(new DefaultCellEditor(cm));
             tcm.getColumn(0).setPreferredWidth(50);
             tcm.getColumn(1).setPreferredWidth(30);
-            tcm.getColumn(2).setPreferredWidth(240);
-            tcm.getColumn(4).setPreferredWidth(20);
+            tcm.getColumn(2).setPreferredWidth(300);
+            tcm.getColumn(4).setPreferredWidth(5);
             centerPanel = new JScrollPane(table);
             // 增加table里按钮点击事件
             addTableListener();
@@ -270,7 +270,7 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
         } else if (e.getSource() == saveBtn) {
             onSave();
         } else if (e.getSource() == chooseBtn1 || e.getSource() == chooseBtn2 || e.getSource() == chooseBtn3
-                   || e.getSource() == chooseBtn4) {
+                || e.getSource() == chooseBtn4) {
             JFileChooser jfc = new JFileChooser();// 文件选择器
             if (e.getSource() == chooseBtn1) {
                 jfc.setCurrentDirectory(new File(rootPathValue1.getText()));
@@ -302,30 +302,28 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
     }
 
     /**
-     * 
+     *
      */
     private void onSave() {
         try {
             List<ConstantConfigVo> constList = constantConfigModel.getConstantConfigList();
-            XmlParse<ConstantConfigVo> consXmlParse = new XmlParse<ConstantConfigVo>(ConstantConfigVo.class);
-            consXmlParse.genVoToXmlFile(constList, FileUtils.getConstantConfigPath());
+            GlobalData.setConstantList(constList);
             OutFileRootPathVo rootVo = GlobalData.getOutFileRootPathVo();
             getOutFileRootPathVo(rootVo);
-            if(!StringUtils.isEmpty(rootVo.getName1()) && StringUtils.isEmpty(rootVo.getPath1())){
+            if (!StringUtils.isEmpty(rootVo.getName1()) && StringUtils.isEmpty(rootVo.getPath1())) {
                 JOptionPane.showMessageDialog(this, "请输入根目录1的路径！", "提示", JOptionPane.INFORMATION_MESSAGE);
                 return;
-            }else if(!StringUtils.isEmpty(rootVo.getName2()) && StringUtils.isEmpty(rootVo.getPath2())){
+            } else if (!StringUtils.isEmpty(rootVo.getName2()) && StringUtils.isEmpty(rootVo.getPath2())) {
                 JOptionPane.showMessageDialog(this, "请输入根目录2的路径！", "提示", JOptionPane.INFORMATION_MESSAGE);
                 return;
-            }else if(!StringUtils.isEmpty(rootVo.getName3()) && StringUtils.isEmpty(rootVo.getPath3())){
+            } else if (!StringUtils.isEmpty(rootVo.getName3()) && StringUtils.isEmpty(rootVo.getPath3())) {
                 JOptionPane.showMessageDialog(this, "请输入根目录3的路径！", "提示", JOptionPane.INFORMATION_MESSAGE);
                 return;
-            }else if(!StringUtils.isEmpty(rootVo.getName4()) && StringUtils.isEmpty(rootVo.getPath4())){
+            } else if (!StringUtils.isEmpty(rootVo.getName4()) && StringUtils.isEmpty(rootVo.getPath4())) {
                 JOptionPane.showMessageDialog(this, "请输入根目录4的路径！", "提示", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            XmlParse<OutFileRootPathVo> outFileXmlParse = new XmlParse<OutFileRootPathVo>(OutFileRootPathVo.class);
-            outFileXmlParse.genVoToXmlFile(rootVo, FileUtils.getOutFileRootPath());
+            GlobalData.setOutFileRootPath(rootVo);
             previewUI.refreshComBoBox();
             JOptionPane.showMessageDialog(this, "保存成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
@@ -334,8 +332,8 @@ public class ConstantConfigWin extends JDialog implements ActionListener {
     }
 
     private OutFileRootPathVo getOutFileRootPathVo(OutFileRootPathVo rootVo) {
-        if(rootVo == null){
-            rootVo= new OutFileRootPathVo();
+        if (rootVo == null) {
+            rootVo = new OutFileRootPathVo();
         }
         rootVo.setName1(rootPathName1.getText());
         rootVo.setName2(rootPathName2.getText());
